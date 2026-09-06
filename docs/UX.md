@@ -1,0 +1,192 @@
+# RepLog — UX Flows & Information Architecture
+
+Status: draft for review
+Companion to [`SPEC.md`](SPEC.md).
+
+## Design targets
+
+- **Primary device:** phone, one-handed, used mid-workout with sweaty hands and
+  poor gym wifi. Big tap targets, numeric keypads, minimal navigation depth.
+- **Primary task:** log a set in ~2 taps. Everything else is secondary.
+- **Fidelity for first design pass:** mid-fi (real type, spacing, one accent colour).
+
+## Route / screen inventory
+
+| Route | Screen | Auth | Notes |
+|---|---|---|---|
+| `/` | Landing | public | Value prop + sign in. Redirects to `/app` if already authed. |
+| `/login` | Sign in / sign up | public | Email + password (magic link optional). `?next=` return path. |
+| `/auth/callback` | OAuth/magic-link handler | public | Exchanges code, redirects to `next`. |
+| `/onboarding` | First-run setup | authed | Display name, kg/lb, default rest. Shown once. |
+| `/app` | Home / dashboard | authed | Start-workout CTA, resume banner, week volume, streak, mini heatmap, recent sessions. |
+| `/app/workout/new` | Start workout | authed | Choose **Empty** or **From template**. |
+| `/app/workout/[id]` | Active session (the core loop) | authed | Exercise cards, set rows, rest timer, finish/discard. |
+| `/app/workout/[id]/pick` | Exercise picker | authed | Sheet/modal. Search + filter by muscle/equipment. Multi-select add. |
+| `/app/history` | Session history | authed | Cursor-paginated list, newest first. |
+| `/app/history/[id]` | Session detail | authed | Read-only past session; edit reopens it. |
+| `/app/exercises` | Exercise library | authed | Search/filter; global + custom. |
+| `/app/exercises/new` | New custom exercise | authed | Name, muscles, equipment, movement. |
+| `/app/exercises/[id]` | Exercise detail | authed | Est. 1RM trend, volume trend, PR list, full set history. |
+| `/app/templates` | Templates | authed | List + create. |
+| `/app/templates/new` | Build template | authed | Name, ordered exercises, targets. |
+| `/app/templates/[id]` | Template detail / edit | authed | Start session from here. |
+| `/app/progress` | Progress overview | authed | Full muscle heatmap, tonnage, frequency, per-lift 1RM. |
+| `/app/body` | Bodyweight | authed | One entry/day, trend chart. |
+| `/app/settings` | Settings | authed | Units, default rest, data export, account/sign out. |
+
+## Navigation model
+
+Bottom tab bar (mobile), 5 items. Everything else is pushed on top.
+
+```
+[ Home ]   [ History ]   [ ( + )  Start ]   [ Exercises ]   [ Progress ]
+```
+
+- Centre **Start** is a prominent FAB-style action → `/app/workout/new`.
+- Templates reached from Start sheet and from Home. Body + Settings from Home header avatar.
+- When a session is `in_progress`, a persistent **"Resume workout"** bar sits above the tab bar on every screen.
+
+## Sitemap
+
+```mermaid
+graph TD
+  Landing["/  Landing"] -->|sign in| Login["/login"]
+  Login --> Onboarding["/onboarding (first run)"]
+  Onboarding --> Home
+  Login --> Home["/app  Home"]
+
+  Home --> History["/app/history"]
+  Home --> Exercises["/app/exercises"]
+  Home --> Progress["/app/progress"]
+  Home --> Body["/app/body"]
+  Home --> Settings["/app/settings"]
+  Home --> NewWorkout["/app/workout/new"]
+
+  History --> SessionDetail["/app/history/[id]"]
+  Exercises --> ExerciseDetail["/app/exercises/[id]"]
+  Exercises --> NewExercise["/app/exercises/new"]
+
+  NewWorkout -->|empty| Active["/app/workout/[id]  Active session"]
+  NewWorkout -->|from template| Templates["/app/templates"]
+  Templates --> TemplateDetail["/app/templates/[id]"]
+  Templates --> NewTemplate["/app/templates/new"]
+  TemplateDetail -->|start| Active
+
+  Active --> Picker["/app/workout/[id]/pick  Exercise picker"]
+  Picker --> Active
+  Active -->|finish| Summary["Session summary"]
+  Summary --> Home
+  SessionDetail -->|save as template| NewTemplate
+```
+
+## Core flow — log a workout
+
+```mermaid
+flowchart TD
+  A["Home: tap Start"] --> B{Empty or template?}
+  B -->|Empty| C["Create session (status=in_progress)"]
+  B -->|From template| T["Pick template"] --> C2["Create session,\npre-fill exercises + target sets"]
+  C --> D["Active session screen"]
+  C2 --> D
+
+  D --> E["Tap 'Add exercise'"]
+  E --> F["Picker: search / filter by\nmuscle + equipment, multi-select"]
+  F --> D
+
+  D --> G["Exercise card shows\n'Last time: 80kg x 8, 8, 7'"]
+  G --> H["Enter weight + reps (numeric pad)"]
+  H --> I["Tap ✓ to complete set"]
+  I --> J["Rest timer auto-starts,\nnotifies at 0"]
+  J --> K{More sets?}
+  K -->|Add set| H
+  K -->|Next exercise| D
+  K -->|Done| L["Tap Finish"]
+
+  D -.->|edit / reorder / delete\nset or exercise| D
+  L --> M["Summary: duration, total volume,\nPRs hit, muscles worked"]
+  M --> N["Back to Home\n(streak + week volume update)"]
+  D -.->|Discard| O["Confirm → session status=discarded → Home"]
+```
+
+## Flow — review progress
+
+```mermaid
+flowchart LR
+  A["Home / Exercises / a set row"] --> B["Exercise detail"]
+  B --> C["Est. 1RM trend"]
+  B --> D["Volume per session"]
+  B --> E["PR list: max weight,\nest 1RM, reps, set volume"]
+  B --> F["Full set history by date"]
+  A2["Progress tab"] --> G["Muscle heatmap (7-day volume)"]
+  A2 --> H["Weekly tonnage + frequency"]
+```
+
+## Flow — templates
+
+```mermaid
+flowchart TD
+  A["Templates tab"] --> B["New template"]
+  B --> C["Name it"]
+  C --> D["Add exercises (picker)"]
+  D --> E["Per exercise: target sets,\nrep range, optional RPE, rest"]
+  E --> F["Save"]
+  F --> G["Template detail"]
+  G -->|Start workout| H["New session pre-filled"]
+
+  X["Finished session summary"] -->|Save as template| C
+```
+
+## Auth / gating
+
+```mermaid
+flowchart TD
+  A["Request to /app/*"] --> B{"proxy.ts:\nsupabase.auth.getUser()"}
+  B -->|user| C["Render route"]
+  B -->|no user| D["Redirect /login?next=<path>"]
+  D --> E["Sign in"]
+  E --> F["/auth/callback exchanges code"]
+  F --> G{"Profile complete?"}
+  G -->|no| H["/onboarding"]
+  G -->|yes| I["Redirect to next"]
+```
+
+## Key screen contents (mid-fi checklist)
+
+**Home `/app`**
+- Header: avatar (→ settings/body), app name, streak flame + count
+- Big **Start Workout** button
+- Resume banner if `in_progress` session exists
+- "This week": total volume, sessions count, sparkline
+- Mini muscle heatmap (tap → Progress)
+- Recent sessions (3) → History
+
+**Active session `/app/workout/[id]`**
+- Sticky header: session name/time, elapsed timer, **Finish** button, overflow (rename, discard)
+- Rest-timer pill (appears after completing a set; tap to adjust/skip)
+- Per exercise: name, "last time" line, set table (set #, prev, kg, reps, RPE, ✓), **+ Add set**
+- Drag handle to reorder; swipe row to delete
+- **+ Add exercise** (opens picker sheet)
+
+**Exercise picker `/app/workout/[id]/pick`**
+- Search field (autofocus)
+- Filter chips: muscle group, equipment
+- Results list with muscle tag; tap to toggle; **Add N** button
+
+**Exercise detail `/app/exercises/[id]`**
+- Title, muscles, equipment
+- PR row (4 stat tiles)
+- Chart: est. 1RM trend (toggle volume)
+- Set history grouped by date
+
+**Session summary**
+- Duration, total volume, set count
+- PRs hit (celebratory)
+- Muscles worked (mini heatmap)
+- **Save as template** / **Done**
+
+## Open questions
+
+1. Landing page for v1, or go straight to `/login` when logged out?
+2. Bottom-tab labels — icons only, or icons + text?
+3. Rest timer: full-screen takeover, or just the pill? (Pill assumed.)
+4. Supersets are out of v1 — okay to omit the reorder-into-group affordance entirely for now?
