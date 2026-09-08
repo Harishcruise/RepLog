@@ -2,6 +2,7 @@
 
 Status: draft for review
 Companion to [`SPEC.md`](SPEC.md) and [`UX.md`](UX.md).
+Visual reference: the Claude Design canvas in [`../design/`](../design/) (Colour, Typography, Space/Radius/Motion, Components artboards). This doc and that canvas are kept in sync.
 Implementation target: Tailwind CSS 4 (CSS-first `@theme`) + shadcn/ui + Recharts.
 
 ---
@@ -125,25 +126,34 @@ baseline, ≥8px markers, 2px surface gap between fills.
 
 ## 3. Typography
 
-Font: **Geist** (already wired via `next/font` in `layout.tsx`), `Geist Mono` for
-optional numeric display. Fallback: `system-ui, -apple-system, "Segoe UI", sans-serif`.
+Three roles, all Google Fonts — add via `next/font/google` (no manual install):
 
-| Token | Size / line-height | Weight | Use |
+- **Space Grotesk** — screen titles, section headers, buttons, chips, table headers.
+  Weights 500 / 600. Tighten tracking at title sizes. Fallback `system-ui, sans-serif`.
+- **Geist** — body copy, all inputs, captions, helper text, exercise names.
+  Weights 400 / 500 / 600. Already wired via `next/font`. Fallback
+  `system-ui, -apple-system, "Segoe UI", sans-serif`.
+- **Geist Mono** — every number the user reads as data: weight, reps, RPE, est. 1RM,
+  volume, timers, timestamps, axis ticks. Weights 500 / 600, always `tabular-nums`.
+  Fallback `ui-monospace, monospace`.
+
+| Token | Size / line-height | Face / weight | Use |
 |---|---|---|---|
-| `text-display` | 40 / 44 | 700 | session summary hero number, PR value |
-| `text-stat` | 32 / 34 | 700 | stat-tile values |
-| `text-h1` | 28 / 34 | 600 | screen title |
-| `text-h2` | 22 / 28 | 600 | section header |
-| `text-h3` | 18 / 24 | 600 | card title, exercise name |
-| `text-body` | 16 / 24 | 400 | body, **all inputs** (≥16 prevents iOS zoom) |
-| `text-label` | 14 / 20 | 500 | labels, buttons, chips, table headers |
-| `text-caption` | 13 / 18 | 500 | "last time" line, stat labels |
-| `text-micro` | 12 / 16 | 500 | timestamps only |
+| `text-display` | 40 / 44 | Geist Mono 600, tabular | summary hero number, PR value |
+| `text-stat` | 32 / 34 | Geist Mono 500, tabular | stat-tile values |
+| `text-h1` | 28 / 34 | Space Grotesk 600, −0.012em | screen title |
+| `text-h2` | 22 / 28 | Space Grotesk 600, −0.008em | section header |
+| `text-h3` | 18 / 24 | Geist 600 | card title, exercise name |
+| `text-body` | 16 / 24 | Geist 400 | body, **all inputs** (≥16 prevents iOS zoom) |
+| `text-label` | 14 / 20 | Space Grotesk 500 | buttons, chips, table headers |
+| `text-caption` | 13 / 18 | Geist 500 | "last time" line, stat labels |
+| `text-micro` | 12 / 16 | Geist Mono 500 | timestamps, axis ticks |
 
-- Large standalone numbers: proportional figures.
-- Any column that must align vertically (set tables, axis ticks, history rows):
-  `font-variant-numeric: tabular-nums`.
-- Never go below 13px except `text-micro`. Never below 16px for interactive text.
+- Large standalone numbers use Geist Mono, tabular — locks the hero/stat digits.
+- Any vertically-aligned column (set tables, axis ticks, history rows) is
+  `tabular-nums`, which the Geist Mono roles carry inherently.
+- Never below 13px except `text-micro`. Never below 16px for interactive text.
+- Optional harder sci-fi read: swap the Geist Mono role for **Martian Mono**.
 
 ---
 
@@ -423,8 +433,9 @@ method; everything else OKLCH.
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
 
-  --font-sans: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;                        /* titles, headers, buttons, chips */
+  --font-sans: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", sans-serif;   /* body, inputs, captions */
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;                            /* all data numerals, tabular */
 }
 
 @layer base {

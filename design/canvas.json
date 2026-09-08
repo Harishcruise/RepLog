@@ -1,0 +1,12 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1000, "h": 1720, "title": "Foundations — Colour" },
+    { "file": "Typography.dc.html", "x": 1120, "y": 0, "w": 1000, "h": 2460, "title": "Typography" },
+    { "file": "Foundations.dc.html", "x": 2240, "y": 0, "w": 1000, "h": 1000, "title": "Foundations — Space, Radius, Motion" },
+    { "file": "Components.dc.html", "x": 3360, "y": 0, "w": 1120, "h": 3140, "title": "Components" }
+  ],
+  "annotations": [
+    { "id": "open-questions", "x": 0, "y": -210, "w": 470, "text": "Open questions (DESIGN_SYSTEM.md §10)\n1. Landing page for v1, or straight to /login?\n2. Bottom-nav labels — icons only, or icons + text? (drawn here: labels)\n3. Rest timer — full-screen vs pill? (drawn here: pill)\n4. Volt hue — this draft uses ~132° green. Alternatives on the table: electric indigo ~275° (frees green for success only), or amber ~70°." }
+  ],
+  "launch": { "view": "canvas" }
+}

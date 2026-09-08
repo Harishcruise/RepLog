@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; background: oklch(0.160 0.004 120); color: oklch(0.970 0.003 120);
+      font-family: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: oklch(0.82 0.18 130); } a:hover { color: oklch(0.90 0.14 130); }
+    .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
+    .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: oklch(0.680 0.004 120); }
+    .meta { font-size: 12px; color: oklch(0.680 0.004 120); }
+  </style>
+</helmet>
+
+<div style="padding: 44px 48px 56px; max-width: 904px;">
+
+  <div style="display: flex; flex-direction: column; gap: 6px; padding-bottom: 28px; border-bottom: 1px solid oklch(1 0 0 / 10%);">
+    <span style="font-size: 22px; font-weight: 600; letter-spacing: -0.01em;">Foundations · Space, Radius, Motion</span>
+    <span class="meta" style="font-size: 14px;">Spacing scale, corner radii, elevation and motion. Typography has its own page.</span>
+  </div>
+
+  <!-- SPACING -->
+  <div style="padding-top: 44px;">
+    <div class="eyebrow" style="margin-bottom: 6px;">Spacing — 4px base</div>
+    <div class="meta" style="margin-bottom: 18px;">Screen gutter 16 · card padding 16 · gap between cards 12.</div>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 16px;"><span class="mono meta" style="width: 64px; text-align: right;">1 · 4</span><div style="height: 14px; width: 4px; background: oklch(0.82 0.18 130); border-radius: 2px;"></div></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span class="mono meta" style="width: 64px; text-align: right;">2 · 8</span><div style="height: 14px; width: 8px; background: oklch(0.82 0.18 130); border-radius: 2px;"></div></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span class="mono meta" style="width: 64px; text-align: right;">3 · 12</span><div style="height: 14px; width: 12px; background: oklch(0.82 0.18 130); border-radius: 2px;"></div></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span class="mono meta" style="width: 64px; text-align: right;">4 · 16</span><div style="height: 14px; width: 16px; background: oklch(0.82 0.18 130); border-radius: 2px;"></div></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span class="mono meta" style="width: 64px; text-align: right;">5 · 20</span><div style="height: 14px; width: 20px; background: oklch(0.82 0.18 130); border-radius: 2px;"></div></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span class="mono meta" style="width: 64px; text-align: right;">6 · 24</span><div style="height: 14px; width: 24px; background: oklch(0.82 0.18 130); border-radius: 2px;"></div></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span class="mono meta" style="width: 64px; text-align: right;">8 · 32</span><div style="height: 14px; width: 32px; background: oklch(0.82 0.18 130); border-radius: 2px;"></div></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span class="mono meta" style="width: 64px; text-align: right;">10 · 40</span><div style="height: 14px; width: 40px; background: oklch(0.82 0.18 130); border-radius: 2px;"></div></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span class="mono meta" style="width: 64px; text-align: right;">12 · 48</span><div style="height: 14px; width: 48px; background: oklch(0.82 0.18 130); border-radius: 2px;"></div></div>
+      <div style="display: flex; align-items: center; gap: 16px;"><span class="mono meta" style="width: 64px; text-align: right;">16 · 64</span><div style="height: 14px; width: 64px; background: oklch(0.82 0.18 130); border-radius: 2px;"></div></div>
+    </div>
+  </div>
+
+  <!-- RADIUS + ELEVATION -->
+  <div style="padding-top: 44px; display: flex; gap: 48px;">
+    <div style="flex: 1;">
+      <div class="eyebrow" style="margin-bottom: 6px;">Radius</div>
+      <div class="meta" style="margin-bottom: 18px;">--radius 12. Buttons &amp; inputs 12 · set-row cells 8.</div>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;"><div style="width: 68px; height: 68px; background: oklch(0.260 0.004 120); border: 1px solid oklch(1 0 0 / 10%); border-radius: 8px;"></div><span class="mono meta">sm 8</span></div>
+        <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;"><div style="width: 68px; height: 68px; background: oklch(0.260 0.004 120); border: 1px solid oklch(1 0 0 / 10%); border-radius: 10px;"></div><span class="mono meta">md 10</span></div>
+        <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;"><div style="width: 68px; height: 68px; background: oklch(0.260 0.004 120); border: 1px solid oklch(1 0 0 / 10%); border-radius: 12px;"></div><span class="mono meta">lg 12</span></div>
+        <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;"><div style="width: 68px; height: 68px; background: oklch(0.260 0.004 120); border: 1px solid oklch(1 0 0 / 10%); border-radius: 16px;"></div><span class="mono meta">xl 16</span></div>
+        <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;"><div style="width: 68px; height: 68px; background: oklch(0.260 0.004 120); border: 1px solid oklch(1 0 0 / 10%); border-radius: 20px;"></div><span class="mono meta">2xl 20</span></div>
+        <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;"><div style="width: 68px; height: 68px; background: oklch(0.260 0.004 120); border: 1px solid oklch(1 0 0 / 10%); border-radius: 999px;"></div><span class="mono meta">full</span></div>
+      </div>
+    </div>
+    <div style="flex: 1;">
+      <div class="eyebrow" style="margin-bottom: 6px;">Elevation</div>
+      <div class="meta" style="margin-bottom: 18px;">Dark mode: halve opacity, rely on surface + border.</div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="border-radius: 12px; background: oklch(0.210 0.004 120); border: 1px solid oklch(1 0 0 / 10%); padding: 12px 14px; box-shadow: 0 1px 2px rgb(0 0 0 / 0.06);">
+          <span style="font-size: 13px; font-weight: 600;">shadow-sm</span> <span class="mono meta">0 1 2 rgb(0 0 0 / .06)</span>
+        </div>
+        <div style="border-radius: 12px; background: oklch(0.210 0.004 120); border: 1px solid oklch(1 0 0 / 10%); padding: 12px 14px; box-shadow: 0 4px 12px rgb(0 0 0 / 0.10);">
+          <span style="font-size: 13px; font-weight: 600;">shadow-md</span> <span class="mono meta">0 4 12 rgb(0 0 0 / .10)</span>
+        </div>
+        <div style="border-radius: 12px; background: oklch(0.210 0.004 120); border: 1px solid oklch(1 0 0 / 10%); padding: 12px 14px; box-shadow: 0 12px 32px rgb(0 0 0 / 0.16);">
+          <span style="font-size: 13px; font-weight: 600;">shadow-lg</span> <span class="mono meta">0 12 32 rgb(0 0 0 / .16)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOTION -->
+  <div style="padding-top: 44px;">
+    <div class="eyebrow" style="margin-bottom: 6px;">Motion</div>
+    <div class="meta" style="margin-bottom: 18px;">Easing <span class="mono">standard cubic-bezier(0.2, 0, 0, 1)</span> · sheets use a soft spring · <span class="mono">prefers-reduced-motion</span>: opacity only, no transforms; timer ring still animates.</div>
+    <div style="display: flex; gap: 16px;">
+      <div style="flex: 1; border-radius: 12px; border: 1px solid oklch(1 0 0 / 10%); padding: 14px 16px;"><span style="font-size: 13px; font-weight: 600;">fast</span><span class="mono meta" style="display: block; margin-top: 3px;">120ms — toggles, chips</span></div>
+      <div style="flex: 1; border-radius: 12px; border: 1px solid oklch(1 0 0 / 10%); padding: 14px 16px;"><span style="font-size: 13px; font-weight: 600;">base</span><span class="mono meta" style="display: block; margin-top: 3px;">180ms — most transitions</span></div>
+      <div style="flex: 1; border-radius: 12px; border: 1px solid oklch(1 0 0 / 10%); padding: 14px 16px;"><span style="font-size: 13px; font-weight: 600;">slow</span><span class="mono meta" style="display: block; margin-top: 3px;">240ms — sheets, overlays</span></div>
+    </div>
+  </div>
+
+  <!-- LAYOUT -->
+  <div style="padding-top: 44px;">
+    <div class="eyebrow" style="margin-bottom: 6px;">App frame</div>
+    <div class="meta">Full-bleed on phone; <span class="mono">max-width 480px</span> centred with side rules on larger screens. Respect <span class="mono">env(safe-area-inset-*)</span>. Bottom nav height <span class="mono">56 + inset</span>. Sticky: screen header top, bottom nav bottom; active session also pins the timer + Finish. Resume bar (44px, volt-tinted) sits above the nav on every other screen while a session is in&nbsp;progress.</div>
+  </div>
+
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":1000,"height":980}}'>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>
