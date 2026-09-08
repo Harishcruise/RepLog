@@ -182,9 +182,19 @@ Easing `standard` `cubic-bezier(0.2, 0, 0, 1)`; sheets use a soft spring.
 
 ## 5. Layout
 
-- **App frame:** full-bleed on phone; `max-width: 480px` centred with side rules on
-  larger screens (this is a phone app first).
+**Mobile-first, one responsive layout, no desktop block.** The app is a single
+column that is full-bleed on phones and caps at `max-width: 480px` centred on the
+obsidian ground (with faint side rules) on anything wider. Desktop users get the
+same phone UI in the middle of the window — deliberate, not broken. Design and QA
+target phone widths only (**360–430px**); no tablet/desktop breakpoints, no
+two-column views in v1. A wider desktop layout for History / Progress is a
+possible v2, never a v1 concern.
+
+- **Viewport:** `width=device-width, initial-scale=1`. **Never** `user-scalable=no`
+  or `maximum-scale=1` — pinch-zoom stays available.
 - **Safe areas:** respect `env(safe-area-inset-*)`. Bottom nav height `56 + inset`.
+  No fake status bar or keyboard — the OS draws those on top.
+- **Install:** PWA add-to-home-screen prompt targets mobile only.
 - **Sticky regions:** screen header (title + primary action) top; bottom nav bottom;
   active-session screen also pins the elapsed timer + Finish.
 - **Resume bar:** when a session is `in_progress`, a 44px volt-tinted bar sits

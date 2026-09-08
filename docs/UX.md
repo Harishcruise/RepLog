@@ -7,6 +7,10 @@ Companion to [`SPEC.md`](SPEC.md).
 
 - **Primary device:** phone, one-handed, used mid-workout with sweaty hands and
   poor gym wifi. Big tap targets, numeric keypads, minimal navigation depth.
+- **Form factor:** mobile-first, one responsive layout. A single column, full-bleed
+  on phones, capped at `max-width: 480px` centred on wider screens. Desktop is **not
+  blocked** — it just shows the phone UI centred. Design/QA at 360–430px only; no
+  tablet or desktop layouts in v1 (see `DESIGN_SYSTEM.md §5`).
 - **Primary task:** log a set in ~2 taps. Everything else is secondary.
 - **Fidelity for first design pass:** mid-fi (real type, spacing, one accent colour).
 
