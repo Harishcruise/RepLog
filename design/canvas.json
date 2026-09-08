@@ -1,13 +1,19 @@
 {
+  "pages": [
+    { "id": "foundations", "name": "Foundations" },
+    { "id": "screens", "name": "Screens" }
+  ],
   "artboards": [
-    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1000, "h": 1720, "title": "Foundations — Colour" },
-    { "file": "Typography.dc.html", "x": 1120, "y": 0, "w": 1000, "h": 2460, "title": "Typography" },
-    { "file": "Foundations.dc.html", "x": 2240, "y": 0, "w": 1000, "h": 1000, "title": "Foundations — Space, Radius, Motion" },
-    { "file": "Components.dc.html", "x": 3360, "y": 0, "w": 1120, "h": 3140, "title": "Components" }
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1000, "h": 1720, "title": "Foundations — Colour", "page": "foundations" },
+    { "file": "Typography.dc.html", "x": 1120, "y": 0, "w": 1000, "h": 2460, "title": "Typography", "page": "foundations" },
+    { "file": "Foundations.dc.html", "x": 2240, "y": 0, "w": 1000, "h": 1000, "title": "Foundations — Space, Radius, Motion", "page": "foundations" },
+    { "file": "Components.dc.html", "x": 3360, "y": 0, "w": 1120, "h": 3140, "title": "Components", "page": "foundations" },
+    { "file": "Login.dc.html", "x": 0, "y": 0, "w": 1180, "h": 980, "title": "Login / Signup", "page": "screens" }
   ],
   "annotations": [
-    { "id": "theme-note", "x": 0, "y": -170, "w": 620, "text": "Theme: single, Obsidian & Volt (no light/dark). Ground oklch(0.150 0.007 150), primary oklch(0.82 0.17 137). All four artboards are on this palette." },
-    { "id": "open-questions", "x": 0, "y": 1810, "w": 470, "text": "Open questions (DESIGN_SYSTEM.md §10)\n1. Landing page for v1, or straight to /login?\n2. Bottom-nav labels — icons only, or icons + text? (drawn here: labels)\n3. Rest timer — full-screen vs pill? (drawn here: pill)\n4. Volt hue / light-vs-dark — resolved: Obsidian & Volt, single theme." }
+    { "id": "theme-note", "x": 0, "y": -170, "w": 620, "page": "foundations", "text": "Theme: single, Obsidian & Volt (no light/dark). Ground oklch(0.150 0.007 150), primary oklch(0.82 0.17 137)." },
+    { "id": "open-questions", "x": 0, "y": 1810, "w": 470, "page": "foundations", "text": "Open questions (DESIGN_SYSTEM.md §10)\n1. Landing page — resolved: none, /login is the entry.\n2. Bottom-nav labels — icons + text (drawn).\n3. Rest timer — pill (drawn).\n4. Theme — resolved: Obsidian & Volt, single." },
+    { "id": "screens-note", "x": 0, "y": -150, "w": 560, "page": "screens", "text": "App screens, mid-fi, phone frame 390×844 on the Obsidian & Volt system. First: Login / Signup." }
   ],
-  "launch": { "view": "canvas" }
+  "launch": { "view": "canvas", "page": "screens" }
 }
