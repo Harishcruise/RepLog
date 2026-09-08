@@ -18,9 +18,10 @@ Companion to [`SPEC.md`](SPEC.md).
 
 | Route | Screen | Auth | Notes |
 |---|---|---|---|
-| `/` | Landing | public | Value prop + sign in. Redirects to `/app` if already authed. |
-| `/login` | Sign in / sign up | public | Email + password (magic link optional). `?next=` return path. |
-| `/auth/callback` | OAuth/magic-link handler | public | Exchanges code, redirects to `next`. |
+| `/` | — | public | No landing page. Redirects: authed → `/app`, else → `/login`. |
+| `/login` | Sign in / sign up | public | Email + password (primary) or 6-digit email code. Segmented toggle. `?next=` return path. Code entry + "confirm email" are states of this route. |
+| `/login/reset` | Forgot password | public | email → 6-digit code → new password. Shares the code-entry screen with `/login`. |
+| `/auth/callback` | Email-confirm / recovery handler | public | `verifyOtp` for links that still arrive by email; redirects to `next`. |
 | `/onboarding` | First-run setup | authed | Display name, kg/lb, default rest. Shown once. |
 | `/app` | Home / dashboard | authed | Start-workout CTA, resume banner, week volume, streak, mini heatmap, recent sessions. |
 | `/app/workout/new` | Start workout | authed | Choose **Empty** or **From template**. |
@@ -147,9 +148,11 @@ flowchart TD
   A["Request to /app/*"] --> B{"proxy.ts:\nsupabase.auth.getUser()"}
   B -->|user| C["Render route"]
   B -->|no user| D["Redirect /login?next=<path>"]
-  D --> E["Sign in"]
-  E --> F["/auth/callback exchanges code"]
-  F --> G{"Profile complete?"}
+  D --> E{"Password or code?"}
+  E -->|password| P["signInWithPassword"]
+  E -->|code| O["signInWithOtp → enter 6-digit code → verifyOtp"]
+  P --> G{"Profile complete?"}
+  O --> G
   G -->|no| H["/onboarding"]
   G -->|yes| I["Redirect to next"]
 ```
@@ -190,7 +193,8 @@ flowchart TD
 
 ## Open questions
 
-1. Landing page for v1, or go straight to `/login` when logged out?
-2. Bottom-tab labels — icons only, or icons + text?
-3. Rest timer: full-screen takeover, or just the pill? (Pill assumed.)
+1. ~~Landing page~~ — resolved: none, `/login` is the entry.
+2. Bottom-tab labels — icons only, or icons + text? *(icons + text drawn)*
+3. Rest timer: full-screen takeover, or just the pill? *(pill drawn)*
 4. Supersets are out of v1 — okay to omit the reorder-into-group affordance entirely for now?
+5. Auth screens — keep Terms / Privacy links, or drop for a personal-only build?

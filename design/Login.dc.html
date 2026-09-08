@@ -9,11 +9,12 @@
 <helmet>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap">
   <style>
     body { margin: 0; background: oklch(0.120 0.006 150);
       font-family: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
     .sg { font-family: 'Space Grotesk', system-ui, sans-serif; }
+    .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
     a { color: oklch(0.86 0.16 137); text-decoration: none; }
     .screen { width: 390px; height: 844px; background: oklch(0.150 0.007 150); border-radius: 30px;
       border: 1px solid oklch(1 0 0 / 8%); overflow: hidden; box-sizing: border-box;
@@ -25,19 +26,21 @@
       border: 1px solid oklch(1 0 0 / 14%); display: flex; align-items: center; gap: 10px;
       padding: 0 14px; font-size: 16px; }
     .ph { color: oklch(0.520 0.012 150); }
+    .back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: oklch(0.640 0.012 150); }
+    .prim { height: 52px; border: 0; border-radius: 12px; background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137); font: 500 15px 'Space Grotesk', system-ui, sans-serif; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+    .otp { width: 46px; height: 54px; border-radius: 12px; background: oklch(0.195 0.008 152); border: 1px solid oklch(1 0 0 / 14%); display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 22px; font-weight: 500; }
+    .otp.active { border: 2px solid oklch(0.82 0.17 137); }
   </style>
 </helmet>
 
-<div style="padding: 44px; display: flex; gap: 44px; align-items: flex-start;">
+<div style="padding: 44px; display: flex; gap: 40px; align-items: flex-start;">
 
-  <!-- ============ SCREEN: Sign in (default) ============ -->
+  <!-- ============ 1 · SIGN IN ============ -->
   <div class="screen">
     <div style="height: 14px; flex-shrink: 0;"></div>
-
     <div class="pad" style="flex: 1; display: flex; flex-direction: column;">
 
-      <!-- brand -->
-      <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; padding-top: 64px;">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; padding-top: 60px;">
         <span style="width: 52px; height: 52px; border-radius: 14px; background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137); display: inline-flex; align-items: center; justify-content: center;">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg>
         </span>
@@ -47,13 +50,11 @@
         </div>
       </div>
 
-      <!-- mode toggle -->
       <div style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: 14px; background: oklch(0.260 0.010 152);">
         <span class="sg" style="height: 38px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; background: oklch(0.30 0.06 141); color: oklch(0.90 0.14 137); box-shadow: inset 0 0 0 1px oklch(0.82 0.17 137 / 45%);">Sign in</span>
         <span class="sg" style="height: 38px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; color: oklch(0.640 0.012 150);">Create account</span>
       </div>
 
-      <!-- fields -->
       <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 16px;">
         <div class="field">
           <span class="label">Email</span>
@@ -75,23 +76,19 @@
         </div>
       </div>
 
-      <!-- primary action -->
-      <button class="sg" style="margin-top: 22px; height: 52px; border: 0; border-radius: 12px; background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137); font-size: 15px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-        Sign in
+      <button class="prim" style="margin-top: 22px;">Sign in
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </button>
 
-      <!-- divider -->
       <div style="display: flex; align-items: center; gap: 12px; margin: 20px 0;">
         <span style="flex: 1; height: 1px; background: oklch(1 0 0 / 10%);"></span>
         <span style="font-size: 12px; color: oklch(0.560 0.012 150);">or</span>
         <span style="flex: 1; height: 1px; background: oklch(1 0 0 / 10%);"></span>
       </div>
 
-      <!-- magic link -->
       <button class="sg" style="height: 48px; border-radius: 12px; background: transparent; border: 1px solid oklch(1 0 0 / 16%); color: oklch(0.950 0.008 150); font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><path d="M8 12h8"/></svg>
-        Email me a magic link
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 7-10 5L2 7"/></svg>
+        Email me a sign-in code
       </button>
 
       <div style="flex: 1;"></div>
@@ -99,12 +96,12 @@
     </div>
   </div>
 
-  <!-- ============ SCREEN: Create account ============ -->
+  <!-- ============ 2 · CREATE ACCOUNT ============ -->
   <div class="screen">
     <div style="height: 14px; flex-shrink: 0;"></div>
     <div class="pad" style="flex: 1; display: flex; flex-direction: column;">
 
-      <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; padding-top: 64px;">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; padding-top: 60px;">
         <span style="width: 52px; height: 52px; border-radius: 14px; background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137); display: inline-flex; align-items: center; justify-content: center;">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg>
         </span>
@@ -141,24 +138,42 @@
         </div>
       </div>
 
-      <button class="sg" style="margin-top: 22px; height: 52px; border: 0; border-radius: 12px; background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137); font-size: 15px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-        Create account
+      <button class="prim" style="margin-top: 22px;">Create account
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </button>
-
-      <div style="display: flex; align-items: center; gap: 12px; margin: 20px 0;">
-        <span style="flex: 1; height: 1px; background: oklch(1 0 0 / 10%);"></span>
-        <span style="font-size: 12px; color: oklch(0.560 0.012 150);">or</span>
-        <span style="flex: 1; height: 1px; background: oklch(1 0 0 / 10%);"></span>
-      </div>
-
-      <button class="sg" style="height: 48px; border-radius: 12px; background: transparent; border: 1px solid oklch(1 0 0 / 16%); color: oklch(0.950 0.008 150); font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><path d="M8 12h8"/></svg>
-        Email me a magic link
       </button>
 
       <div style="flex: 1;"></div>
       <span style="text-align: center; font-size: 12px; color: oklch(0.500 0.012 150); padding-bottom: 28px; line-height: 17px;">By creating an account you agree to the<br><a>Terms</a> &amp; <a>Privacy Policy</a>.</span>
+    </div>
+  </div>
+
+  <!-- ============ 3 · ENTER CODE  (shared: sign-in-with-code + password reset) ============ -->
+  <div class="screen">
+    <div style="height: 14px; flex-shrink: 0;"></div>
+    <div class="pad" style="flex: 1; display: flex; flex-direction: column; padding-top: 20px;">
+
+      <a class="back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>Use password instead</a>
+
+      <div style="margin-top: 44px; display: flex; flex-direction: column; gap: 8px;">
+        <span class="sg" style="font-size: 24px; font-weight: 600; letter-spacing: -0.01em;">Enter your code</span>
+        <span style="font-size: 14px; line-height: 20px; color: oklch(0.640 0.012 150);">We sent a 6-digit code to <span style="color: oklch(0.86 0.03 150);">harish@gmail.com</span>. It expires in 10 minutes.</span>
+      </div>
+
+      <div style="margin-top: 28px; display: flex; gap: 8px; justify-content: space-between;">
+        <span class="otp">4</span>
+        <span class="otp">1</span>
+        <span class="otp">9</span>
+        <span class="otp active"><span style="width: 2px; height: 24px; background: oklch(0.82 0.17 137);"></span></span>
+        <span class="otp"></span>
+        <span class="otp"></span>
+      </div>
+
+      <div style="margin-top: 18px; font-size: 13px; color: oklch(0.560 0.012 150);">Didn't get it? <span style="color: oklch(0.640 0.012 150);">Resend in 0:38</span></div>
+
+      <button class="prim" style="margin-top: 26px;">Verify &amp; continue</button>
+      <span style="margin-top: 12px; text-align: center; font-size: 12px; color: oklch(0.500 0.012 150);">Verifies automatically when all six digits are in.</span>
+
+      <div style="flex: 1;"></div>
     </div>
   </div>
 
@@ -167,23 +182,29 @@
     <div>
       <div class="sg" style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em;">Login / Signup</div>
       <div style="font-size: 13px; line-height: 20px; color: oklch(0.640 0.012 150); margin-top: 6px;">
-        Route <span class="sg">/login</span>. No landing page — logged-out users land here. One screen, a segmented toggle swaps Sign in ⇄ Create account. Email + password is primary; magic link is the fallback (no password to remember on a personal device).
+        Route <span class="sg">/login</span>. No landing page. Segmented toggle swaps Sign in ⇄ Create account. Password is primary; the <b style="color: oklch(0.86 0.03 150);">6-digit code</b> (Supabase email OTP) is the passwordless fallback — no cross-device link problem. The <span class="sg">Enter your code</span> screen is shared by code-sign-in and password reset.
       </div>
     </div>
 
     <div style="display: flex; flex-direction: column; gap: 10px;">
-      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.640 0.012 150);">Field — error state</div>
-      <div style="display: flex; flex-direction: column; gap: 7px;">
-        <span style="font-size: 13px; font-weight: 500; color: oklch(0.640 0.012 150);">Password</span>
-        <div style="height: 48px; border-radius: 12px; background: oklch(0.195 0.008 152); border: 1px solid oklch(0.64 0.19 25); display: flex; align-items: center; gap: 10px; padding: 0 14px; font-size: 16px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="oklch(0.560 0.012 150)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span style="flex: 1; letter-spacing: 3px;">•••</span>
-        </div>
-        <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: oklch(0.74 0.16 25);">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
-          Wrong email or password.
-        </span>
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.640 0.012 150);">Code — wrong / expired</div>
+      <div style="display: flex; gap: 6px;">
+        <span class="otp" style="width: 36px; height: 44px; font-size: 18px; border-color: oklch(0.64 0.19 25);">4</span>
+        <span class="otp" style="width: 36px; height: 44px; font-size: 18px; border-color: oklch(0.64 0.19 25);">1</span>
+        <span class="otp" style="width: 36px; height: 44px; font-size: 18px; border-color: oklch(0.64 0.19 25);">9</span>
+        <span class="otp" style="width: 36px; height: 44px; font-size: 18px; border-color: oklch(0.64 0.19 25);">0</span>
+        <span class="otp" style="width: 36px; height: 44px; font-size: 18px; border-color: oklch(0.64 0.19 25);">2</span>
+        <span class="otp" style="width: 36px; height: 44px; font-size: 18px; border-color: oklch(0.64 0.19 25);">7</span>
       </div>
+      <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: oklch(0.74 0.16 25);">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+        That code didn't work. Try again or resend.
+      </span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.640 0.012 150);">Resend — armed</div>
+      <div style="font-size: 13px; color: oklch(0.560 0.012 150);">Didn't get it? <a style="font-weight: 500;">Resend code</a></div>
     </div>
 
     <div style="display: flex; flex-direction: column; gap: 10px;">
@@ -194,25 +215,25 @@
     </div>
 
     <div style="display: flex; flex-direction: column; gap: 10px;">
-      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.640 0.012 150);">Magic link — sent</div>
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.640 0.012 150);">Signup — confirm email first</div>
       <div style="border-radius: 14px; background: oklch(0.195 0.008 152); border: 1px solid oklch(1 0 0 / 10%); padding: 16px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;">
         <span style="width: 34px; height: 34px; border-radius: 9px; background: oklch(0.30 0.06 141); color: oklch(0.86 0.16 137); display: inline-flex; align-items: center; justify-content: center;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="3"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         </span>
-        <span style="font-size: 14px;">Check your inbox</span>
-        <span style="font-size: 12px; color: oklch(0.640 0.012 150); line-height: 17px;">We sent a sign-in link to<br>harish@gmail.com</span>
+        <span style="font-size: 14px;">Confirm your email</span>
+        <span style="font-size: 12px; color: oklch(0.640 0.012 150); line-height: 17px;">Enter the 6-digit code we sent to<br>you@example.com</span>
       </div>
     </div>
 
     <div style="font-size: 12px; line-height: 18px; color: oklch(0.560 0.012 150);">
-      Open: keep "Terms / Privacy" links, or drop them for a personal-only build? Forgot-password flow — in v1, or magic-link only?
+      Open: keep the Terms / Privacy links, or drop them for a personal-only build?
     </div>
   </div>
 
 </div>
 </x-dc>
 
-<script data-dc-script data-props='{"$preview":{"width":1180,"height":980}}'>
+<script data-dc-script data-props='{"$preview":{"width":1720,"height":980}}'>
 class Component extends DCLogic {}
 </script>
 </body>

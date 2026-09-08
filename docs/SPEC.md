@@ -19,7 +19,8 @@ Date: 2026-09-06
 ## v1 feature set (locked)
 
 ### Auth & users
-- Supabase Auth (email + password, magic link optional).
+- Supabase Auth: email + password (primary) and 6-digit email OTP code (passwordless
+  fallback + password recovery). No magic link (avoids the cross-device link problem).
 - `profiles` row auto-created on signup.
 - Every user-owned table scoped by `user_id` with RLS. Single user today, multi-user safe.
 
