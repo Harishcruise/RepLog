@@ -123,6 +123,63 @@
     </div>
   </section>
 
+  <!-- SEGMENTED TOGGLE / TABS -->
+  <section style="display: flex; flex-direction: column; gap: 18px;">
+    <div><div class="eyebrow">Segmented toggle · Tabs</div><div class="meta" style="margin-top: 4px;"><span class="mono" style="font-size: 12px;">variant="segmented"</span> — the Sign in ⇄ Create account switch. Track --muted, h 44, radius-xl, full-width. Active segment = --primary-subtle fill + --primary-hover label + 1px --primary/40 border; inactive = --muted-foreground. Also ships <span class="mono" style="font-size: 12px;">default</span> (pill, --popover active) and <span class="mono" style="font-size: 12px;">line</span> (volt underline).</div></div>
+
+    <div style="width: 320px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: 16px; background: oklch(0.300 0.011 152);">
+      <span class="sg" style="height: 36px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; background: oklch(0.30 0.06 141); color: oklch(0.86 0.16 137); border: 1px solid color-mix(in oklch, oklch(0.82 0.17 137) 40%, transparent);">Sign in</span>
+      <span class="sg" style="height: 36px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; color: oklch(0.665 0.012 150);">Create account</span>
+    </div>
+
+    <div style="display: flex; gap: 28px; flex-wrap: wrap; align-items: flex-start;">
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <span class="meta">default</span>
+        <div style="display: inline-flex; gap: 3px; padding: 3px; border-radius: 12px; background: oklch(0.300 0.011 152);">
+          <span class="sg" style="height: 30px; padding: 0 12px; border-radius: 8px; display: inline-flex; align-items: center; font-size: 13px; font-weight: 500; background: oklch(0.268 0.010 152); color: oklch(0.950 0.008 150); box-shadow: 0 1px 2px rgb(0 0 0 / 0.28);">Volume</span>
+          <span class="sg" style="height: 30px; padding: 0 12px; border-radius: 8px; display: inline-flex; align-items: center; font-size: 13px; font-weight: 500; color: oklch(0.665 0.012 150);">Est. 1RM</span>
+          <span class="sg" style="height: 30px; padding: 0 12px; border-radius: 8px; display: inline-flex; align-items: center; font-size: 13px; font-weight: 500; color: oklch(0.665 0.012 150);">Sets</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <span class="meta">line</span>
+        <div style="display: inline-flex; gap: 18px; border-bottom: 1px solid oklch(1 0 0 / 10%); padding-bottom: 8px;">
+          <span class="sg" style="font-size: 13px; font-weight: 500; color: oklch(0.950 0.008 150); position: relative;">7 days<span style="position: absolute; left: 0; right: 0; bottom: -9px; height: 2px; background: oklch(0.82 0.17 137);"></span></span>
+          <span class="sg" style="font-size: 13px; font-weight: 500; color: oklch(0.665 0.012 150);">30 days</span>
+          <span class="sg" style="font-size: 13px; font-weight: 500; color: oklch(0.665 0.012 150);">All</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INPUT OTP -->
+  <section style="display: flex; flex-direction: column; gap: 18px;">
+    <div><div class="eyebrow">Input OTP · 6-digit code</div><div class="meta" style="margin-top: 4px;">Six separate --card boxes, radius-xl, gap 8, Geist Mono. Active box = 2px --primary border + blinking volt caret. Auto-verifies on the 6th digit · 10-minute expiry · resend after a countdown. Shared by code sign-in and password reset.</div></div>
+    <div style="display: flex; gap: 8px;">
+      <span class="mono" style="width: 46px; height: 54px; border-radius: 12px; background: oklch(0.228 0.009 152); border: 1px solid oklch(1 0 0 / 14%); display: inline-flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 500;">4</span>
+      <span class="mono" style="width: 46px; height: 54px; border-radius: 12px; background: oklch(0.228 0.009 152); border: 1px solid oklch(1 0 0 / 14%); display: inline-flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 500;">1</span>
+      <span class="mono" style="width: 46px; height: 54px; border-radius: 12px; background: oklch(0.228 0.009 152); border: 1px solid oklch(1 0 0 / 14%); display: inline-flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 500;">9</span>
+      <span style="width: 46px; height: 54px; border-radius: 12px; background: oklch(0.228 0.009 152); border: 2px solid oklch(0.82 0.17 137); display: inline-flex; align-items: center; justify-content: center;"><span style="width: 2px; height: 24px; background: oklch(0.82 0.17 137);"></span></span>
+      <span style="width: 46px; height: 54px; border-radius: 12px; background: oklch(0.228 0.009 152); border: 1px solid oklch(1 0 0 / 14%);"></span>
+      <span style="width: 46px; height: 54px; border-radius: 12px; background: oklch(0.228 0.009 152); border: 1px solid oklch(1 0 0 / 14%);"></span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span class="meta">wrong / expired</span>
+      <div style="display: flex; gap: 8px;">
+        <span class="mono" style="width: 40px; height: 48px; border-radius: 12px; background: oklch(0.228 0.009 152); border: 1px solid oklch(0.64 0.19 25); display: inline-flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 500;">4</span>
+        <span class="mono" style="width: 40px; height: 48px; border-radius: 12px; background: oklch(0.228 0.009 152); border: 1px solid oklch(0.64 0.19 25); display: inline-flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 500;">1</span>
+        <span class="mono" style="width: 40px; height: 48px; border-radius: 12px; background: oklch(0.228 0.009 152); border: 1px solid oklch(0.64 0.19 25); display: inline-flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 500;">9</span>
+        <span class="mono" style="width: 40px; height: 48px; border-radius: 12px; background: oklch(0.228 0.009 152); border: 1px solid oklch(0.64 0.19 25); display: inline-flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 500;">0</span>
+        <span class="mono" style="width: 40px; height: 48px; border-radius: 12px; background: oklch(0.228 0.009 152); border: 1px solid oklch(0.64 0.19 25); display: inline-flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 500;">2</span>
+        <span class="mono" style="width: 40px; height: 48px; border-radius: 12px; background: oklch(0.228 0.009 152); border: 1px solid oklch(0.64 0.19 25); display: inline-flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 500;">7</span>
+      </div>
+      <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: oklch(0.74 0.16 25);">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+        That code didn't work. Try again or resend.
+      </span>
+    </div>
+  </section>
+
   <!-- SET ROW -->
   <section style="display: flex; flex-direction: column; gap: 18px;">
     <div><div class="eyebrow">Set row &nbsp;<span style="color: oklch(0.520 0.012 150); font-weight: 500; letter-spacing: 0;">core component</span></div><div class="meta" style="margin-top: 4px;">Grid: set# · prev · weight · reps · RPE · ✓. Complete = filled volt ✓ + faint volt wash on the row, and the rest timer starts. Warmup = amber W. RPE ≥ 9 tints the cell amber. Failure = red dot + label. Swipe left → Delete.</div></div>
@@ -379,7 +436,7 @@
 </div>
 </x-dc>
 
-<script data-dc-script data-props='{"$preview":{"width":1120,"height":2860}}'>
+<script data-dc-script data-props='{"$preview":{"width":1120,"height":3480}}'>
 class Component extends DCLogic {}
 </script>
 </body>
