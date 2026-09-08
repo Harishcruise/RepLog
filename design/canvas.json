@@ -7,7 +7,7 @@
     { "file": "Components.dc.html", "x": 3360, "y": 1760, "w": 1120, "h": 3140, "title": "Components" }
   ],
   "annotations": [
-    { "id": "theme-note", "x": 0, "y": -150, "w": 620, "text": "Deciding the single theme (no light/dark). Pick a direction below; the Foundations row updates to match once chosen." },
+    { "id": "theme-note", "x": 0, "y": -150, "w": 620, "text": "Single theme (no light/dark). Ground settled: warm obsidian near-black. Deciding the green — Emerald / Volt / Jade below. Foundations row updates to match once chosen." },
     { "id": "open-questions", "x": 0, "y": 1550, "w": 470, "text": "Open questions (DESIGN_SYSTEM.md §10)\n1. Landing page for v1, or straight to /login?\n2. Bottom-nav labels — icons only, or icons + text? (drawn here: labels)\n3. Rest timer — full-screen vs pill? (drawn here: pill)\n4. Volt hue — superseded by the theme-direction decision above." }
   ],
   "launch": { "view": "focused", "file": "ThemeDirections.dc.html" }

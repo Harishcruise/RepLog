@@ -11,13 +11,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap">
   <style>
-    body { margin: 0; background: oklch(0.145 0.004 260); color: oklch(0.97 0.01 260);
+    body { margin: 0; background: oklch(0.135 0.006 150); color: oklch(0.95 0.008 150);
       font-family: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
     .sg { font-family: 'Space Grotesk', system-ui, sans-serif; }
     .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
     .tnum { font-variant-numeric: tabular-nums; }
     .eyebrow { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
-    .col { border-radius: 20px; overflow: hidden; border: 1px solid oklch(1 0 0 / 10%); display: flex; flex-direction: column; }
+    .col { border-radius: 20px; overflow: hidden; border: 1px solid oklch(1 0 0 / 10%); }
     .card { border-radius: 14px; }
     .btn { height: 44px; border: 0; border-radius: 12px; font: 500 14px 'Space Grotesk', system-ui, sans-serif; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
     .chip { height: 30px; padding: 0 12px; border-radius: 999px; font: 500 12px 'Space Grotesk', system-ui, sans-serif; display: inline-flex; align-items: center; }
@@ -28,217 +28,217 @@
 <div style="padding: 44px 48px 56px; display: flex; flex-direction: column; gap: 30px;">
 
   <div style="display: flex; flex-direction: column; gap: 6px; padding-bottom: 22px; border-bottom: 1px solid oklch(1 0 0 / 10%); max-width: 1080px;">
-    <span class="sg" style="font-size: 22px; font-weight: 600; letter-spacing: -0.012em;">Theme directions — pick one</span>
-    <span style="font-size: 14px; color: oklch(0.68 0.02 260);">Single theme, no light/dark. Each column: ground + two surface steps, text ramp, primary button, filter chips, a completed set row, the PR moment, and the muscle-heatmap strip (green = volume — it must still read against the ground).</span>
+    <span class="sg" style="font-size: 22px; font-weight: 600; letter-spacing: -0.012em;">Theme — obsidian ground, which green</span>
+    <span style="font-size: 14px; color: oklch(0.66 0.02 150);">Single theme, no light/dark. Same warm near-black ground on all three; green varies. Green also carries success and the PR moment (brighter + glow + trophy). Each column: ground + two surface steps, text ramp, primary button, filter chips, a completed set row, the PR moment, and the muscle-heatmap strip tuned to that green.</span>
   </div>
 
   <div style="display: grid; grid-template-columns: repeat(3, 340px); gap: 30px;">
 
-    <!-- ============ A · MIDNIGHT SAPPHIRE ============ -->
-    <div class="col" style="background: oklch(0.185 0.045 264);">
+    <!-- ============ EMERALD ============ -->
+    <div class="col" style="background: oklch(0.150 0.007 150);">
       <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 16px;">
         <div>
-          <div class="eyebrow" style="color: oklch(0.72 0.09 274);">Direction A</div>
-          <div class="sg" style="font-size: 19px; font-weight: 600; color: oklch(0.96 0.012 250); margin-top: 3px;">Midnight Sapphire</div>
-          <div style="font-size: 12px; color: oklch(0.66 0.025 258); margin-top: 3px;">Deep indigo · calm, premium, trustworthy. Gold PR moment gets max contrast.</div>
+          <div class="eyebrow" style="color: oklch(0.74 0.13 155);">Option 1 · recommended</div>
+          <div class="sg" style="font-size: 19px; font-weight: 600; color: oklch(0.95 0.008 150); margin-top: 3px;">Obsidian &amp; Emerald</div>
+          <div style="font-size: 12px; color: oklch(0.62 0.012 150); margin-top: 3px;">Jewel green on warm near-black. Reads rich and premium; clearly intentional, not sporty.</div>
         </div>
 
         <div style="display: flex; gap: 8px;">
-          <div style="flex: 2; height: 40px; border-radius: 10px; background: oklch(0.185 0.045 264); border: 1px solid oklch(1 0 0 / 14%);"></div>
-          <div style="flex: 1; height: 40px; border-radius: 10px; background: oklch(0.235 0.05 264);"></div>
-          <div style="flex: 1; height: 40px; border-radius: 10px; background: oklch(0.285 0.052 264);"></div>
+          <div style="flex: 2; height: 40px; border-radius: 10px; background: oklch(0.150 0.007 150); border: 1px solid oklch(1 0 0 / 14%);"></div>
+          <div style="flex: 1; height: 40px; border-radius: 10px; background: oklch(0.195 0.008 152);"></div>
+          <div style="flex: 1; height: 40px; border-radius: 10px; background: oklch(0.235 0.010 153);"></div>
         </div>
 
-        <div class="card" style="background: oklch(0.235 0.05 264); border: 1px solid oklch(1 0 0 / 10%); padding: 14px; display: flex; flex-direction: column; gap: 6px;">
-          <span style="font-size: 15px; color: oklch(0.96 0.012 250);">Primary — cool ivory text</span>
-          <span style="font-size: 13px; color: oklch(0.82 0.02 255);">Secondary — supporting copy</span>
-          <span style="font-size: 12px; color: oklch(0.66 0.025 258);">Muted — captions, last-time line</span>
+        <div class="card" style="background: oklch(0.195 0.008 152); border: 1px solid oklch(1 0 0 / 10%); padding: 14px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font-size: 15px; color: oklch(0.95 0.008 150);">Primary — warm white text</span>
+          <span style="font-size: 13px; color: oklch(0.78 0.010 150);">Secondary — supporting copy</span>
+          <span style="font-size: 12px; color: oklch(0.60 0.012 150);">Muted — captions, last-time line</span>
         </div>
 
         <div style="display: flex; gap: 10px; align-items: center;">
-          <button class="btn" style="flex: 1; background: oklch(0.64 0.16 274); color: oklch(0.16 0.04 274);">Start workout</button>
-          <span class="chip" style="background: oklch(0.30 0.05 264); color: oklch(0.82 0.02 255);">Chest</span>
-          <span class="chip" style="border: 1px solid oklch(0.64 0.16 274); background: color-mix(in oklch, oklch(0.64 0.16 274) 18%, transparent); color: oklch(0.80 0.10 274);">Back</span>
+          <button class="btn" style="flex: 1; background: oklch(0.72 0.15 155); color: oklch(0.17 0.035 155);">Start workout</button>
+          <span class="chip" style="background: oklch(0.26 0.010 152); color: oklch(0.78 0.010 150);">Chest</span>
+          <span class="chip" style="border: 1px solid oklch(0.72 0.15 155); background: color-mix(in oklch, oklch(0.72 0.15 155) 16%, transparent); color: oklch(0.80 0.13 155);">Back</span>
         </div>
 
-        <div class="card" style="background: oklch(0.235 0.05 264); border: 1px solid oklch(1 0 0 / 9%); overflow: hidden;">
-          <div class="row tnum" style="background: color-mix(in oklch, oklch(0.64 0.16 274) 14%, transparent);">
-            <span class="mono" style="font-size: 12px; color: oklch(0.66 0.025 258);">1</span>
-            <span class="mono" style="font-size: 12px; color: oklch(0.66 0.025 258);">100 × 8</span>
-            <span class="mono" style="text-align: center; color: oklch(0.96 0.012 250);">100</span>
-            <span class="mono" style="text-align: center; color: oklch(0.96 0.012 250);">8</span>
-            <span style="justify-self: center; width: 26px; height: 26px; border-radius: 7px; background: oklch(0.64 0.16 274); color: oklch(0.16 0.04 274); display: inline-flex; align-items: center; justify-content: center;">
+        <div class="card" style="background: oklch(0.195 0.008 152); border: 1px solid oklch(1 0 0 / 9%); overflow: hidden;">
+          <div class="row tnum" style="background: color-mix(in oklch, oklch(0.72 0.15 155) 12%, transparent);">
+            <span class="mono" style="font-size: 12px; color: oklch(0.60 0.012 150);">1</span>
+            <span class="mono" style="font-size: 12px; color: oklch(0.60 0.012 150);">100 × 8</span>
+            <span class="mono" style="text-align: center; color: oklch(0.95 0.008 150);">100</span>
+            <span class="mono" style="text-align: center; color: oklch(0.95 0.008 150);">8</span>
+            <span style="justify-self: center; width: 26px; height: 26px; border-radius: 7px; background: oklch(0.72 0.15 155); color: oklch(0.17 0.035 155); display: inline-flex; align-items: center; justify-content: center;">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </span>
           </div>
         </div>
 
-        <div class="card" style="background: oklch(0.235 0.05 264); border: 1px solid oklch(0.80 0.13 85); padding: 11px 13px; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 16px oklch(0.80 0.13 85 / 16%);">
-          <span style="width: 28px; height: 28px; border-radius: 8px; background: color-mix(in oklch, oklch(0.80 0.13 85) 22%, transparent); color: oklch(0.86 0.13 88); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <div class="card" style="background: oklch(0.195 0.008 152); border: 1px solid oklch(0.72 0.15 155); padding: 11px 13px; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 18px oklch(0.72 0.15 155 / 22%);">
+          <span style="width: 28px; height: 28px; border-radius: 8px; background: color-mix(in oklch, oklch(0.80 0.16 152) 24%, transparent); color: oklch(0.84 0.15 153); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
           </span>
           <div style="display: flex; flex-direction: column; gap: 1px;">
-            <span class="sg" style="font-size: 11px; font-weight: 600; color: oklch(0.80 0.13 85); letter-spacing: 0.04em;">NEW PR</span>
-            <span style="font-size: 13px; color: oklch(0.96 0.012 250);">Bench 1RM — 102 kg</span>
+            <span class="sg" style="font-size: 11px; font-weight: 600; color: oklch(0.82 0.15 154); letter-spacing: 0.04em;">NEW PR</span>
+            <span style="font-size: 13px; color: oklch(0.95 0.008 150);">Bench 1RM — 102 kg</span>
           </div>
         </div>
 
         <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 11px; color: oklch(0.66 0.025 258);">less</span>
+          <span style="font-size: 11px; color: oklch(0.60 0.012 150);">less</span>
           <div style="display: flex; flex: 1; height: 12px; border-radius: 999px; overflow: hidden;">
-            <div style="flex: 1; background: oklch(0.30 0.04 148);"></div><div style="flex: 1; background: oklch(0.42 0.09 148);"></div><div style="flex: 1; background: oklch(0.55 0.13 147);"></div><div style="flex: 1; background: oklch(0.67 0.16 146);"></div><div style="flex: 1; background: oklch(0.78 0.17 145);"></div><div style="flex: 1; background: oklch(0.87 0.17 144);"></div>
+            <div style="flex: 1; background: oklch(0.28 0.04 156);"></div><div style="flex: 1; background: oklch(0.40 0.08 156);"></div><div style="flex: 1; background: oklch(0.52 0.12 155);"></div><div style="flex: 1; background: oklch(0.62 0.14 155);"></div><div style="flex: 1; background: oklch(0.72 0.15 155);"></div><div style="flex: 1; background: oklch(0.82 0.15 154);"></div>
           </div>
-          <span style="font-size: 11px; color: oklch(0.66 0.025 258);">more</span>
+          <span style="font-size: 11px; color: oklch(0.60 0.012 150);">more</span>
         </div>
 
-        <div class="mono" style="font-size: 10px; line-height: 16px; color: oklch(0.60 0.03 260);">
-          --background&nbsp; oklch(0.185 0.045 264)<br>
-          --card&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; oklch(0.235 0.05 264)<br>
-          --primary&nbsp;&nbsp; oklch(0.64 0.16 274)<br>
-          --primary-fg oklch(0.16 0.04 274)<br>
-          --achievement oklch(0.80 0.13 85) · gold
+        <div class="mono" style="font-size: 10px; line-height: 16px; color: oklch(0.56 0.012 150);">
+          --background&nbsp; oklch(0.150 0.007 150)<br>
+          --card&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; oklch(0.195 0.008 152)<br>
+          --primary&nbsp;&nbsp; oklch(0.72 0.15 155)<br>
+          --primary-fg oklch(0.17 0.035 155)<br>
+          success + PR = same green, brighter
         </div>
       </div>
     </div>
 
-    <!-- ============ B · AUBERGINE & CHAMPAGNE ============ -->
-    <div class="col" style="background: oklch(0.18 0.05 328);">
+    <!-- ============ VOLT ============ -->
+    <div class="col" style="background: oklch(0.150 0.007 150);">
       <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 16px;">
         <div>
-          <div class="eyebrow" style="color: oklch(0.74 0.09 340);">Direction B</div>
-          <div class="sg" style="font-size: 19px; font-weight: 600; color: oklch(0.95 0.02 60); margin-top: 3px;">Aubergine &amp; Champagne</div>
-          <div style="font-size: 12px; color: oklch(0.64 0.035 50); margin-top: 3px;">Dark plum · warm, opulent, distinctive. Rose-gold accent — watch clash with error red.</div>
+          <div class="eyebrow" style="color: oklch(0.80 0.15 138);">Option 2</div>
+          <div class="sg" style="font-size: 19px; font-weight: 600; color: oklch(0.95 0.008 150); margin-top: 3px;">Obsidian &amp; Volt</div>
+          <div style="font-size: 12px; color: oklch(0.62 0.012 150); margin-top: 3px;">The original bright spring-green on the new ground. More energetic; reads sporty rather than royal.</div>
         </div>
 
         <div style="display: flex; gap: 8px;">
-          <div style="flex: 2; height: 40px; border-radius: 10px; background: oklch(0.18 0.05 328); border: 1px solid oklch(1 0 0 / 14%);"></div>
-          <div style="flex: 1; height: 40px; border-radius: 10px; background: oklch(0.23 0.055 328);"></div>
-          <div style="flex: 1; height: 40px; border-radius: 10px; background: oklch(0.28 0.055 326);"></div>
+          <div style="flex: 2; height: 40px; border-radius: 10px; background: oklch(0.150 0.007 150); border: 1px solid oklch(1 0 0 / 14%);"></div>
+          <div style="flex: 1; height: 40px; border-radius: 10px; background: oklch(0.195 0.008 152);"></div>
+          <div style="flex: 1; height: 40px; border-radius: 10px; background: oklch(0.235 0.010 153);"></div>
         </div>
 
-        <div class="card" style="background: oklch(0.23 0.055 328); border: 1px solid oklch(1 0 0 / 10%); padding: 14px; display: flex; flex-direction: column; gap: 6px;">
-          <span style="font-size: 15px; color: oklch(0.95 0.02 60);">Primary — champagne text</span>
-          <span style="font-size: 13px; color: oklch(0.80 0.03 55);">Secondary — supporting copy</span>
-          <span style="font-size: 12px; color: oklch(0.64 0.035 50);">Muted — captions, last-time line</span>
+        <div class="card" style="background: oklch(0.195 0.008 152); border: 1px solid oklch(1 0 0 / 10%); padding: 14px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font-size: 15px; color: oklch(0.95 0.008 150);">Primary — warm white text</span>
+          <span style="font-size: 13px; color: oklch(0.78 0.010 150);">Secondary — supporting copy</span>
+          <span style="font-size: 12px; color: oklch(0.60 0.012 150);">Muted — captions, last-time line</span>
         </div>
 
         <div style="display: flex; gap: 10px; align-items: center;">
-          <button class="btn" style="flex: 1; background: oklch(0.70 0.115 28); color: oklch(0.20 0.05 30);">Start workout</button>
-          <span class="chip" style="background: oklch(0.29 0.05 328); color: oklch(0.80 0.03 55);">Chest</span>
-          <span class="chip" style="border: 1px solid oklch(0.70 0.115 28); background: color-mix(in oklch, oklch(0.70 0.115 28) 18%, transparent); color: oklch(0.80 0.09 30);">Back</span>
+          <button class="btn" style="flex: 1; background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137);">Start workout</button>
+          <span class="chip" style="background: oklch(0.26 0.010 152); color: oklch(0.78 0.010 150);">Chest</span>
+          <span class="chip" style="border: 1px solid oklch(0.82 0.17 137); background: color-mix(in oklch, oklch(0.82 0.17 137) 16%, transparent); color: oklch(0.86 0.15 137);">Back</span>
         </div>
 
-        <div class="card" style="background: oklch(0.23 0.055 328); border: 1px solid oklch(1 0 0 / 9%); overflow: hidden;">
-          <div class="row tnum" style="background: color-mix(in oklch, oklch(0.70 0.115 28) 14%, transparent);">
-            <span class="mono" style="font-size: 12px; color: oklch(0.64 0.035 50);">1</span>
-            <span class="mono" style="font-size: 12px; color: oklch(0.64 0.035 50);">100 × 8</span>
-            <span class="mono" style="text-align: center; color: oklch(0.95 0.02 60);">100</span>
-            <span class="mono" style="text-align: center; color: oklch(0.95 0.02 60);">8</span>
-            <span style="justify-self: center; width: 26px; height: 26px; border-radius: 7px; background: oklch(0.70 0.115 28); color: oklch(0.20 0.05 30); display: inline-flex; align-items: center; justify-content: center;">
+        <div class="card" style="background: oklch(0.195 0.008 152); border: 1px solid oklch(1 0 0 / 9%); overflow: hidden;">
+          <div class="row tnum" style="background: color-mix(in oklch, oklch(0.82 0.17 137) 12%, transparent);">
+            <span class="mono" style="font-size: 12px; color: oklch(0.60 0.012 150);">1</span>
+            <span class="mono" style="font-size: 12px; color: oklch(0.60 0.012 150);">100 × 8</span>
+            <span class="mono" style="text-align: center; color: oklch(0.95 0.008 150);">100</span>
+            <span class="mono" style="text-align: center; color: oklch(0.95 0.008 150);">8</span>
+            <span style="justify-self: center; width: 26px; height: 26px; border-radius: 7px; background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137); display: inline-flex; align-items: center; justify-content: center;">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </span>
           </div>
         </div>
 
-        <div class="card" style="background: oklch(0.23 0.055 328); border: 1px solid oklch(0.76 0.10 75); padding: 11px 13px; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 16px oklch(0.76 0.10 75 / 16%);">
-          <span style="width: 28px; height: 28px; border-radius: 8px; background: color-mix(in oklch, oklch(0.76 0.10 75) 22%, transparent); color: oklch(0.82 0.10 78); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <div class="card" style="background: oklch(0.195 0.008 152); border: 1px solid oklch(0.82 0.17 137); padding: 11px 13px; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 18px oklch(0.82 0.17 137 / 22%);">
+          <span style="width: 28px; height: 28px; border-radius: 8px; background: color-mix(in oklch, oklch(0.86 0.17 137) 24%, transparent); color: oklch(0.88 0.16 137); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
           </span>
           <div style="display: flex; flex-direction: column; gap: 1px;">
-            <span class="sg" style="font-size: 11px; font-weight: 600; color: oklch(0.82 0.10 78); letter-spacing: 0.04em;">NEW PR</span>
-            <span style="font-size: 13px; color: oklch(0.95 0.02 60);">Bench 1RM — 102 kg</span>
+            <span class="sg" style="font-size: 11px; font-weight: 600; color: oklch(0.85 0.16 137); letter-spacing: 0.04em;">NEW PR</span>
+            <span style="font-size: 13px; color: oklch(0.95 0.008 150);">Bench 1RM — 102 kg</span>
           </div>
         </div>
 
         <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 11px; color: oklch(0.64 0.035 50);">less</span>
+          <span style="font-size: 11px; color: oklch(0.60 0.012 150);">less</span>
           <div style="display: flex; flex: 1; height: 12px; border-radius: 999px; overflow: hidden;">
-            <div style="flex: 1; background: oklch(0.30 0.04 148);"></div><div style="flex: 1; background: oklch(0.42 0.09 148);"></div><div style="flex: 1; background: oklch(0.55 0.13 147);"></div><div style="flex: 1; background: oklch(0.67 0.16 146);"></div><div style="flex: 1; background: oklch(0.78 0.17 145);"></div><div style="flex: 1; background: oklch(0.87 0.17 144);"></div>
+            <div style="flex: 1; background: oklch(0.30 0.05 140);"></div><div style="flex: 1; background: oklch(0.44 0.10 139);"></div><div style="flex: 1; background: oklch(0.56 0.14 138);"></div><div style="flex: 1; background: oklch(0.67 0.16 137);"></div><div style="flex: 1; background: oklch(0.78 0.17 137);"></div><div style="flex: 1; background: oklch(0.87 0.17 136);"></div>
           </div>
-          <span style="font-size: 11px; color: oklch(0.64 0.035 50);">more</span>
+          <span style="font-size: 11px; color: oklch(0.60 0.012 150);">more</span>
         </div>
 
-        <div class="mono" style="font-size: 10px; line-height: 16px; color: oklch(0.58 0.035 50);">
-          --background&nbsp; oklch(0.18 0.05 328)<br>
-          --card&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; oklch(0.23 0.055 328)<br>
-          --primary&nbsp;&nbsp; oklch(0.70 0.115 28)<br>
-          --primary-fg oklch(0.20 0.05 30)<br>
-          --achievement oklch(0.76 0.10 75) · brass
+        <div class="mono" style="font-size: 10px; line-height: 16px; color: oklch(0.56 0.012 150);">
+          --background&nbsp; oklch(0.150 0.007 150)<br>
+          --card&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; oklch(0.195 0.008 152)<br>
+          --primary&nbsp;&nbsp; oklch(0.82 0.17 137)<br>
+          --primary-fg oklch(0.18 0.04 137)<br>
+          success + PR = same green, brighter
         </div>
       </div>
     </div>
 
-    <!-- ============ C · OBSIDIAN & GOLD ============ -->
-    <div class="col" style="background: oklch(0.15 0.008 60);">
+    <!-- ============ JADE ============ -->
+    <div class="col" style="background: oklch(0.150 0.007 150);">
       <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 16px;">
         <div>
-          <div class="eyebrow" style="color: oklch(0.76 0.12 85);">Direction C</div>
-          <div class="sg" style="font-size: 19px; font-weight: 600; color: oklch(0.95 0.006 70); margin-top: 3px;">Obsidian &amp; Gold</div>
-          <div style="font-size: 12px; color: oklch(0.60 0.01 60); margin-top: 3px;">Near-black warm · the literal "royal". Gold as fill only — hardest to keep tasteful on buttons.</div>
+          <div class="eyebrow" style="color: oklch(0.78 0.10 170);">Option 3</div>
+          <div class="sg" style="font-size: 19px; font-weight: 600; color: oklch(0.95 0.008 150); margin-top: 3px;">Obsidian &amp; Jade</div>
+          <div style="font-size: 12px; color: oklch(0.62 0.012 150); margin-top: 3px;">Cool, slightly teal green. The most understated and elegant — but the quietest of the three.</div>
         </div>
 
         <div style="display: flex; gap: 8px;">
-          <div style="flex: 2; height: 40px; border-radius: 10px; background: oklch(0.15 0.008 60); border: 1px solid oklch(1 0 0 / 14%);"></div>
-          <div style="flex: 1; height: 40px; border-radius: 10px; background: oklch(0.195 0.008 60);"></div>
-          <div style="flex: 1; height: 40px; border-radius: 10px; background: oklch(0.235 0.01 65);"></div>
+          <div style="flex: 2; height: 40px; border-radius: 10px; background: oklch(0.150 0.007 150); border: 1px solid oklch(1 0 0 / 14%);"></div>
+          <div style="flex: 1; height: 40px; border-radius: 10px; background: oklch(0.195 0.008 152);"></div>
+          <div style="flex: 1; height: 40px; border-radius: 10px; background: oklch(0.235 0.010 153);"></div>
         </div>
 
-        <div class="card" style="background: oklch(0.195 0.008 60); border: 1px solid oklch(1 0 0 / 10%); padding: 14px; display: flex; flex-direction: column; gap: 6px;">
-          <span style="font-size: 15px; color: oklch(0.95 0.006 70);">Primary — warm white text</span>
-          <span style="font-size: 13px; color: oklch(0.78 0.008 65);">Secondary — supporting copy</span>
-          <span style="font-size: 12px; color: oklch(0.60 0.01 60);">Muted — captions, last-time line</span>
+        <div class="card" style="background: oklch(0.195 0.008 152); border: 1px solid oklch(1 0 0 / 10%); padding: 14px; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font-size: 15px; color: oklch(0.95 0.008 150);">Primary — warm white text</span>
+          <span style="font-size: 13px; color: oklch(0.78 0.010 150);">Secondary — supporting copy</span>
+          <span style="font-size: 12px; color: oklch(0.60 0.012 150);">Muted — captions, last-time line</span>
         </div>
 
         <div style="display: flex; gap: 10px; align-items: center;">
-          <button class="btn" style="flex: 1; background: oklch(0.76 0.13 85); color: oklch(0.20 0.04 70);">Start workout</button>
-          <span class="chip" style="background: oklch(0.26 0.01 60); color: oklch(0.78 0.008 65);">Chest</span>
-          <span class="chip" style="border: 1px solid oklch(0.76 0.13 85); background: color-mix(in oklch, oklch(0.76 0.13 85) 16%, transparent); color: oklch(0.82 0.12 86);">Back</span>
+          <button class="btn" style="flex: 1; background: oklch(0.77 0.11 168); color: oklch(0.18 0.03 168);">Start workout</button>
+          <span class="chip" style="background: oklch(0.26 0.010 152); color: oklch(0.78 0.010 150);">Chest</span>
+          <span class="chip" style="border: 1px solid oklch(0.77 0.11 168); background: color-mix(in oklch, oklch(0.77 0.11 168) 16%, transparent); color: oklch(0.82 0.10 168);">Back</span>
         </div>
 
-        <div class="card" style="background: oklch(0.195 0.008 60); border: 1px solid oklch(1 0 0 / 9%); overflow: hidden;">
-          <div class="row tnum" style="background: color-mix(in oklch, oklch(0.76 0.13 85) 12%, transparent);">
-            <span class="mono" style="font-size: 12px; color: oklch(0.60 0.01 60);">1</span>
-            <span class="mono" style="font-size: 12px; color: oklch(0.60 0.01 60);">100 × 8</span>
-            <span class="mono" style="text-align: center; color: oklch(0.95 0.006 70);">100</span>
-            <span class="mono" style="text-align: center; color: oklch(0.95 0.006 70);">8</span>
-            <span style="justify-self: center; width: 26px; height: 26px; border-radius: 7px; background: oklch(0.76 0.13 85); color: oklch(0.20 0.04 70); display: inline-flex; align-items: center; justify-content: center;">
+        <div class="card" style="background: oklch(0.195 0.008 152); border: 1px solid oklch(1 0 0 / 9%); overflow: hidden;">
+          <div class="row tnum" style="background: color-mix(in oklch, oklch(0.77 0.11 168) 12%, transparent);">
+            <span class="mono" style="font-size: 12px; color: oklch(0.60 0.012 150);">1</span>
+            <span class="mono" style="font-size: 12px; color: oklch(0.60 0.012 150);">100 × 8</span>
+            <span class="mono" style="text-align: center; color: oklch(0.95 0.008 150);">100</span>
+            <span class="mono" style="text-align: center; color: oklch(0.95 0.008 150);">8</span>
+            <span style="justify-self: center; width: 26px; height: 26px; border-radius: 7px; background: oklch(0.77 0.11 168); color: oklch(0.18 0.03 168); display: inline-flex; align-items: center; justify-content: center;">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </span>
           </div>
         </div>
 
-        <div class="card" style="background: oklch(0.195 0.008 60); border: 1px solid oklch(0.85 0.14 90); padding: 11px 13px; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 18px oklch(0.85 0.14 90 / 20%);">
-          <span style="width: 28px; height: 28px; border-radius: 8px; background: color-mix(in oklch, oklch(0.85 0.14 90) 24%, transparent); color: oklch(0.88 0.13 90); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <div class="card" style="background: oklch(0.195 0.008 152); border: 1px solid oklch(0.77 0.11 168); padding: 11px 13px; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 18px oklch(0.77 0.11 168 / 22%);">
+          <span style="width: 28px; height: 28px; border-radius: 8px; background: color-mix(in oklch, oklch(0.82 0.12 168) 24%, transparent); color: oklch(0.84 0.11 168); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
           </span>
           <div style="display: flex; flex-direction: column; gap: 1px;">
-            <span class="sg" style="font-size: 11px; font-weight: 600; color: oklch(0.88 0.13 90); letter-spacing: 0.04em;">NEW PR</span>
-            <span style="font-size: 13px; color: oklch(0.95 0.006 70);">Bench 1RM — 102 kg</span>
+            <span class="sg" style="font-size: 11px; font-weight: 600; color: oklch(0.83 0.11 168); letter-spacing: 0.04em;">NEW PR</span>
+            <span style="font-size: 13px; color: oklch(0.95 0.008 150);">Bench 1RM — 102 kg</span>
           </div>
         </div>
 
         <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 11px; color: oklch(0.60 0.01 60);">less</span>
+          <span style="font-size: 11px; color: oklch(0.60 0.012 150);">less</span>
           <div style="display: flex; flex: 1; height: 12px; border-radius: 999px; overflow: hidden;">
-            <div style="flex: 1; background: oklch(0.30 0.04 148);"></div><div style="flex: 1; background: oklch(0.42 0.09 148);"></div><div style="flex: 1; background: oklch(0.55 0.13 147);"></div><div style="flex: 1; background: oklch(0.67 0.16 146);"></div><div style="flex: 1; background: oklch(0.78 0.17 145);"></div><div style="flex: 1; background: oklch(0.87 0.17 144);"></div>
+            <div style="flex: 1; background: oklch(0.28 0.03 169);"></div><div style="flex: 1; background: oklch(0.40 0.06 169);"></div><div style="flex: 1; background: oklch(0.52 0.08 168);"></div><div style="flex: 1; background: oklch(0.63 0.10 168);"></div><div style="flex: 1; background: oklch(0.74 0.11 168);"></div><div style="flex: 1; background: oklch(0.84 0.11 168);"></div>
           </div>
-          <span style="font-size: 11px; color: oklch(0.60 0.01 60);">more</span>
+          <span style="font-size: 11px; color: oklch(0.60 0.012 150);">more</span>
         </div>
 
-        <div class="mono" style="font-size: 10px; line-height: 16px; color: oklch(0.56 0.01 60);">
-          --background&nbsp; oklch(0.15 0.008 60)<br>
-          --card&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; oklch(0.195 0.008 60)<br>
-          --primary&nbsp;&nbsp; oklch(0.76 0.13 85)<br>
-          --primary-fg oklch(0.20 0.04 70)<br>
-          --achievement oklch(0.85 0.14 90) · bright gold
+        <div class="mono" style="font-size: 10px; line-height: 16px; color: oklch(0.56 0.012 150);">
+          --background&nbsp; oklch(0.150 0.007 150)<br>
+          --card&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; oklch(0.195 0.008 152)<br>
+          --primary&nbsp;&nbsp; oklch(0.77 0.11 168)<br>
+          --primary-fg oklch(0.18 0.03 168)<br>
+          success + PR = same green, brighter
         </div>
       </div>
     </div>
 
   </div>
 
-  <div style="max-width: 1080px; font-size: 13px; line-height: 20px; color: oklch(0.68 0.02 260);">
-    <b style="color: oklch(0.90 0.01 260);">Recommendation — A (Midnight Sapphire).</b> Calmest to work in, the gold PR moment gets maximum contrast against blue, and the ground stays clear of the heatmap green. B is the most characterful but the rose-gold accent sits in the same hue family as the destructive red. C is the most literally regal, but an all-gold accent is the hardest to keep legible and not gaudy on buttons and links.
+  <div style="max-width: 1080px; font-size: 13px; line-height: 20px; color: oklch(0.66 0.02 150);">
+    <b style="color: oklch(0.90 0.01 150);">Recommendation — Emerald.</b> It's the one that actually reads "rich and royal" against the obsidian: a precious-stone green, clearly a chosen colour rather than a default energy-green. Volt is the safe familiar option but pulls the whole app back toward gym-utility. Jade is the most refined but risks feeling too quiet for the one colour that's meant to signal achievement. All three keep green as the single identity colour — primary, success, and the PR moment.
   </div>
 
 </div>
