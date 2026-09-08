@@ -13,17 +13,17 @@
   --radius: 0.75rem;
 
   /* ---- surfaces & ink (warm obsidian ramp) ---- */
-  --background: oklch(0.150 0.007 150);
+  --background: oklch(0.165 0.007 150);
   --foreground: oklch(0.950 0.008 150);
-  --card: oklch(0.195 0.008 152);
+  --card: oklch(0.228 0.009 152);
   --card-foreground: oklch(0.950 0.008 150);
-  --popover: oklch(0.230 0.009 152);
+  --popover: oklch(0.268 0.010 152);
   --popover-foreground: oklch(0.950 0.008 150);
-  --muted: oklch(0.260 0.010 152);
-  --muted-foreground: oklch(0.640 0.012 150);
-  --secondary: oklch(0.260 0.010 152);
+  --muted: oklch(0.300 0.011 152);
+  --muted-foreground: oklch(0.665 0.012 150);
+  --secondary: oklch(0.300 0.011 152);
   --secondary-foreground: oklch(0.950 0.008 150);
-  --accent: oklch(0.270 0.050 141);
+  --accent: oklch(0.310 0.055 141);
   --accent-foreground: oklch(0.860 0.150 137);
   --border: oklch(1 0 0 / 10%);
   --border-strong: oklch(1 0 0 / 16%);

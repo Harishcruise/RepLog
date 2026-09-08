@@ -53,21 +53,23 @@ ground (high contrast); never put volt text on a light surface.
 
 Warm near-black, hue ~150 at minimal chroma. Raise elevation by **lightening the
 surface one step + a 1px translucent border**; shadows barely read on obsidian, so
-don't lean on them.
+don't lean on them. Ramp lifted after on-screen review (2026-09-07) — the original
+`0.150 / 0.195 / 0.230` steps read as one flat black; these give a visible
+`background → card` step without a border.
 
 | Token | Value | Use |
 |---|---|---|
-| `--background` | `oklch(0.150 0.007 150)` | page plane |
+| `--background` | `oklch(0.165 0.007 150)` | page plane |
 | `--foreground` | `oklch(0.950 0.008 150)` | primary text — warm white |
-| `--card` | `oklch(0.195 0.008 152)` | raised surface — cards, sheets |
+| `--card` | `oklch(0.228 0.009 152)` | raised surface — cards, sheets |
 | `--card-foreground` | `= --foreground` | |
-| `--popover` | `oklch(0.230 0.009 152)` | menus, tooltips, timer sheet |
+| `--popover` | `oklch(0.268 0.010 152)` | menus, tooltips, timer sheet |
 | `--popover-foreground` | `= --foreground` | |
-| `--muted` | `oklch(0.260 0.010 152)` | input fills, inert chips, table zebra |
-| `--muted-foreground` | `oklch(0.640 0.012 150)` | captions, "last time" line, axis labels |
-| `--secondary` | `oklch(0.260 0.010 152)` | secondary button fill |
+| `--muted` | `oklch(0.300 0.011 152)` | input fills, inert chips, table zebra |
+| `--muted-foreground` | `oklch(0.665 0.012 150)` | captions, "last time" line, axis labels |
+| `--secondary` | `oklch(0.300 0.011 152)` | secondary button fill |
 | `--secondary-foreground` | `oklch(0.950 0.008 150)` | text on secondary |
-| `--accent` | `oklch(0.270 0.050 141)` | volt-tinted hover wash on ghost / menu items |
+| `--accent` | `oklch(0.310 0.055 141)` | volt-tinted hover wash on ghost / menu items |
 | `--accent-foreground` | `oklch(0.860 0.150 137)` | text on `--accent` |
 | `--border` | `oklch(1 0 0 / 10%)` | hairline dividers, card edges |
 | `--border-strong` | `oklch(1 0 0 / 16%)` | pressed edges, timer-pill ring |
@@ -323,21 +325,21 @@ hex per the data-viz method; everything else OKLCH.
 :root {
   --radius: 0.75rem;
 
-  --background: oklch(0.150 0.007 150);
+  --background: oklch(0.165 0.007 150);
   --foreground: oklch(0.950 0.008 150);
-  --card: oklch(0.195 0.008 152);
+  --card: oklch(0.228 0.009 152);
   --card-foreground: oklch(0.950 0.008 150);
-  --popover: oklch(0.230 0.009 152);
+  --popover: oklch(0.268 0.010 152);
   --popover-foreground: oklch(0.950 0.008 150);
   --primary: oklch(0.820 0.170 137);
   --primary-foreground: oklch(0.180 0.040 137);
   --primary-hover: oklch(0.860 0.160 137);
   --primary-subtle: oklch(0.300 0.060 141);
-  --secondary: oklch(0.260 0.010 152);
+  --secondary: oklch(0.300 0.011 152);
   --secondary-foreground: oklch(0.950 0.008 150);
-  --muted: oklch(0.260 0.010 152);
-  --muted-foreground: oklch(0.640 0.012 150);
-  --accent: oklch(0.270 0.050 141);
+  --muted: oklch(0.300 0.011 152);
+  --muted-foreground: oklch(0.665 0.012 150);
+  --accent: oklch(0.310 0.055 141);
   --accent-foreground: oklch(0.860 0.150 137);
   --destructive: oklch(0.640 0.190 25);
   --destructive-foreground: oklch(0.990 0 0);
@@ -524,6 +526,6 @@ never fork upstream.
 2. ~~Bottom-nav labels~~ — resolved: icons **+ text**.
 3. ~~Rest timer~~ — resolved: **pill** (expands to a sheet), not a full-screen takeover.
 4. ~~Volt hue / light-vs-dark~~ — resolved: single **Obsidian & Volt** theme; ground
-   `oklch(0.150 0.007 150)`, primary `oklch(0.82 0.17 137)`.
+   `oklch(0.165 0.007 150)`, primary `oklch(0.82 0.17 137)`.
 5. ~~Auth Terms / Privacy links~~ — resolved: kept; needs real `/terms` + `/privacy`.
 6. Open — supersets are out of v1: omit the reorder-into-group affordance entirely for now?
