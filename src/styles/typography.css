@@ -1,0 +1,54 @@
+/* RepLog type scale — see docs/DESIGN_SYSTEM.md §3.
+ *
+ * Each `text-*` utility carries font-size + line-height + letter-spacing + weight.
+ * There is no `--text-*--font-family`, so PAIR each with a `font-*` class:
+ *
+ *   text-display / text-stat   → font-mono  + tabular-nums   (data numerals)
+ *   text-h1 / text-h2          → font-display               (Space Grotesk)
+ *   text-label                 → font-display               (buttons, chips, table headers)
+ *   text-h3 / text-body        → font-sans                  (Geist)
+ *   text-caption               → font-sans                  (Geist)
+ *   text-micro                 → font-mono                  (timestamps, axis ticks)
+ *
+ * e.g.  <h1 className="font-display text-h1">   ·   <span className="font-mono tabular-nums text-stat">
+ */
+
+@theme {
+  --text-display: 2.5rem; /* 40 / 44 */
+  --text-display--line-height: 2.75rem;
+  --text-display--font-weight: 600;
+
+  --text-stat: 2rem; /* 32 / 34 */
+  --text-stat--line-height: 2.125rem;
+  --text-stat--font-weight: 500;
+
+  --text-h1: 1.75rem; /* 28 / 34 */
+  --text-h1--line-height: 2.125rem;
+  --text-h1--letter-spacing: -0.012em;
+  --text-h1--font-weight: 600;
+
+  --text-h2: 1.375rem; /* 22 / 28 */
+  --text-h2--line-height: 1.75rem;
+  --text-h2--letter-spacing: -0.008em;
+  --text-h2--font-weight: 600;
+
+  --text-h3: 1.125rem; /* 18 / 24 */
+  --text-h3--line-height: 1.5rem;
+  --text-h3--font-weight: 600;
+
+  --text-body: 1rem; /* 16 / 24 */
+  --text-body--line-height: 1.5rem;
+  --text-body--font-weight: 400;
+
+  --text-label: 0.875rem; /* 14 / 20 */
+  --text-label--line-height: 1.25rem;
+  --text-label--font-weight: 500;
+
+  --text-caption: 0.8125rem; /* 13 / 18 */
+  --text-caption--line-height: 1.125rem;
+  --text-caption--font-weight: 500;
+
+  --text-micro: 0.75rem; /* 12 / 16 */
+  --text-micro--line-height: 1rem;
+  --text-micro--font-weight: 500;
+}

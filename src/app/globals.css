@@ -1,7 +1,15 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+/* Single permanent-dark theme: make shadcn's `dark:`-tuned utilities always apply
+ * (Tailwind's built-in `dark` variant would otherwise follow the OS setting). */
+@custom-variant dark (&);
 
 /* Design system — see docs/DESIGN_SYSTEM.md and src/styles/*.
- * tokens.css     colour / radius / font tokens + @theme mapping
- * (typography.css, base.css added in the next steps)
+ * tokens.css      colour / radius / font tokens + @theme mapping
+ * typography.css  @theme text-* scale (pair with font-* classes)
+ * base.css        @layer base element defaults
  */
 @import "../styles/tokens.css";
+@import "../styles/typography.css";
+@import "../styles/base.css";

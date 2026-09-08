@@ -45,7 +45,11 @@ export async function updateSession(request: NextRequest) {
   const isPublic =
     pathname === "/" ||
     pathname.startsWith("/login") ||
-    pathname.startsWith("/auth");
+    pathname.startsWith("/auth") ||
+    pathname.startsWith("/terms") ||
+    pathname.startsWith("/privacy") ||
+    // component gallery — dev only; guarded to non-production below
+    (pathname.startsWith("/dev") && process.env.NODE_ENV !== "production");
 
   if (!user && !isPublic) {
     const url = request.nextUrl.clone();
