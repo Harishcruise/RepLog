@@ -22,6 +22,7 @@ Companion to [`SPEC.md`](SPEC.md).
 | `/login` | Sign in / sign up | public | Email + password (primary) or 6-digit email code. Segmented toggle. `?next=` return path. Code entry + "confirm email" are states of this route. |
 | `/login/reset` | Forgot password | public | email → 6-digit code → new password. Shares the code-entry screen with `/login`. |
 | `/auth/callback` | Email-confirm / recovery handler | public | `verifyOtp` for links that still arrive by email; redirects to `next`. |
+| `/terms` · `/privacy` | Legal | public | Static content pages, linked from Create account. |
 | `/onboarding` | First-run setup | authed | Display name, kg/lb, default rest. Shown once. |
 | `/app` | Home / dashboard | authed | Start-workout CTA, resume banner, week volume, streak, mini heatmap, recent sessions. |
 | `/app/workout/new` | Start workout | authed | Choose **Empty** or **From template**. |
@@ -197,4 +198,4 @@ flowchart TD
 2. Bottom-tab labels — icons only, or icons + text? *(icons + text drawn)*
 3. Rest timer: full-screen takeover, or just the pill? *(pill drawn)*
 4. Supersets are out of v1 — okay to omit the reorder-into-group affordance entirely for now?
-5. Auth screens — keep Terms / Privacy links, or drop for a personal-only build?
+5. ~~Auth screens Terms / Privacy links~~ — resolved: keep them. Needs real `/terms` + `/privacy` pages.
