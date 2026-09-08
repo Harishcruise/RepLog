@@ -283,9 +283,10 @@ empty → "No sessions yet" · **Start your first workout**.
 
 ## 7. Iconography & imagery
 
-- **Icons:** `lucide-react` (ships with shadcn). 20px in-line, 24px nav, 1.75px
-  stroke. Key set: `dumbbell`, `plus`, `check`, `timer`, `trophy`, `trending-up`,
-  `history`, `pencil`, `trash-2`, `grip-vertical`, `chevron-*`.
+- **Icons:** `lucide-react`, single set (rules + fallback in §10). 20px inline, 24px
+  nav, 1.75px stroke. Common glyphs: `dumbbell`, `plus`, `check`, `timer`, `trophy`,
+  `trending-up`, `history`, `pencil`, `trash-2`, `grip-vertical`, `chevron-*`,
+  `mail`, `lock`, `eye` / `eye-off`, `arrow-right`, `loader-2`.
 - **Body diagram:** custom 2-view anatomical SVG, regions = `id` per muscle in the
   `muscles` table (`svg_key`). Flat fills only, no illustration detail.
 - **No photography** in v1. No exercise animation/GIFs (later).
@@ -430,10 +431,99 @@ hex per the data-viz method; everything else OKLCH.
 
 ---
 
-## 10. Open questions (carried from UX.md)
+## 10. Implementation setup
 
-1. Landing page for v1, or straight to `/login`?
-2. Bottom-nav labels — icons only, or icons + text? *(system assumes labels)*
-3. Rest timer full-screen vs pill. *(system assumes pill)*
-4. ~~Volt hue final call~~ — **resolved.** Single theme, Obsidian & Volt: ground
-   `oklch(0.150 0.007 150)`, primary `oklch(0.82 0.17 137)`. Light mode dropped.
+### Stack
+
+Next.js (App Router, RSC) + TypeScript · **Tailwind CSS 4** (CSS-first `@theme`, no
+`tailwind.config.js`) · **shadcn/ui** · **lucide-react** · Recharts · Supabase.
+
+### shadcn/ui — `components.json`
+
+Run `npx shadcn@latest init` with:
+
+```jsonc
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",                 // empty — Tailwind v4 is CSS-first
+    "css": "src/app/globals.css",
+    "baseColor": "neutral",       // only seeds init CSS; we replace it (see below)
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@/components",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "utils": "@/lib/utils",
+    "hooks": "@/hooks"
+  }
+}
+```
+
+**After `init`:** it writes a default palette into `globals.css` — **delete that and
+paste the Obsidian & Volt block from §9**. Keep shadcn's `@layer base` reset and the
+`@theme inline` var mapping; our block already includes both. `--radius` lives in the
+token block (`0.75rem`); v4 reads it from the CSS var, so `components.json` needs no
+radius.
+
+### Fonts
+
+Wire the three roles via `next/font/google` in `layout.tsx`, exposing CSS variables
+the `@theme inline` block maps:
+
+```ts
+import { Space_Grotesk, Geist, Geist_Mono } from "next/font/google";
+const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", weight: ["500","600"] });
+const sans    = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
+const mono    = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", weight: ["500","600"] });
+// <html class={`${display.variable} ${sans.variable} ${mono.variable}`}>
+```
+
+### `cn()` helper — `src/lib/utils.ts`
+
+```ts
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
+```
+
+Deps: `clsx`, `tailwind-merge`, `class-variance-authority`, `lucide-react`.
+
+### Components to pull (v1)
+
+Add on demand with `npx shadcn@latest add <name>` — do **not** vendor the whole set:
+
+`button` · `input` · `label` · `form` · `field` · `dialog` · `drawer` (bottom sheet) ·
+`tabs` (segmented toggle) · `sonner` (toasts) · `skeleton` · `badge` · `separator` ·
+`dropdown-menu` · `checkbox` · `switch` · `select` · `tooltip` · `alert` ·
+`input-otp` (the 6-digit code field) · `avatar`.
+
+Each lands in `src/components/ui/` as editable source — restyle to the tokens there,
+never fork upstream.
+
+### Icons — rules
+
+- **One set: `lucide-react`.** Import per-icon (`import { Dumbbell } from "lucide-react"`).
+- Default `size={20}` inline, `size={24}` nav, `strokeWidth={1.75}`.
+- Decorative icons `aria-hidden`; icon-only controls need an `aria-label` (§8).
+- Missing an icon? Take that **one** glyph from `@tabler/icons-react` (matching stroke
+  style) or hand-draw an inline SVG on the 24px grid. Never add a third icon set.
+- The muscle-heatmap body diagram and equipment glyphs are custom inline SVG regardless.
+
+---
+
+## 11. Resolved / open questions
+
+1. ~~Landing page~~ — resolved: none, `/login` is the entry.
+2. ~~Bottom-nav labels~~ — resolved: icons **+ text**.
+3. ~~Rest timer~~ — resolved: **pill** (expands to a sheet), not a full-screen takeover.
+4. ~~Volt hue / light-vs-dark~~ — resolved: single **Obsidian & Volt** theme; ground
+   `oklch(0.150 0.007 150)`, primary `oklch(0.82 0.17 137)`.
+5. ~~Auth Terms / Privacy links~~ — resolved: kept; needs real `/terms` + `/privacy`.
+6. Open — supersets are out of v1: omit the reorder-into-group affordance entirely for now?

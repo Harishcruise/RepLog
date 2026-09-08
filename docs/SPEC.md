@@ -8,7 +8,8 @@ Date: 2026-09-06
 | Concern | Choice |
 |---|---|
 | Framework | Next.js (App Router) + TypeScript |
-| UI | Tailwind CSS + shadcn/ui |
+| UI | Tailwind CSS 4 (CSS-first `@theme`) + shadcn/ui (New York style, CSS variables) |
+| Icons | `lucide-react` — single set; Tabler as fallback for gaps; custom inline SVG for the muscle map |
 | Charts | Recharts |
 | DB / Auth / Storage | Supabase (Postgres + Supabase Auth + Row Level Security) |
 | ORM / DB access | Supabase JS client + SQL migrations (no heavy ORM) |
