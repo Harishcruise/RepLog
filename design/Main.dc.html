@@ -9,12 +9,17 @@
 <helmet>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap">
   <style>
-    body { margin: 0; background: oklch(0.160 0.004 120); color: oklch(0.970 0.003 120);
+    body { margin: 0; background: oklch(0.150 0.007 150); color: oklch(0.950 0.008 150);
       font-family: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
-    a { color: oklch(0.82 0.18 130); } a:hover { color: oklch(0.90 0.14 130); }
+    a { color: oklch(0.82 0.17 137); } a:hover { color: oklch(0.86 0.16 137); }
+    .sg { font-family: 'Space Grotesk', system-ui, sans-serif; }
     .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
+    .eyebrow { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: oklch(0.640 0.012 150); }
+    .lbl { font-size: 12px; font-weight: 600; }
+    .val { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; color: oklch(0.640 0.012 150); }
+    .swatch { height: 60px; border-radius: 12px; border: 1px solid oklch(1 0 0 / 10%); }
   </style>
 </helmet>
 
@@ -23,206 +28,174 @@
   <!-- Masthead -->
   <div style="display: flex; flex-direction: column; gap: 6px; padding-bottom: 28px; border-bottom: 1px solid oklch(1 0 0 / 10%);">
     <div style="display: flex; align-items: center; gap: 12px;">
-      <span style="width: 26px; height: 26px; border-radius: 7px; background: oklch(0.82 0.18 130); display: inline-flex; align-items: center; justify-content: center; color: oklch(0.18 0.03 135);">
+      <span style="width: 26px; height: 26px; border-radius: 7px; background: oklch(0.82 0.17 137); display: inline-flex; align-items: center; justify-content: center; color: oklch(0.18 0.04 137);">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg>
       </span>
-      <span style="font-size: 22px; font-weight: 600; letter-spacing: -0.01em;">RepLog — Design System</span>
+      <span class="sg" style="font-size: 22px; font-weight: 600; letter-spacing: -0.012em;">RepLog — Design System</span>
     </div>
-    <span style="font-size: 14px; font-weight: 500; color: oklch(0.680 0.004 120);">Foundations · Colour &nbsp;·&nbsp; OKLCH throughout, token names follow the shadcn/ui contract</span>
+    <span style="font-size: 14px; font-weight: 500; color: oklch(0.640 0.012 150);">Foundations · Colour &nbsp;—&nbsp; single theme, <b style="color: oklch(0.86 0.03 150);">Obsidian &amp; Volt</b>. No light mode. OKLCH throughout; token names follow the shadcn/ui contract.</span>
   </div>
 
   <!-- BRAND / VOLT -->
   <div style="padding-top: 36px;">
-    <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: oklch(0.680 0.004 120); margin-bottom: 16px;">Brand — Volt green</div>
+    <div class="eyebrow" style="margin-bottom: 16px;">Brand — Volt</div>
     <div style="display: flex; gap: 20px; align-items: stretch;">
       <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
-        <div style="height: 120px; border-radius: 14px; background: oklch(0.82 0.18 130); display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box;">
-          <span style="font-size: 13px; font-weight: 600; color: oklch(0.18 0.03 135);">Primary / PR highlight</span>
+        <div style="height: 120px; border-radius: 14px; background: oklch(0.82 0.17 137); display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box;">
+          <span style="font-size: 13px; font-weight: 600; color: oklch(0.18 0.04 137);">Primary · success · PR</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 3px;">
-          <span style="font-size: 13px; font-weight: 600;">--primary</span>
-          <span class="mono" style="font-size: 12px; color: oklch(0.680 0.004 120);">dark &nbsp;oklch(0.82 0.18 130)</span>
-          <span class="mono" style="font-size: 12px; color: oklch(0.680 0.004 120);">light &nbsp;oklch(0.72 0.17 132)</span>
+          <span class="lbl">--primary</span>
+          <span class="val">oklch(0.82 0.17 137)</span>
         </div>
       </div>
       <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
-        <div style="height: 120px; border-radius: 14px; background: oklch(0.18 0.03 135); border: 1px solid oklch(1 0 0 / 12%); display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box;">
-          <span style="font-size: 13px; font-weight: 600; color: oklch(0.82 0.18 130);">Text / icon on volt</span>
+        <div style="height: 120px; border-radius: 14px; background: oklch(0.18 0.04 137); border: 1px solid oklch(1 0 0 / 12%); display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box;">
+          <span style="font-size: 13px; font-weight: 600; color: oklch(0.82 0.17 137);">Text / icon on volt</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 3px;">
-          <span style="font-size: 13px; font-weight: 600;">--primary-foreground</span>
-          <span class="mono" style="font-size: 12px; color: oklch(0.680 0.004 120);">dark &nbsp;oklch(0.18 0.03 135)</span>
-          <span class="mono" style="font-size: 12px; color: oklch(0.680 0.004 120);">light &nbsp;oklch(0.19 0.03 135)</span>
+          <span class="lbl">--primary-foreground</span>
+          <span class="val">oklch(0.18 0.04 137)</span>
         </div>
       </div>
       <div style="flex: 1.4; border-radius: 14px; border: 1px solid oklch(1 0 0 / 10%); padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px;">
-        <span style="font-size: 13px; font-weight: 600; color: oklch(0.82 0.18 130);">The one colour spike</span>
-        <span style="font-size: 13px; line-height: 20px; color: oklch(0.780 0.004 120);">Volt = "you moved forward." Reserved for primary actions and personal records — nothing else. It doubles as the success/PR colour; semantic warning &amp; destructive stay separate so meaning is never colour&#8209;alone.</span>
+        <span style="font-size: 13px; font-weight: 600; color: oklch(0.82 0.17 137);">The one colour</span>
+        <span style="font-size: 13px; line-height: 20px; color: oklch(0.780 0.010 150);">Volt = "you moved forward." It carries primary actions, success confirmations and the PR moment (which also gets a brighter glow + trophy). Nothing else in the app is green. Warning &amp; destructive stay separate so meaning is never colour&#8209;alone.</span>
+      </div>
+    </div>
+    <div style="margin-top: 16px; display: flex; gap: 16px;">
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+        <div style="height: 44px; border-radius: 10px; background: oklch(0.86 0.16 137);"></div>
+        <span class="lbl">--primary-hover</span><span class="val">oklch(0.86 0.16 137)</span>
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+        <div style="height: 44px; border-radius: 10px; background: oklch(0.30 0.06 141);"></div>
+        <span class="lbl">--primary-subtle</span><span class="val">oklch(0.30 0.06 141) · row wash, selected chip</span>
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+        <div style="height: 44px; border-radius: 10px; background: oklch(0.195 0.008 152); border: 2px solid oklch(0.82 0.17 137);"></div>
+        <span class="lbl">--ring</span><span class="val">= --primary · 2px + 2px offset</span>
       </div>
     </div>
   </div>
 
   <!-- SURFACES -->
   <div style="padding-top: 40px;">
-    <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: oklch(0.680 0.004 120); margin-bottom: 4px;">Neutrals &amp; surfaces — warm charcoal ramp</div>
-    <div style="font-size: 13px; color: oklch(0.680 0.004 120); margin-bottom: 18px;">Swatch = dark value. Light value listed below each.</div>
-    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px 16px;">
+    <div class="eyebrow" style="margin-bottom: 4px;">Neutrals &amp; surfaces — warm obsidian ramp</div>
+    <div style="font-size: 13px; color: oklch(0.640 0.012 150); margin-bottom: 18px;">Hue ~150 at minimal chroma. Raise elevation by lightening the surface one step + a 1px translucent border — shadows barely read on obsidian.</div>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;">
 
       <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="height: 60px; border-radius: 12px; background: oklch(0.160 0.004 120); border: 1px solid oklch(1 0 0 / 10%);"></div>
-        <span style="font-size: 12px; font-weight: 600;">--background</span>
-        <span class="mono" style="font-size: 11px; color: oklch(0.680 0.004 120);">D oklch(0.160 0.004 120)<br>L oklch(0.986 0.002 120)</span>
+        <div class="swatch" style="background: oklch(0.150 0.007 150);"></div>
+        <span class="lbl">--background</span><span class="val">oklch(0.150 0.007 150)</span>
       </div>
       <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="height: 60px; border-radius: 12px; background: oklch(0.970 0.003 120);"></div>
-        <span style="font-size: 12px; font-weight: 600;">--foreground</span>
-        <span class="mono" style="font-size: 11px; color: oklch(0.680 0.004 120);">D oklch(0.970 0.003 120)<br>L oklch(0.180 0.006 120)</span>
+        <div class="swatch" style="background: oklch(0.950 0.008 150); border: 0;"></div>
+        <span class="lbl">--foreground</span><span class="val">oklch(0.950 0.008 150) · warm white</span>
       </div>
       <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="height: 60px; border-radius: 12px; background: oklch(0.196 0.004 120); border: 1px solid oklch(1 0 0 / 10%);"></div>
-        <span style="font-size: 12px; font-weight: 600;">--card</span>
-        <span class="mono" style="font-size: 11px; color: oklch(0.680 0.004 120);">D oklch(0.196 0.004 120)<br>L oklch(1 0 0)</span>
+        <div class="swatch" style="background: oklch(0.195 0.008 152);"></div>
+        <span class="lbl">--card</span><span class="val">oklch(0.195 0.008 152)</span>
       </div>
       <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="height: 60px; border-radius: 12px; background: oklch(0.210 0.004 120); border: 1px solid oklch(1 0 0 / 10%);"></div>
-        <span style="font-size: 12px; font-weight: 600;">--popover</span>
-        <span class="mono" style="font-size: 11px; color: oklch(0.680 0.004 120);">D oklch(0.210 0.004 120)<br>L oklch(1 0 0)</span>
+        <div class="swatch" style="background: oklch(0.230 0.009 152);"></div>
+        <span class="lbl">--popover</span><span class="val">oklch(0.230 0.009 152)</span>
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="height: 60px; border-radius: 12px; background: oklch(0.240 0.004 120);"></div>
-        <span style="font-size: 12px; font-weight: 600;">--muted</span>
-        <span class="mono" style="font-size: 11px; color: oklch(0.680 0.004 120);">D oklch(0.240 0.004 120)<br>L oklch(0.955 0.003 120)</span>
+        <div class="swatch" style="background: oklch(0.260 0.010 152);"></div>
+        <span class="lbl">--muted / --secondary</span><span class="val">oklch(0.260 0.010 152)</span>
       </div>
       <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="height: 60px; border-radius: 12px; background: oklch(0.680 0.004 120);"></div>
-        <span style="font-size: 12px; font-weight: 600;">--muted-foreground</span>
-        <span class="mono" style="font-size: 11px; color: oklch(0.680 0.004 120);">D oklch(0.680 0.004 120)<br>L oklch(0.500 0.006 120)</span>
+        <div class="swatch" style="background: oklch(0.640 0.012 150);"></div>
+        <span class="lbl">--muted-foreground</span><span class="val">oklch(0.640 0.012 150)</span>
       </div>
       <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="height: 60px; border-radius: 12px; background: oklch(0.260 0.004 120);"></div>
-        <span style="font-size: 12px; font-weight: 600;">--secondary</span>
-        <span class="mono" style="font-size: 11px; color: oklch(0.680 0.004 120);">D oklch(0.260 0.004 120)<br>L oklch(0.955 0.003 120)</span>
+        <div class="swatch" style="background: oklch(0.270 0.050 141);"></div>
+        <span class="lbl">--accent (volt hover wash)</span><span class="val">oklch(0.270 0.050 141)</span>
       </div>
       <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="height: 60px; border-radius: 12px; background: oklch(0.280 0.030 132);"></div>
-        <span style="font-size: 12px; font-weight: 600;">--accent (hover wash)</span>
-        <span class="mono" style="font-size: 11px; color: oklch(0.680 0.004 120);">D oklch(0.280 0.030 132)<br>L oklch(0.955 0.020 132)</span>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="height: 60px; border-radius: 12px; background: oklch(0.196 0.004 120); border: 1px solid oklch(1 0 0 / 10%); position: relative;">
-          <span style="position: absolute; inset: 0; border-radius: 12px; border: 1px solid oklch(1 0 0 / 10%);"></span>
-        </div>
-        <span style="font-size: 12px; font-weight: 600;">--border</span>
-        <span class="mono" style="font-size: 11px; color: oklch(0.680 0.004 120);">D oklch(1 0 0 / 10%)<br>L oklch(0.900 0.004 120)</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="height: 60px; border-radius: 12px; background: oklch(0.196 0.004 120); border: 1px solid oklch(1 0 0 / 14%);"></div>
-        <span style="font-size: 12px; font-weight: 600;">--input</span>
-        <span class="mono" style="font-size: 11px; color: oklch(0.680 0.004 120);">D oklch(1 0 0 / 14%)<br>L oklch(0.900 0.004 120)</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="height: 60px; border-radius: 12px; background: oklch(0.196 0.004 120); border: 2px solid oklch(0.82 0.18 130);"></div>
-        <span style="font-size: 12px; font-weight: 600;">--ring (focus)</span>
-        <span class="mono" style="font-size: 11px; color: oklch(0.680 0.004 120);">= --primary, 2px + 2px offset</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="height: 60px; border-radius: 12px; background: oklch(0.260 0.004 120); display: flex; align-items: center; justify-content: center;">
-          <span style="font-size: 12px; font-weight: 600; color: oklch(0.960 0.003 120);">Aa</span>
-        </div>
-        <span style="font-size: 12px; font-weight: 600;">--secondary-foreground</span>
-        <span class="mono" style="font-size: 11px; color: oklch(0.680 0.004 120);">D oklch(0.960 0.003 120)<br>L oklch(0.250 0.006 120)</span>
+        <div class="swatch" style="background: oklch(0.195 0.008 152); position: relative;"><span style="position: absolute; inset: 0; border-radius: 12px; border: 1px solid oklch(1 0 0 / 16%);"></span></div>
+        <span class="lbl">--border / --border-strong</span><span class="val">oklch(1 0 0 / 10%) · /16% · --input /14%</span>
       </div>
     </div>
 
-    <div style="margin-top: 18px; display: flex; gap: 16px;">
-      <div style="flex: 1; border-radius: 12px; background: oklch(1 0 0); border: 1px solid oklch(0.900 0.004 120); box-shadow: 0 1px 2px rgb(0 0 0 / 0.06); padding: 14px 16px;">
-        <span style="font-size: 13px; font-weight: 600; color: oklch(0.180 0.006 120);">Light elevation</span>
-        <span style="display: block; font-size: 12px; color: oklch(0.500 0.006 120); margin-top: 4px;">white card on warm-white page · 1px border · shadow-sm</span>
-      </div>
-      <div style="flex: 1; border-radius: 12px; background: oklch(0.210 0.004 120); border: 1px solid oklch(1 0 0 / 10%); padding: 14px 16px;">
-        <span style="font-size: 13px; font-weight: 600;">Dark elevation</span>
-        <span style="display: block; font-size: 12px; color: oklch(0.680 0.004 120); margin-top: 4px;">raise by lightening the surface one step + 1px translucent border · shadows barely read</span>
-      </div>
+    <div style="margin-top: 18px; border-radius: 12px; background: oklch(0.230 0.009 152); border: 1px solid oklch(1 0 0 / 10%); padding: 14px 16px;">
+      <span style="font-size: 13px; font-weight: 600;">Elevation</span>
+      <span style="display: block; font-size: 12px; color: oklch(0.640 0.012 150); margin-top: 4px;">Lean on surface steps + hairline borders. Where a shadow is used (sheets, toasts, timer pill): shadow-md 0 4 14 rgb(0 0 0 / .28) · shadow-lg 0 12 32 rgb(0 0 0 / .40).</span>
     </div>
   </div>
 
   <!-- SEMANTIC -->
   <div style="padding-top: 40px;">
-    <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: oklch(0.680 0.004 120); margin-bottom: 4px;">Semantic — fixed, never themed by hue</div>
-    <div style="font-size: 13px; color: oklch(0.680 0.004 120); margin-bottom: 18px;">Always paired with an icon + label. Shared with the data-viz status palette so app and charts agree.</div>
-    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;">
+    <div class="eyebrow" style="margin-bottom: 4px;">Semantic — fixed, never themed</div>
+    <div style="font-size: 13px; color: oklch(0.640 0.012 150); margin-bottom: 18px;">Always paired with an icon + label. Green (volt) carries success; these cover the rest.</div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
       <div style="display: flex; flex-direction: column; gap: 10px;">
-        <div style="height: 52px; border-radius: 12px; background: #0ca30c;"></div>
-        <span style="font-size: 12px; font-weight: 600;">good <span class="mono" style="color: oklch(0.680 0.004 120); font-weight: 500;">#0ca30c</span></span>
-        <span style="display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; padding: 4px 10px; border-radius: 999px; background: color-mix(in oklch, #0ca30c 18%, transparent); color: #0ca30c; font-size: 12px; font-weight: 600;">
+        <div style="height: 52px; border-radius: 12px; background: oklch(0.80 0.16 148);"></div>
+        <span class="lbl">--success <span class="val" style="font-weight: 400;">oklch(0.80 0.16 148)</span></span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; padding: 4px 10px; border-radius: 999px; background: color-mix(in oklch, oklch(0.80 0.16 148) 18%, transparent); color: oklch(0.84 0.15 148); font-size: 12px; font-weight: 600;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Saved
         </span>
       </div>
       <div style="display: flex; flex-direction: column; gap: 10px;">
-        <div style="height: 52px; border-radius: 12px; background: #fab219;"></div>
-        <span style="font-size: 12px; font-weight: 600;">warning <span class="mono" style="color: oklch(0.680 0.004 120); font-weight: 500;">#fab219</span></span>
-        <span style="display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; padding: 4px 10px; border-radius: 999px; background: color-mix(in oklch, #fab219 18%, transparent); color: #fab219; font-size: 12px; font-weight: 600;">
+        <div style="height: 52px; border-radius: 12px; background: oklch(0.80 0.13 78);"></div>
+        <span class="lbl">--warning <span class="val" style="font-weight: 400;">oklch(0.80 0.13 78)</span></span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; padding: 4px 10px; border-radius: 999px; background: color-mix(in oklch, oklch(0.80 0.13 78) 18%, transparent); color: oklch(0.82 0.12 78); font-size: 12px; font-weight: 600;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>RPE 9
         </span>
       </div>
       <div style="display: flex; flex-direction: column; gap: 10px;">
-        <div style="height: 52px; border-radius: 12px; background: #ec835a;"></div>
-        <span style="font-size: 12px; font-weight: 600;">serious <span class="mono" style="color: oklch(0.680 0.004 120); font-weight: 500;">#ec835a</span></span>
-        <span style="font-size: 12px; color: oklch(0.680 0.004 120);">destructive-adjacent warnings</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 10px;">
-        <div style="height: 52px; border-radius: 12px; background: #d03b3b;"></div>
-        <span style="font-size: 12px; font-weight: 600;">critical <span class="mono" style="color: oklch(0.680 0.004 120); font-weight: 500;">#d03b3b</span></span>
-        <span style="display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; padding: 4px 10px; border-radius: 999px; background: color-mix(in oklch, #d03b3b 18%, transparent); color: #e0625f; font-size: 12px; font-weight: 600;">
+        <div style="height: 52px; border-radius: 12px; background: oklch(0.64 0.19 25);"></div>
+        <span class="lbl">--destructive <span class="val" style="font-weight: 400;">oklch(0.64 0.19 25)</span></span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; padding: 4px 10px; border-radius: 999px; background: color-mix(in oklch, oklch(0.64 0.19 25) 18%, transparent); color: oklch(0.74 0.16 25); font-size: 12px; font-weight: 600;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Delete
         </span>
       </div>
     </div>
-    <div style="margin-top: 14px; font-size: 12px; color: oklch(0.680 0.004 120);" class="mono">shadcn --destructive &nbsp;D oklch(0.64 0.19 25) &nbsp;/&nbsp; L oklch(0.58 0.20 25) &nbsp;·&nbsp; --destructive-foreground oklch(0.99 0 0)</div>
+    <div style="margin-top: 14px; font-size: 12px; color: oklch(0.640 0.012 150);" class="mono">In charts, use the data-viz status palette: good #0ca30c · warning #fab219 · serious #ec835a · critical #d03b3b</div>
   </div>
 
   <!-- DATA-VIZ CATEGORICAL -->
   <div style="padding-top: 40px;">
-    <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: oklch(0.680 0.004 120); margin-bottom: 4px;">Data-viz — categorical</div>
-    <div style="font-size: 13px; color: oklch(0.680 0.004 120); margin-bottom: 18px;">Validated reference order. Assign in fixed order, never cycled; colour follows the entity, not its rank. Swatch = dark value.</div>
+    <div class="eyebrow" style="margin-bottom: 4px;">Data-viz — categorical</div>
+    <div style="font-size: 13px; color: oklch(0.640 0.012 150); margin-bottom: 18px;">Validated reference order, stepped for a dark surface. Assign in fixed order, never cycled; colour follows the entity, not its rank.</div>
     <div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 10px;">
-      <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 46px; border-radius: 9px; background: #3987e5;"></div><span class="mono" style="font-size: 10px; color: oklch(0.680 0.004 120);">chart-1<br>#3987e5</span></div>
-      <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 46px; border-radius: 9px; background: #d95926;"></div><span class="mono" style="font-size: 10px; color: oklch(0.680 0.004 120);">chart-2<br>#d95926</span></div>
-      <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 46px; border-radius: 9px; background: #199e70;"></div><span class="mono" style="font-size: 10px; color: oklch(0.680 0.004 120);">chart-3<br>#199e70</span></div>
-      <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 46px; border-radius: 9px; background: #c98500;"></div><span class="mono" style="font-size: 10px; color: oklch(0.680 0.004 120);">chart-4<br>#c98500</span></div>
-      <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 46px; border-radius: 9px; background: #d55181;"></div><span class="mono" style="font-size: 10px; color: oklch(0.680 0.004 120);">chart-5<br>#d55181</span></div>
-      <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 46px; border-radius: 9px; background: #008300;"></div><span class="mono" style="font-size: 10px; color: oklch(0.680 0.004 120);">chart-6<br>#008300</span></div>
-      <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 46px; border-radius: 9px; background: #9085e9;"></div><span class="mono" style="font-size: 10px; color: oklch(0.680 0.004 120);">chart-7<br>#9085e9</span></div>
-      <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 46px; border-radius: 9px; background: #e66767;"></div><span class="mono" style="font-size: 10px; color: oklch(0.680 0.004 120);">chart-8<br>#e66767</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 46px; border-radius: 9px; background: #3987e5;"></div><span class="val" style="font-size: 10px;">chart-1<br>#3987e5</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 46px; border-radius: 9px; background: #d95926;"></div><span class="val" style="font-size: 10px;">chart-2<br>#d95926</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 46px; border-radius: 9px; background: #199e70;"></div><span class="val" style="font-size: 10px;">chart-3<br>#199e70</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 46px; border-radius: 9px; background: #c98500;"></div><span class="val" style="font-size: 10px;">chart-4<br>#c98500</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 46px; border-radius: 9px; background: #d55181;"></div><span class="val" style="font-size: 10px;">chart-5<br>#d55181</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 46px; border-radius: 9px; background: #008300;"></div><span class="val" style="font-size: 10px;">chart-6<br>#008300</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 46px; border-radius: 9px; background: #9085e9;"></div><span class="val" style="font-size: 10px;">chart-7<br>#9085e9</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px;"><div style="height: 46px; border-radius: 9px; background: #e66767;"></div><span class="val" style="font-size: 10px;">chart-8<br>#e66767</span></div>
     </div>
-    <div style="margin-top: 14px; font-size: 12px; color: oklch(0.680 0.004 120);">One y-axis ever · ≥2 series always gets a legend, ≤4 also direct-labelled · a table view always exists · hover crosshair + tooltip on by default.</div>
+    <div style="margin-top: 14px; font-size: 12px; color: oklch(0.640 0.012 150);">One y-axis ever · ≥2 series always gets a legend, ≤4 also direct-labelled · a table view always exists · hover crosshair + tooltip on by default. chart-3 sits near volt but only ever appears as a labelled series, never beside a volt control.</div>
   </div>
 
   <!-- HEATMAP RAMP -->
   <div style="padding-top: 40px;">
-    <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: oklch(0.680 0.004 120); margin-bottom: 4px;">Muscle heatmap ramp — single-hue green</div>
-    <div style="font-size: 13px; color: oklch(0.680 0.004 120); margin-bottom: 18px;">6 ordinal steps by trailing-7-day volume. "More volume = more RepLog green." Step nearest the surface recedes.</div>
+    <div class="eyebrow" style="margin-bottom: 4px;">Muscle heatmap ramp — single-hue volt</div>
+    <div style="font-size: 13px; color: oklch(0.640 0.012 150); margin-bottom: 18px;">6 ordinal steps by trailing-7-day volume. "More volume = more RepLog green." Step 0 recedes toward the surface.</div>
     <div style="display: flex; align-items: center; gap: 14px;">
-      <span style="font-size: 12px; color: oklch(0.680 0.004 120);">less</span>
+      <span style="font-size: 12px; color: oklch(0.640 0.012 150);">less</span>
       <div style="display: flex; flex: 1; border-radius: 999px; overflow: hidden; height: 40px;">
-        <div style="flex: 1; background: oklch(0.260 0.030 132);"></div>
-        <div style="flex: 1; background: oklch(0.360 0.070 132);"></div>
-        <div style="flex: 1; background: oklch(0.480 0.110 132);"></div>
-        <div style="flex: 1; background: oklch(0.600 0.150 132);"></div>
-        <div style="flex: 1; background: oklch(0.720 0.170 130);"></div>
-        <div style="flex: 1; background: oklch(0.830 0.180 128);"></div>
+        <div style="flex: 1; background: oklch(0.240 0.030 145);"></div>
+        <div style="flex: 1; background: oklch(0.380 0.080 141);"></div>
+        <div style="flex: 1; background: oklch(0.520 0.130 139);"></div>
+        <div style="flex: 1; background: oklch(0.650 0.160 138);"></div>
+        <div style="flex: 1; background: oklch(0.780 0.170 137);"></div>
+        <div style="flex: 1; background: oklch(0.870 0.170 136);"></div>
       </div>
-      <span style="font-size: 12px; color: oklch(0.680 0.004 120);">more</span>
+      <span style="font-size: 12px; color: oklch(0.640 0.012 150);">more</span>
     </div>
     <div style="margin-top: 10px; display: flex; gap: 6px;" class="mono">
-      <span style="flex: 1; font-size: 10px; color: oklch(0.560 0.004 120); text-align: center;">0.260</span>
-      <span style="flex: 1; font-size: 10px; color: oklch(0.560 0.004 120); text-align: center;">0.360</span>
-      <span style="flex: 1; font-size: 10px; color: oklch(0.560 0.004 120); text-align: center;">0.480</span>
-      <span style="flex: 1; font-size: 10px; color: oklch(0.560 0.004 120); text-align: center;">0.600</span>
-      <span style="flex: 1; font-size: 10px; color: oklch(0.560 0.004 120); text-align: center;">0.720</span>
-      <span style="flex: 1; font-size: 10px; color: oklch(0.560 0.004 120); text-align: center;">0.830</span>
+      <span style="flex: 1; font-size: 10px; color: oklch(0.560 0.012 150); text-align: center;">0.24</span>
+      <span style="flex: 1; font-size: 10px; color: oklch(0.560 0.012 150); text-align: center;">0.38</span>
+      <span style="flex: 1; font-size: 10px; color: oklch(0.560 0.012 150); text-align: center;">0.52</span>
+      <span style="flex: 1; font-size: 10px; color: oklch(0.560 0.012 150); text-align: center;">0.65</span>
+      <span style="flex: 1; font-size: 10px; color: oklch(0.560 0.012 150); text-align: center;">0.78</span>
+      <span style="flex: 1; font-size: 10px; color: oklch(0.560 0.012 150); text-align: center;">0.87</span>
     </div>
   </div>
 

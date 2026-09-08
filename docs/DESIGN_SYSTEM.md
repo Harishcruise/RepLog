@@ -15,10 +15,10 @@ Implementation target: Tailwind CSS 4 (CSS-first `@theme`) + shadcn/ui + Rechart
    weight, and alignment. Chrome recedes; data leads.
 3. **Two taps to log a set.** Speed beats richness. Defaults pre-filled from last
    time. No modal between the user and a completed set.
-4. **Dark-first.** Designed for a dim gym and an evening couch. Light mode is a
-   first-class re-step of the same palette, not an auto-invert.
+4. **One theme.** A single **Obsidian & Volt** theme — no light mode, no toggle.
+   Designed for a dim gym and an evening couch, and committed to fully.
 5. **Progress is the emotion.** The one moment we celebrate is a PR. Volt green is
-   reserved for "you moved forward" — primary actions and personal records.
+   reserved for "you moved forward" — primary actions, success, and personal records.
 6. **Calm by default, loud on achievement.** No gradients, no motion for its own
    sake. Colour spikes only where it means something.
 
@@ -26,101 +26,105 @@ Implementation target: Tailwind CSS 4 (CSS-first `@theme`) + shadcn/ui + Rechart
 
 ## 2. Colour
 
-OKLCH throughout. Values are starting points — tune against a real screen.
-Token names follow the shadcn/ui contract so components map 1:1.
+Single theme — **Obsidian & Volt**. No light mode, no theme toggle. OKLCH
+throughout; values are starting points, tune against a real screen. Token names
+follow the shadcn/ui contract so components map 1:1.
 
-### 2.1 Brand
+### 2.1 Brand — Volt
 
-| Role | Meaning | Light | Dark |
-|---|---|---|---|
-| **Primary (volt)** | primary action, PR highlight | `oklch(0.72 0.17 132)` | `oklch(0.82 0.18 130)` |
-| Primary foreground | text/icon on primary | `oklch(0.19 0.03 135)` | `oklch(0.18 0.03 135)` |
-
-Primary doubles as the success/PR colour — in this app "primary action" and
-"you progressed" are the same idea. Semantic warning/destructive stay separate
-(below) so meaning is never colour-alone: PRs also carry a trophy icon, failure
-sets a label.
-
-### 2.2 Neutrals & surfaces (warm charcoal ramp)
-
-| Token | Light | Dark |
+| Token | Value | Meaning |
 |---|---|---|
-| `--background` (page plane) | `oklch(0.986 0.002 120)` | `oklch(0.160 0.004 120)` |
-| `--foreground` | `oklch(0.180 0.006 120)` | `oklch(0.970 0.003 120)` |
-| `--card` (raised) | `oklch(1 0 0)` | `oklch(0.196 0.004 120)` |
-| `--card-foreground` | `oklch(0.180 0.006 120)` | `oklch(0.970 0.003 120)` |
-| `--popover` | `oklch(1 0 0)` | `oklch(0.210 0.004 120)` |
-| `--popover-foreground` | = foreground | = foreground |
-| `--muted` (fill) | `oklch(0.955 0.003 120)` | `oklch(0.240 0.004 120)` |
-| `--muted-foreground` | `oklch(0.500 0.006 120)` | `oklch(0.680 0.004 120)` |
-| `--secondary` | `oklch(0.955 0.003 120)` | `oklch(0.260 0.004 120)` |
-| `--secondary-foreground` | `oklch(0.250 0.006 120)` | `oklch(0.960 0.003 120)` |
-| `--accent` (hover wash) | `oklch(0.955 0.020 132)` | `oklch(0.280 0.030 132)` |
-| `--accent-foreground` | `oklch(0.250 0.020 135)` | `oklch(0.960 0.020 132)` |
-| `--border` | `oklch(0.900 0.004 120)` | `oklch(1 0 0 / 10%)` |
-| `--input` | `oklch(0.900 0.004 120)` | `oklch(1 0 0 / 14%)` |
-| `--ring` (focus) | = primary | = primary |
+| `--primary` | `oklch(0.82 0.17 137)` | primary action, success, PR highlight |
+| `--primary-foreground` | `oklch(0.18 0.04 137)` | text/icon on volt — near-black green |
+| `--primary-hover` | `oklch(0.86 0.16 137)` | hover / pressed on primary surfaces |
+| `--primary-subtle` | `oklch(0.30 0.06 141)` | volt-tinted fill: completed set-row wash, selected chip |
+| `--ring` | `= --primary` | focus ring, 2px + 2px offset |
 
-Elevation model:
-- **Light:** white cards on warm-white page + 1px `--border` + `shadow-sm`.
-- **Dark:** raise by *lightening the surface* one step + 1px translucent border.
-  Shadows barely read on black — don't lean on them.
+Volt is the **only** identity colour. It carries primary actions, success
+confirmations, and the PR moment (which also gets a brighter glow + trophy icon).
+Nothing else in the app is green. Semantic warning/destructive stay separate
+(§2.3) so meaning is never colour-alone — a warmup has a **W**, a failed set a
+label, RPE shows the number.
 
-### 2.3 Semantic (fixed — never themed by hue, always paired with icon + label)
+Prefer volt as a **fill with dark text**. Volt as text reads fine on the obsidian
+ground (high contrast); never put volt text on a light surface.
 
-Adopted from the data-viz status palette so app and charts agree.
+### 2.2 Neutrals & surfaces — warm obsidian ramp
 
-| Role | Hex | Use |
+Warm near-black, hue ~150 at minimal chroma. Raise elevation by **lightening the
+surface one step + a 1px translucent border**; shadows barely read on obsidian, so
+don't lean on them.
+
+| Token | Value | Use |
 |---|---|---|
-| good | `#0ca30c` | confirmations (distinct from volt primary; use when primary would be ambiguous) |
-| warning | `#fab219` | high RPE (≥9), approaching MRV, unsynced-offline banner |
-| serious | `#ec835a` | destructive-adjacent warnings |
-| critical / destructive | `#d03b3b` | delete, discard session, failed set marker |
+| `--background` | `oklch(0.150 0.007 150)` | page plane |
+| `--foreground` | `oklch(0.950 0.008 150)` | primary text — warm white |
+| `--card` | `oklch(0.195 0.008 152)` | raised surface — cards, sheets |
+| `--card-foreground` | `= --foreground` | |
+| `--popover` | `oklch(0.230 0.009 152)` | menus, tooltips, timer sheet |
+| `--popover-foreground` | `= --foreground` | |
+| `--muted` | `oklch(0.260 0.010 152)` | input fills, inert chips, table zebra |
+| `--muted-foreground` | `oklch(0.640 0.012 150)` | captions, "last time" line, axis labels |
+| `--secondary` | `oklch(0.260 0.010 152)` | secondary button fill |
+| `--secondary-foreground` | `oklch(0.950 0.008 150)` | text on secondary |
+| `--accent` | `oklch(0.270 0.050 141)` | volt-tinted hover wash on ghost / menu items |
+| `--accent-foreground` | `oklch(0.860 0.150 137)` | text on `--accent` |
+| `--border` | `oklch(1 0 0 / 10%)` | hairline dividers, card edges |
+| `--border-strong` | `oklch(1 0 0 / 16%)` | pressed edges, timer-pill ring |
+| `--input` | `oklch(1 0 0 / 14%)` | input borders |
 
-shadcn tokens: `--destructive: oklch(0.58 0.20 25)` (light) / `oklch(0.64 0.19 25)`
-(dark); `--destructive-foreground: oklch(0.99 0 0)`.
+### 2.3 Semantic (fixed — never themed, always icon + label)
+
+| Token | Value | Use |
+|---|---|---|
+| `--success` | `oklch(0.80 0.16 148)` | confirmations where volt-primary would be ambiguous — otherwise just use `--primary` |
+| `--warning` | `oklch(0.80 0.13 78)` | RPE ≥ 9, approaching MRV, unsynced-offline banner |
+| `--destructive` | `oklch(0.64 0.19 25)` | delete, discard session, failed-set marker |
+| `--destructive-foreground` | `oklch(0.99 0 0)` | text on destructive |
+
+For **charts**, use the data-viz status palette so app and charts agree:
+good `#0ca30c` · warning `#fab219` · serious `#ec835a` · critical `#d03b3b`
+— each shipped with an icon + label, never colour-alone.
 
 ### 2.4 Data-viz palette
 
-Categorical — the validated reference order (blue → orange → aqua → yellow →
-magenta → green → violet → red). Mapped to `--chart-1..8`, both modes:
+Categorical — the validated reference order, stepped for a dark surface. Mapped to
+`--chart-1..8`:
 
-| Slot | Light | Dark |
-|---|---|---|
-| `--chart-1` | `#2a78d6` | `#3987e5` |
-| `--chart-2` | `#eb6834` | `#d95926` |
-| `--chart-3` | `#1baf7a` | `#199e70` |
-| `--chart-4` | `#eda100` | `#c98500` |
-| `--chart-5` | `#e87ba4` | `#d55181` |
-| `--chart-6` | `#008300` | `#008300` |
-| `--chart-7` | `#4a3aa7` | `#9085e9` |
-| `--chart-8` | `#e34948` | `#e66767` |
+| Slot | Value | | Slot | Value |
+|---|---|---|---|---|
+| `--chart-1` | `#3987e5` | | `--chart-5` | `#d55181` |
+| `--chart-2` | `#d95926` | | `--chart-6` | `#008300` |
+| `--chart-3` | `#199e70` | | `--chart-7` | `#9085e9` |
+| `--chart-4` | `#c98500` | | `--chart-8` | `#e66767` |
 
 Rules (non-negotiable): assign in fixed order, never cycled; **one y-axis ever**
-(est. 1RM and volume are separate cards, not a dual-axis chart); colour follows
-the entity, not its rank; ≥2 series always gets a legend, ≤4 also direct-labelled;
-a table view always exists; hover crosshair+tooltip is on by default.
+(est. 1RM and volume are separate cards, not dual-axis); colour follows the
+entity, not its rank; ≥2 series always gets a legend, ≤4 also direct-labelled; a
+table view always exists; hover crosshair+tooltip on by default. `--chart-3`
+(aqua-green) sits near volt — it only ever appears as a labelled chart series,
+never beside a volt primary control, so context disambiguates.
 
-**Muscle heatmap ramp** — single-hue, brand green, so "more volume = more RepLog
-green." 6 ordinal steps; the step nearest the surface recedes.
+**Muscle heatmap ramp** — single-hue volt, so "more volume = more RepLog green."
+6 ordinal steps; step 0 recedes toward the surface.
 
-| Step | Light | Dark |
-|---|---|---|
-| 0 (≈none) | `oklch(0.950 0.030 132)` | `oklch(0.260 0.030 132)` |
-| 1 | `oklch(0.880 0.070 132)` | `oklch(0.360 0.070 132)` |
-| 2 | `oklch(0.800 0.110 132)` | `oklch(0.480 0.110 132)` |
-| 3 | `oklch(0.720 0.150 132)` | `oklch(0.600 0.150 132)` |
-| 4 | `oklch(0.630 0.160 138)` | `oklch(0.720 0.170 130)` |
-| 5 (max) | `oklch(0.520 0.150 142)` | `oklch(0.830 0.180 128)` |
+| Step | Value |
+|---|---|
+| 0 (≈none) | `oklch(0.240 0.030 145)` |
+| 1 | `oklch(0.380 0.080 141)` |
+| 2 | `oklch(0.520 0.130 139)` |
+| 3 | `oklch(0.650 0.160 138)` |
+| 4 | `oklch(0.780 0.170 137)` |
+| 5 (max) | `oklch(0.870 0.170 136)` |
 
 > **TODO before building any chart:** run the validator, don't eyeball.
-> `node scripts/validate_palette.js "#2a78d6,#eb6834,#1baf7a,#eda100,#e87ba4,#008300,#4a3aa7,#e34948" --mode light --surface "#ffffff"`
-> then `--mode dark --surface "#191918"`, and the heatmap ramp with `--ordinal`.
-> Fix any FAIL before implementation. (Script lives in the dataviz skill.)
+> `node scripts/validate_palette.js "#3987e5,#d95926,#199e70,#c98500,#d55181,#008300,#9085e9,#e66767" --mode dark --surface "#181a17"`
+> and the heatmap ramp with `--ordinal`. Fix any FAIL before implementation.
+> (Script lives in the dataviz skill.)
 
-Chart chrome: gridlines `oklch(0.900 0.004 120)` / `oklch(1 0 0 / 8%)`; axis/label
-ink `--muted-foreground`; marks thin, 2px lines, 4px rounded data-ends on the
-baseline, ≥8px markers, 2px surface gap between fills.
+Chart chrome: gridlines `oklch(1 0 0 / 8%)`; axis/label ink `--muted-foreground`;
+marks thin, 2px lines, 4px rounded data-ends on the baseline, ≥8px markers, 2px
+surface gap between fills.
 
 ---
 
@@ -166,8 +170,9 @@ Three roles, all Google Fonts — add via `next/font/google` (no manual install)
 `sm` 8 · `md` 10 · `lg` 12 · `xl` 16 (cards, sheets-inner) · `2xl` 20 (bottom sheet top) · `full` (chips, avatars, timer ring).
 Buttons & inputs 12. Set-row cells 8.
 
-**Elevation** — `shadow-sm` 0 1 2 rgb(0 0 0/.06); `shadow-md` 0 4 12 rgb(0 0 0/.10);
-`shadow-lg` 0 12 32 rgb(0 0 0/.16). Dark mode: halve opacity, rely on surface + border.
+**Elevation** — shadows barely read on obsidian, so lean on surface steps + a 1px
+translucent border. Where a shadow is used (sheets, toasts, the timer pill):
+`shadow-md` 0 4 14 rgb(0 0 0/.28); `shadow-lg` 0 12 32 rgb(0 0 0/.40).
 
 **Motion** — durations `fast` 120ms · `base` 180ms · `slow` 240ms.
 Easing `standard` `cubic-bezier(0.2, 0, 0, 1)`; sheets use a soft spring.
@@ -288,7 +293,8 @@ empty → "No sessions yet" · **Start your first workout**.
 - Colour is never the only signal: warmup has a **W**, PR has a **trophy**, RPE
   shows the **number**, failed set has a **label**, chart series ≤4 are
   **direct-labelled** and always have a legend + table view.
-- Dark mode is a designed re-step, validated against the dark surface.
+- Single theme — the obsidian ground and warm-white text are the contrast baseline;
+  every token pair above is checked against it, not against a light surface.
 - `prefers-reduced-motion` honoured everywhere.
 - Every icon-only control has an `aria-label`.
 
@@ -296,80 +302,40 @@ empty → "No sessions yet" · **Start your first workout**.
 
 ## 9. Tokens — `globals.css` (paste target)
 
-Drop into `src/app/globals.css` under `@import "tailwindcss";`. Dark mode via a
-`.dark` class on `<html>` (next-themes). Chart hexes stay hex per the data-viz
-method; everything else OKLCH.
+Drop into `src/app/globals.css` under `@import "tailwindcss";`. One theme, so a
+bare `:root` — no `.dark`, no `@custom-variant`, no `next-themes`. Chart hexes stay
+hex per the data-viz method; everything else OKLCH.
 
 ```css
 @import "tailwindcss";
-@custom-variant dark (&:is(.dark *));
 
 :root {
   --radius: 0.75rem;
 
-  --background: oklch(0.986 0.002 120);
-  --foreground: oklch(0.180 0.006 120);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.180 0.006 120);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.180 0.006 120);
-  --primary: oklch(0.720 0.170 132);
-  --primary-foreground: oklch(0.190 0.030 135);
-  --secondary: oklch(0.955 0.003 120);
-  --secondary-foreground: oklch(0.250 0.006 120);
-  --muted: oklch(0.955 0.003 120);
-  --muted-foreground: oklch(0.500 0.006 120);
-  --accent: oklch(0.955 0.020 132);
-  --accent-foreground: oklch(0.250 0.020 135);
-  --destructive: oklch(0.580 0.200 25);
-  --destructive-foreground: oklch(0.990 0 0);
-  --border: oklch(0.900 0.004 120);
-  --input: oklch(0.900 0.004 120);
-  --ring: oklch(0.720 0.170 132);
-
-  --success: oklch(0.600 0.150 145);
-  --warning: oklch(0.750 0.140 78);
-
-  --chart-1: #2a78d6;
-  --chart-2: #eb6834;
-  --chart-3: #1baf7a;
-  --chart-4: #eda100;
-  --chart-5: #e87ba4;
-  --chart-6: #008300;
-  --chart-7: #4a3aa7;
-  --chart-8: #e34948;
-
-  --heat-0: oklch(0.950 0.030 132);
-  --heat-1: oklch(0.880 0.070 132);
-  --heat-2: oklch(0.800 0.110 132);
-  --heat-3: oklch(0.720 0.150 132);
-  --heat-4: oklch(0.630 0.160 138);
-  --heat-5: oklch(0.520 0.150 142);
-}
-
-.dark {
-  --background: oklch(0.160 0.004 120);
-  --foreground: oklch(0.970 0.003 120);
-  --card: oklch(0.196 0.004 120);
-  --card-foreground: oklch(0.970 0.003 120);
-  --popover: oklch(0.210 0.004 120);
-  --popover-foreground: oklch(0.970 0.003 120);
-  --primary: oklch(0.820 0.180 130);
-  --primary-foreground: oklch(0.180 0.030 135);
-  --secondary: oklch(0.260 0.004 120);
-  --secondary-foreground: oklch(0.960 0.003 120);
-  --muted: oklch(0.240 0.004 120);
-  --muted-foreground: oklch(0.680 0.004 120);
-  --accent: oklch(0.280 0.030 132);
-  --accent-foreground: oklch(0.960 0.020 132);
+  --background: oklch(0.150 0.007 150);
+  --foreground: oklch(0.950 0.008 150);
+  --card: oklch(0.195 0.008 152);
+  --card-foreground: oklch(0.950 0.008 150);
+  --popover: oklch(0.230 0.009 152);
+  --popover-foreground: oklch(0.950 0.008 150);
+  --primary: oklch(0.820 0.170 137);
+  --primary-foreground: oklch(0.180 0.040 137);
+  --primary-hover: oklch(0.860 0.160 137);
+  --primary-subtle: oklch(0.300 0.060 141);
+  --secondary: oklch(0.260 0.010 152);
+  --secondary-foreground: oklch(0.950 0.008 150);
+  --muted: oklch(0.260 0.010 152);
+  --muted-foreground: oklch(0.640 0.012 150);
+  --accent: oklch(0.270 0.050 141);
+  --accent-foreground: oklch(0.860 0.150 137);
   --destructive: oklch(0.640 0.190 25);
-  --destructive-foreground: oklch(0.980 0 0);
+  --destructive-foreground: oklch(0.990 0 0);
+  --success: oklch(0.800 0.160 148);
+  --warning: oklch(0.800 0.130 78);
   --border: oklch(1 0 0 / 10%);
+  --border-strong: oklch(1 0 0 / 16%);
   --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.820 0.180 130);
-
-  --success: oklch(0.720 0.160 145);
-  --warning: oklch(0.800 0.140 80);
+  --ring: oklch(0.820 0.170 137);
 
   --chart-1: #3987e5;
   --chart-2: #d95926;
@@ -380,12 +346,12 @@ method; everything else OKLCH.
   --chart-7: #9085e9;
   --chart-8: #e66767;
 
-  --heat-0: oklch(0.260 0.030 132);
-  --heat-1: oklch(0.360 0.070 132);
-  --heat-2: oklch(0.480 0.110 132);
-  --heat-3: oklch(0.600 0.150 132);
-  --heat-4: oklch(0.720 0.170 130);
-  --heat-5: oklch(0.830 0.180 128);
+  --heat-0: oklch(0.240 0.030 145);
+  --heat-1: oklch(0.380 0.080 141);
+  --heat-2: oklch(0.520 0.130 139);
+  --heat-3: oklch(0.650 0.160 138);
+  --heat-4: oklch(0.780 0.170 137);
+  --heat-5: oklch(0.870 0.170 136);
 }
 
 @theme inline {
@@ -397,6 +363,8 @@ method; everything else OKLCH.
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-subtle: var(--primary-subtle);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -408,6 +376,7 @@ method; everything else OKLCH.
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-input: var(--input);
   --color-ring: var(--ring);
 
@@ -456,5 +425,5 @@ method; everything else OKLCH.
 1. Landing page for v1, or straight to `/login`?
 2. Bottom-nav labels — icons only, or icons + text? *(system assumes labels)*
 3. Rest timer full-screen vs pill. *(system assumes pill)*
-4. Volt hue final call — this draft uses `~132°` green. Alternatives on the table:
-   electric indigo `~275°` (keeps green free for "success" only) or amber `~70°`.
+4. ~~Volt hue final call~~ — **resolved.** Single theme, Obsidian & Volt: ground
+   `oklch(0.150 0.007 150)`, primary `oklch(0.82 0.17 137)`. Light mode dropped.

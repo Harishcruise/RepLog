@@ -11,16 +11,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap">
   <style>
-    body { margin: 0; background: oklch(0.160 0.004 120); color: oklch(0.970 0.003 120);
+    body { margin: 0; background: oklch(0.150 0.007 150); color: oklch(0.950 0.008 150);
       font-family: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
-    a { color: oklch(0.82 0.18 130); } a:hover { color: oklch(0.90 0.14 130); }
+    a { color: oklch(0.82 0.17 137); } a:hover { color: oklch(0.86 0.16 137); }
     .sg { font-family: 'Space Grotesk', 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif; }
     .gs { font-family: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif; }
     .gm { font-family: 'Geist Mono', ui-monospace, 'SF Mono', 'Cascadia Mono', monospace; }
     .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
     .tnum { font-variant-numeric: tabular-nums; }
-    .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: oklch(0.680 0.004 120); }
-    .meta { font-size: 12px; line-height: 17px; color: oklch(0.680 0.004 120); }
+    .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: oklch(0.640 0.012 150); }
+    .meta { font-size: 12px; line-height: 17px; color: oklch(0.640 0.012 150); }
   </style>
 </helmet>
 
@@ -29,7 +29,7 @@
   <!-- Masthead -->
   <div style="display: flex; flex-direction: column; gap: 6px; padding-bottom: 24px; border-bottom: 1px solid oklch(1 0 0 / 10%);">
     <span class="sg" style="font-size: 22px; font-weight: 600; letter-spacing: -0.015em;">Typography</span>
-    <span class="meta" style="font-size: 14px;">Three roles — <span class="sg" style="color: oklch(0.880 0.004 120);">Space&nbsp;Grotesk</span> for titles &amp; labels · <span class="gs" style="color: oklch(0.880 0.004 120);">Geist</span> for body, captions &amp; names · <span class="gm" style="color: oklch(0.880 0.004 120);">Geist&nbsp;Mono</span> for every number the user reads as data.</span>
+    <span class="meta" style="font-size: 14px;">Three roles — <span class="sg" style="color: oklch(0.880 0.010 150);">Space&nbsp;Grotesk</span> for titles &amp; labels · <span class="gs" style="color: oklch(0.880 0.010 150);">Geist</span> for body, captions &amp; names · <span class="gm" style="color: oklch(0.880 0.010 150);">Geist&nbsp;Mono</span> for every number the user reads as data.</span>
   </div>
 
   <!-- FONT ROLES -->
@@ -38,17 +38,17 @@
     <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px;">
       <div style="border-radius: 12px; border: 1px solid oklch(1 0 0 / 10%); padding: 16px; display: flex; flex-direction: column; gap: 8px;">
         <span class="sg" style="font-size: 26px; font-weight: 600; letter-spacing: -0.01em;">Space Grotesk</span>
-        <span class="sg" style="font-size: 13px; color: oklch(0.780 0.004 120);">Weights in use 500 · 600 &nbsp;(family 300–700)</span>
+        <span class="sg" style="font-size: 13px; color: oklch(0.780 0.010 150);">Weights in use 500 · 600 &nbsp;(family 300–700)</span>
         <span class="meta">Screen titles, section headers, buttons, chips, table headers. Distinctive digits and the tail on the <span class="sg">g</span> give it a modern-tech read; still a real UI face. Tighten tracking slightly at title sizes.</span>
       </div>
       <div style="border-radius: 12px; border: 1px solid oklch(1 0 0 / 10%); padding: 16px; display: flex; flex-direction: column; gap: 8px;">
         <span class="gs" style="font-size: 26px; font-weight: 600;">Geist</span>
-        <span class="gs" style="font-size: 13px; color: oklch(0.780 0.004 120);">Weights in use 400 · 500 · 600 &nbsp;(family 400–700)</span>
+        <span class="gs" style="font-size: 13px; color: oklch(0.780 0.010 150);">Weights in use 400 · 500 · 600 &nbsp;(family 400–700)</span>
         <span class="meta">Body copy, all inputs, captions, helper text, and exercise names. Already wired via next/font. Neutral and legible at 12–16px; holds proper nouns without shouting.</span>
       </div>
       <div style="border-radius: 12px; border: 1px solid oklch(1 0 0 / 10%); padding: 16px; display: flex; flex-direction: column; gap: 8px;">
         <span class="gm" style="font-size: 24px; font-weight: 500;">Geist Mono</span>
-        <span class="gm" style="font-size: 13px; color: oklch(0.780 0.004 120);">Weights in use 500 · 600 &nbsp;(family 400–600)</span>
+        <span class="gm" style="font-size: 13px; color: oklch(0.780 0.010 150);">Weights in use 500 · 600 &nbsp;(family 400–600)</span>
         <span class="meta">Weights, reps, RPE, est. 1RM, volume, timers, timestamps, axis ticks. Always with <span class="mono">tabular-nums</span> so columns lock. Swap the whole role to <span class="gm">Martian&nbsp;Mono</span> for a harder sci-fi read.</span>
       </div>
     </div>
@@ -88,11 +88,11 @@
         <span class="mono meta" style="width: 320px; flex-shrink: 0;">text-label · 14/20 · Space Grotesk 500<br>labels, buttons, chips, table headers</span>
       </div>
       <div style="display: flex; align-items: baseline; gap: 24px;">
-        <span class="gs" style="flex: 1; font-size: 13px; line-height: 18px; font-weight: 500; color: oklch(0.680 0.004 120);">Last time — <span class="gm tnum">100 × 8, 8, 7</span> · 12 Jul</span>
+        <span class="gs" style="flex: 1; font-size: 13px; line-height: 18px; font-weight: 500; color: oklch(0.640 0.012 150);">Last time — <span class="gm tnum">100 × 8, 8, 7</span> · 12 Jul</span>
         <span class="mono meta" style="width: 320px; flex-shrink: 0;">text-caption · 13/18 · Geist 500<br>helper text — inline data switches to Geist Mono</span>
       </div>
       <div style="display: flex; align-items: baseline; gap: 24px;">
-        <span class="gm tnum" style="flex: 1; font-size: 12px; line-height: 16px; font-weight: 500; color: oklch(0.680 0.004 120);">2:47 PM</span>
+        <span class="gm tnum" style="flex: 1; font-size: 12px; line-height: 16px; font-weight: 500; color: oklch(0.640 0.012 150);">2:47 PM</span>
         <span class="mono meta" style="width: 320px; flex-shrink: 0;">text-micro · 12/16 · Geist Mono 500<br>timestamps only</span>
       </div>
     </div>
@@ -117,7 +117,7 @@
       <div style="border-radius: 12px; border: 1px solid oklch(1 0 0 / 10%); padding: 16px; display: flex; flex-direction: column; gap: 8px;">
         <span class="meta">Geist Mono — the numeric workhorse</span>
         <span class="gm tnum" style="font-size: 30px; letter-spacing: 0.02em;">0 1 2 3 4 5 6 7 8 9</span>
-        <span class="gm" style="font-size: 17px; color: oklch(0.820 0.004 120);">kg &nbsp; reps &nbsp; RPE &nbsp; 1RM &nbsp; : &nbsp; . &nbsp; × &nbsp; − &nbsp; /</span>
+        <span class="gm" style="font-size: 17px; color: oklch(0.820 0.004 150);">kg &nbsp; reps &nbsp; RPE &nbsp; 1RM &nbsp; : &nbsp; . &nbsp; × &nbsp; − &nbsp; /</span>
       </div>
     </div>
   </section>
@@ -128,26 +128,26 @@
     <div class="meta">"Numbers are the interface." Every column that must line up (set tables, stat rows, axis ticks, history) is Geist&nbsp;Mono with <span class="mono">tabular-nums</span>.</div>
     <div style="display: flex; gap: 40px; flex-wrap: wrap;">
       <div style="display: flex; flex-direction: column; gap: 8px;">
-        <span class="sg" style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.640 0.004 120);">Geist Mono · tabular — locks</span>
-        <div class="gm tnum" style="font-size: 22px; line-height: 30px; text-align: right; width: 130px; color: oklch(0.940 0.003 120);">1&nbsp;240<br>86<br>9&nbsp;007<br>512<br>1&nbsp;008</div>
+        <span class="sg" style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.640 0.004 150);">Geist Mono · tabular — locks</span>
+        <div class="gm tnum" style="font-size: 22px; line-height: 30px; text-align: right; width: 130px; color: oklch(0.940 0.003 150);">1&nbsp;240<br>86<br>9&nbsp;007<br>512<br>1&nbsp;008</div>
       </div>
       <div style="display: flex; flex-direction: column; gap: 8px;">
-        <span class="sg" style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.640 0.004 120);">Proportional — drifts</span>
-        <div class="gs" style="font-size: 22px; line-height: 30px; text-align: right; width: 130px; font-variant-numeric: proportional-nums; color: oklch(0.680 0.004 120);">1&nbsp;240<br>86<br>9&nbsp;007<br>512<br>1&nbsp;008</div>
+        <span class="sg" style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.640 0.004 150);">Proportional — drifts</span>
+        <div class="gs" style="font-size: 22px; line-height: 30px; text-align: right; width: 130px; font-variant-numeric: proportional-nums; color: oklch(0.640 0.012 150);">1&nbsp;240<br>86<br>9&nbsp;007<br>512<br>1&nbsp;008</div>
       </div>
       <div style="display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 220px;">
-        <span class="sg" style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.640 0.004 120);">In a set table</span>
+        <span class="sg" style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.640 0.004 150);">In a set table</span>
         <div style="border-radius: 10px; border: 1px solid oklch(1 0 0 / 10%); overflow: hidden;">
           <div style="display: grid; grid-template-columns: 28px 1fr 52px 44px 40px; gap: 8px; padding: 7px 10px;">
             <span class="sg meta" style="font-weight: 600;">SET</span><span class="sg meta" style="font-weight: 600;">PREV</span>
             <span class="sg meta" style="font-weight: 600; text-align: center;">KG</span><span class="sg meta" style="font-weight: 600; text-align: center;">REPS</span><span class="sg meta" style="font-weight: 600; text-align: center;">RPE</span>
           </div>
           <div style="display: grid; grid-template-columns: 28px 1fr 52px 44px 40px; gap: 8px; padding: 7px 10px; border-top: 1px solid oklch(1 0 0 / 7%);">
-            <span class="gm tnum meta">1</span><span class="gm tnum" style="font-size: 12px; color: oklch(0.680 0.004 120);">100×8</span>
+            <span class="gm tnum meta">1</span><span class="gm tnum" style="font-size: 12px; color: oklch(0.640 0.012 150);">100×8</span>
             <span class="gm tnum" style="font-size: 15px; text-align: center;">100</span><span class="gm tnum" style="font-size: 15px; text-align: center;">8</span><span class="gm tnum meta" style="text-align: center;">8</span>
           </div>
           <div style="display: grid; grid-template-columns: 28px 1fr 52px 44px 40px; gap: 8px; padding: 7px 10px; border-top: 1px solid oklch(1 0 0 / 7%);">
-            <span class="gm tnum meta">2</span><span class="gm tnum" style="font-size: 12px; color: oklch(0.680 0.004 120);">100×8</span>
+            <span class="gm tnum meta">2</span><span class="gm tnum" style="font-size: 12px; color: oklch(0.640 0.012 150);">100×8</span>
             <span class="gm tnum" style="font-size: 15px; text-align: center;">92.5</span><span class="gm tnum" style="font-size: 15px; text-align: center;">10</span><span class="gm tnum meta" style="text-align: center;">9</span>
           </div>
         </div>
@@ -158,20 +158,20 @@
   <!-- THE PAIRING IN PROSE -->
   <section style="display: flex; flex-direction: column; gap: 18px;">
     <div class="eyebrow">The pairing at work</div>
-    <div style="width: 460px; border-radius: 16px; border: 1px solid oklch(1 0 0 / 10%); background: oklch(0.196 0.004 120); padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+    <div style="width: 460px; border-radius: 16px; border: 1px solid oklch(1 0 0 / 10%); background: oklch(0.195 0.008 152); padding: 20px; display: flex; flex-direction: column; gap: 12px;">
       <span class="sg" style="font-size: 22px; font-weight: 600; letter-spacing: -0.008em;">This week</span>
-      <p class="gs" style="margin: 0; font-size: 15px; line-height: 23px; color: oklch(0.860 0.004 120);">Three sessions, up from two last week. Bench and squat est. 1RM both moved — the summary flags a PR the moment a set beats your stored best.</p>
+      <p class="gs" style="margin: 0; font-size: 15px; line-height: 23px; color: oklch(0.860 0.004 150);">Three sessions, up from two last week. Bench and squat est. 1RM both moved — the summary flags a PR the moment a set beats your stored best.</p>
       <div style="display: flex; align-items: flex-end; gap: 24px; padding-top: 4px;">
         <div style="display: flex; flex-direction: column; gap: 4px;">
-          <span class="sg" style="font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.680 0.004 120);">Volume</span>
+          <span class="sg" style="font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.640 0.012 150);">Volume</span>
           <span class="gm tnum" style="font-size: 30px; line-height: 30px;">8 420</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 4px;">
-          <span class="sg" style="font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.680 0.004 120);">Est. 1RM</span>
+          <span class="sg" style="font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.640 0.012 150);">Est. 1RM</span>
           <span class="gm tnum" style="font-size: 30px; line-height: 30px;">128</span>
         </div>
       </div>
-      <span class="gs" style="font-size: 13px; font-weight: 500; color: oklch(0.680 0.004 120);">Last bench — <span class="gm tnum">100 × 8, 8, 7</span> · 12 Jul</span>
+      <span class="gs" style="font-size: 13px; font-weight: 500; color: oklch(0.640 0.012 150);">Last bench — <span class="gm tnum">100 × 8, 8, 7</span> · 12 Jul</span>
     </div>
   </section>
 
@@ -179,17 +179,17 @@
   <section style="display: flex; flex-direction: column; gap: 18px;">
     <div class="eyebrow">Rules</div>
     <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px;">
-      <div style="border-radius: 12px; border: 1px solid oklch(0.82 0.18 130 / 40%); background: color-mix(in oklch, oklch(0.82 0.18 130) 7%, transparent); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-        <span class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.86 0.16 130);">Do</span>
-        <span style="font-size: 13px; line-height: 19px; color: oklch(0.870 0.004 120);">Set every piece of data — weight, reps, RPE, 1RM, volume, timers — in Geist&nbsp;Mono with <span class="mono">tabular-nums</span>.</span>
-        <span style="font-size: 13px; line-height: 19px; color: oklch(0.870 0.004 120);">Build hierarchy from size, weight and colour — Space&nbsp;Grotesk gives you 500 and 600.</span>
-        <span style="font-size: 13px; line-height: 19px; color: oklch(0.870 0.004 120);">Keep exercise names in Geist, mixed case.</span>
+      <div style="border-radius: 12px; border: 1px solid oklch(0.82 0.18 130 / 40%); background: color-mix(in oklch, oklch(0.82 0.17 137) 7%, transparent); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+        <span class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.86 0.16 137);">Do</span>
+        <span style="font-size: 13px; line-height: 19px; color: oklch(0.870 0.004 150);">Set every piece of data — weight, reps, RPE, 1RM, volume, timers — in Geist&nbsp;Mono with <span class="mono">tabular-nums</span>.</span>
+        <span style="font-size: 13px; line-height: 19px; color: oklch(0.870 0.004 150);">Build hierarchy from size, weight and colour — Space&nbsp;Grotesk gives you 500 and 600.</span>
+        <span style="font-size: 13px; line-height: 19px; color: oklch(0.870 0.004 150);">Keep exercise names in Geist, mixed case.</span>
       </div>
       <div style="border-radius: 12px; border: 1px solid oklch(0.64 0.19 25 / 40%); background: color-mix(in oklch, oklch(0.64 0.19 25) 6%, transparent); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
         <span class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.72 0.15 25);">Don't</span>
-        <span style="font-size: 13px; line-height: 19px; color: oklch(0.870 0.004 120);">Set exercise names or body copy in Space&nbsp;Grotesk all-caps — it shouts.</span>
-        <span style="font-size: 13px; line-height: 19px; color: oklch(0.870 0.004 120);">Use Space&nbsp;Grotesk below 14px, or Geist below 16px for anything interactive.</span>
-        <span style="font-size: 13px; line-height: 19px; color: oklch(0.870 0.004 120);">Mix proportional and tabular figures in one column.</span>
+        <span style="font-size: 13px; line-height: 19px; color: oklch(0.870 0.004 150);">Set exercise names or body copy in Space&nbsp;Grotesk all-caps — it shouts.</span>
+        <span style="font-size: 13px; line-height: 19px; color: oklch(0.870 0.004 150);">Use Space&nbsp;Grotesk below 14px, or Geist below 16px for anything interactive.</span>
+        <span style="font-size: 13px; line-height: 19px; color: oklch(0.870 0.004 150);">Mix proportional and tabular figures in one column.</span>
       </div>
     </div>
   </section>
@@ -197,16 +197,16 @@
   <!-- IMPLEMENTATION -->
   <section style="display: flex; flex-direction: column; gap: 14px;">
     <div class="eyebrow">Implementation</div>
-    <div class="mono" style="font-size: 11px; line-height: 18px; color: oklch(0.640 0.004 120); background: oklch(0.196 0.004 120); border: 1px solid oklch(1 0 0 / 8%); border-radius: 10px; padding: 12px 14px; white-space: pre-wrap;">// src/app/layout.tsx — Geist + Geist_Mono already wired; add:
+    <div class="mono" style="font-size: 11px; line-height: 18px; color: oklch(0.640 0.004 150); background: oklch(0.195 0.008 152); border: 1px solid oklch(1 0 0 / 8%); border-radius: 10px; padding: 12px 14px; white-space: pre-wrap;">// src/app/layout.tsx — Geist + Geist_Mono already wired; add:
 import { Space_Grotesk } from "next/font/google";
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" });
 
 // globals.css @theme  →  --font-display / --font-sans (Geist) / --font-mono (Geist Mono)</div>
     <div style="display: flex; flex-direction: column; gap: 8px;">
       <span class="meta">Fallback stacks (PNG/PDF export uses these — metrics stay close):</span>
-      <span class="mono" style="font-size: 11px; color: oklch(0.680 0.004 120);">display &nbsp;'Space Grotesk', 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif</span>
-      <span class="mono" style="font-size: 11px; color: oklch(0.680 0.004 120);">sans &nbsp;&nbsp;&nbsp;&nbsp;'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif</span>
-      <span class="mono" style="font-size: 11px; color: oklch(0.680 0.004 120);">mono &nbsp;&nbsp;&nbsp;&nbsp;'Geist Mono', ui-monospace, 'SF Mono', 'Cascadia Mono', monospace</span>
+      <span class="mono" style="font-size: 11px; color: oklch(0.640 0.012 150);">display &nbsp;'Space Grotesk', 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif</span>
+      <span class="mono" style="font-size: 11px; color: oklch(0.640 0.012 150);">sans &nbsp;&nbsp;&nbsp;&nbsp;'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif</span>
+      <span class="mono" style="font-size: 11px; color: oklch(0.640 0.012 150);">mono &nbsp;&nbsp;&nbsp;&nbsp;'Geist Mono', ui-monospace, 'SF Mono', 'Cascadia Mono', monospace</span>
     </div>
   </section>
 
