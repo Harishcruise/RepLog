@@ -144,10 +144,10 @@ export default function DevUI() {
         </div>
       </Section>
 
-      {/* ---- tabs / segmented ---- */}
-      <Section title="Tabs (segmented toggle)">
+      {/* ---- segmented toggle (auth) ---- */}
+      <Section title="Tabs — segmented (auth toggle)">
         <Tabs defaultValue="signin">
-          <TabsList className="w-full">
+          <TabsList variant="segmented">
             <TabsTrigger value="signin">Sign in</TabsTrigger>
             <TabsTrigger value="signup">Create account</TabsTrigger>
           </TabsList>
@@ -157,6 +157,17 @@ export default function DevUI() {
           <TabsContent value="signup" className="pt-3 font-sans text-caption text-muted-foreground">
             Create-account panel
           </TabsContent>
+        </Tabs>
+      </Section>
+
+      {/* ---- tabs — default ---- */}
+      <Section title="Tabs — default">
+        <Tabs defaultValue="a">
+          <TabsList>
+            <TabsTrigger value="a">Volume</TabsTrigger>
+            <TabsTrigger value="b">Est. 1RM</TabsTrigger>
+            <TabsTrigger value="c">Sets</TabsTrigger>
+          </TabsList>
         </Tabs>
       </Section>
 
