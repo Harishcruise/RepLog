@@ -2,7 +2,7 @@
 
 Status: draft for review
 Companion to [`SPEC.md`](SPEC.md) and [`UX.md`](UX.md).
-Visual reference: the Claude Design canvas in [`../design/`](../design/) (Colour, Typography, Space/Radius/Motion, Components artboards). This doc and that canvas are kept in sync.
+Visual reference: the Claude Design canvas in [`../design/`](../design/) (Colour, Typography, Space/Radius/Motion, Components artboards) — the single visual source of truth, kept in sync with this doc. (An earlier Figma exploration exists but is no longer maintained.)
 Implementation target: Tailwind CSS 4 (CSS-first `@theme`) + shadcn/ui + Recharts.
 
 ---
