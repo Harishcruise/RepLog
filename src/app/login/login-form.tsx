@@ -17,13 +17,24 @@ import { toast } from "sonner";
 
 import { LogoMark } from "@/components/brand/logo-mark";
 import { Button } from "@/components/ui/button";
+import {
+  Field,
+  FieldError,
+  FieldLabel,
+  FieldSeparator,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { Label } from "@/components/ui/label";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { authErrorMessage } from "@/lib/auth/errors";
 import {
@@ -37,39 +48,6 @@ import { createClient } from "@/lib/supabase/client";
 type Mode = "signin" | "signup";
 type Step = "form" | "code";
 type OtpType = "email" | "signup";
-
-function Field({
-  id,
-  label,
-  icon,
-  trailing,
-  children,
-}: {
-  id: string;
-  label: string;
-  icon?: React.ReactNode;
-  trailing?: React.ReactNode;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="flex flex-col gap-1.5">
-      <Label htmlFor={id}>{label}</Label>
-      <div className="relative">
-        {icon ? (
-          <span className="text-muted-foreground/70 pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2">
-            {icon}
-          </span>
-        ) : null}
-        {children}
-        {trailing ? (
-          <span className="absolute top-1/2 right-2 -translate-y-1/2">
-            {trailing}
-          </span>
-        ) : null}
-      </div>
-    </div>
-  );
-}
 
 export function LoginForm({ next }: { next: string }) {
   const router = useRouter();
@@ -161,7 +139,6 @@ export function LoginForm({ next }: { next: string }) {
 
   return (
     <div className="flex flex-col">
-      {/* brand */}
       <div className="flex flex-col items-center gap-3.5">
         <LogoMark className="size-13" />
         <div className="flex flex-col items-center gap-1">
@@ -196,7 +173,8 @@ export function LoginForm({ next }: { next: string }) {
 
           <form onSubmit={submitPassword} className="mt-6 flex flex-col gap-4">
             {mode === "signup" ? (
-              <Field id="name" label="Name">
+              <Field>
+                <FieldLabel htmlFor="name">Name</FieldLabel>
                 <Input
                   id="name"
                   autoComplete="name"
@@ -207,58 +185,55 @@ export function LoginForm({ next }: { next: string }) {
               </Field>
             ) : null}
 
-            <Field
-              id="email"
-              label="Email"
-              icon={<Mail className="size-[18px]" strokeWidth={1.8} />}
-            >
-              <Input
-                id="email"
-                type="email"
-                required
-                autoComplete="email"
-                inputMode="email"
-                placeholder="you@example.com"
-                className="pl-10"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+            <Field>
+              <FieldLabel htmlFor="email">Email</FieldLabel>
+              <InputGroup>
+                <InputGroupAddon>
+                  <Mail strokeWidth={1.8} />
+                </InputGroupAddon>
+                <InputGroupInput
+                  id="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  inputMode="email"
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </InputGroup>
             </Field>
 
-            <Field
-              id="password"
-              label="Password"
-              icon={<Lock className="size-[18px]" strokeWidth={1.8} />}
-              trailing={
-                <button
-                  type="button"
-                  onClick={() => setShowPw((v) => !v)}
-                  aria-label={showPw ? "Hide password" : "Show password"}
-                  className="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-md transition-colors"
-                >
-                  {showPw ? (
-                    <EyeOff className="size-[18px]" strokeWidth={1.8} />
-                  ) : (
-                    <Eye className="size-[18px]" strokeWidth={1.8} />
-                  )}
-                </button>
-              }
-            >
-              <Input
-                id="password"
-                type={showPw ? "text" : "password"}
-                required
-                minLength={mode === "signup" ? 8 : undefined}
-                autoComplete={
-                  mode === "signup" ? "new-password" : "current-password"
-                }
-                placeholder={
-                  mode === "signup" ? "At least 8 characters" : "••••••••"
-                }
-                className="pr-11 pl-10"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+            <Field>
+              <FieldLabel htmlFor="password">Password</FieldLabel>
+              <InputGroup>
+                <InputGroupAddon>
+                  <Lock strokeWidth={1.8} />
+                </InputGroupAddon>
+                <InputGroupInput
+                  id="password"
+                  type={showPw ? "text" : "password"}
+                  required
+                  minLength={mode === "signup" ? 8 : undefined}
+                  autoComplete={
+                    mode === "signup" ? "new-password" : "current-password"
+                  }
+                  placeholder={
+                    mode === "signup" ? "At least 8 characters" : "••••••••"
+                  }
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <InputGroupAddon align="inline-end">
+                  <InputGroupButton
+                    size="icon-sm"
+                    aria-label={showPw ? "Hide password" : "Show password"}
+                    onClick={() => setShowPw((v) => !v)}
+                  >
+                    {showPw ? <EyeOff /> : <Eye />}
+                  </InputGroupButton>
+                </InputGroupAddon>
+              </InputGroup>
             </Field>
 
             {mode === "signin" ? (
@@ -272,7 +247,15 @@ export function LoginForm({ next }: { next: string }) {
               </div>
             ) : null}
 
-            {error ? <ErrorLine message={error} /> : null}
+            {error ? (
+              <FieldError>
+                <TriangleAlert
+                  className="size-3.5 shrink-0"
+                  strokeWidth={2.2}
+                />
+                {error}
+              </FieldError>
+            ) : null}
 
             <Button
               type="submit"
@@ -291,13 +274,7 @@ export function LoginForm({ next }: { next: string }) {
             </Button>
           </form>
 
-          <div className="my-5 flex items-center gap-3">
-            <span className="bg-border h-px flex-1" />
-            <span className="text-micro text-muted-foreground font-sans">
-              or
-            </span>
-            <span className="bg-border h-px flex-1" />
-          </div>
+          <FieldSeparator className="my-5">or</FieldSeparator>
 
           <Button
             type="button"
@@ -392,7 +369,12 @@ export function LoginForm({ next }: { next: string }) {
             )}
           </div>
 
-          {error ? <ErrorLine message={error} className="mt-4" /> : null}
+          {error ? (
+            <FieldError className="mt-4">
+              <TriangleAlert className="size-3.5 shrink-0" strokeWidth={2.2} />
+              {error}
+            </FieldError>
+          ) : null}
 
           <Button
             type="button"
@@ -410,23 +392,5 @@ export function LoginForm({ next }: { next: string }) {
         </div>
       )}
     </div>
-  );
-}
-
-function ErrorLine({
-  message,
-  className,
-}: {
-  message: string;
-  className?: string;
-}) {
-  return (
-    <p
-      className={`text-caption text-destructive flex items-center gap-1.5 font-sans ${className ?? ""}`}
-      role="alert"
-    >
-      <TriangleAlert className="size-3.5 shrink-0" strokeWidth={2.2} />
-      {message}
-    </p>
   );
 }

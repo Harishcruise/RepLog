@@ -1,16 +1,37 @@
 "use client";
 
-import { ArrowRight, Loader2, Plus, Trophy } from "lucide-react";
+import {
+  ArrowRight,
+  Eye,
+  Loader2,
+  Lock,
+  Mail,
+  Plus,
+  TriangleAlert,
+  Trophy,
+} from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+  FieldSeparator,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { Label } from "@/components/ui/label";
 import { Toaster } from "@/components/ui/sonner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -140,16 +161,55 @@ export default function DevUI() {
         </div>
       </Section>
 
-      {/* ---- input + label ---- */}
-      <Section title="Input & label">
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="you@example.com" />
-        </div>
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="pw">Password (invalid)</Label>
-          <Input id="pw" type="password" defaultValue="short" aria-invalid />
-        </div>
+      {/* ---- field + input group ---- */}
+      <Section title="Field · Input group">
+        <Field>
+          <FieldLabel htmlFor="dev-name">Name</FieldLabel>
+          <Input id="dev-name" placeholder="Plain input, no adornment" />
+          <FieldDescription>
+            Shown under the control for helper text.
+          </FieldDescription>
+        </Field>
+
+        <Field>
+          <FieldLabel htmlFor="dev-email">Email</FieldLabel>
+          <InputGroup>
+            <InputGroupAddon>
+              <Mail strokeWidth={1.8} />
+            </InputGroupAddon>
+            <InputGroupInput
+              id="dev-email"
+              type="email"
+              placeholder="you@example.com"
+            />
+          </InputGroup>
+        </Field>
+
+        <Field>
+          <FieldLabel htmlFor="dev-pw">Password — invalid</FieldLabel>
+          <InputGroup>
+            <InputGroupAddon>
+              <Lock strokeWidth={1.8} />
+            </InputGroupAddon>
+            <InputGroupInput
+              id="dev-pw"
+              type="password"
+              defaultValue="short"
+              aria-invalid
+            />
+            <InputGroupAddon align="inline-end">
+              <InputGroupButton size="icon-sm" aria-label="Show password">
+                <Eye />
+              </InputGroupButton>
+            </InputGroupAddon>
+          </InputGroup>
+          <FieldError>
+            <TriangleAlert className="size-3.5 shrink-0" strokeWidth={2.2} />
+            Password must be at least 8 characters.
+          </FieldError>
+        </Field>
+
+        <FieldSeparator>or</FieldSeparator>
       </Section>
 
       {/* ---- segmented toggle (auth) ---- */}
