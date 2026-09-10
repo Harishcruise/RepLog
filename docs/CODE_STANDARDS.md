@@ -65,6 +65,42 @@ share **code**, not an HTTP layer:
   async fn and ignores the result: `onClick={() => void doThing()}`.
 - Hooks: stable deps; don't disable `exhaustive-deps` without a one-line why.
 
+## Feature-screen pattern
+
+Any non-trivial screen (a flow, a form with steps, a screen with several modes)
+is built the same way. Reference: **`src/app/login/`**.
+
+```
+app/<route>/
+  page.tsx            Server Component — read data, gate, render the client entry
+  use-<feature>.ts    the state machine + calls to lib/ ops. NO JSX. Returns a
+                      controller object. Unit-testable without rendering.
+  <feature>-form.tsx  thin orchestrator — picks which sub-view to render, passes
+                      the controller. ~30 lines.
+  <sub-view>.tsx      one concern each (~100–150 lines). Takes { controller } (one
+                      prop) or explicit props. Owns only its own local input state.
+  use-<small>.ts      any focused helper hook (a timer, a countdown).
+```
+
+Rules:
+
+- **Logic leaves the JSX.** If a component has more than a couple of handlers, or
+  an `if`/`switch` over its own state deciding what to show, that logic belongs in
+  the `use-<feature>` hook. The hook calls `lib/` ops (never Supabase directly for
+  anything reusable) and exposes `{ state…, action1, action2 }`.
+- **Cross-view state lives in the hook**, not the URL, not `sessionStorage`. A
+  wizard with 3 steps is one route with `step` in the hook — not 3 routes.
+- **A screen file is one screen.** No `mode × step` matrix in a single file — that's
+  the signal to split.
+- **Local state that only one sub-view uses stays in that sub-view** (a password
+  field's `showPw`, an OTP input's `code`). Only lift what's shared.
+- Small co-located helpers (a `Header`) are fine in the orchestrator file.
+- `export type FeatureController = ReturnType<typeof useFeature>` so sub-views
+  type their one prop cleanly.
+
+Applies to `src/app/**` screens and any `components/<domain>/` component that
+grows a flow. A plain leaf component (a card, a button) needs none of this.
+
 ## Files & structure
 
 ```
