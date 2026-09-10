@@ -11,15 +11,40 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 
-import type { LoginController } from "./use-login";
+type CodeStepProps = {
+  /** Address the code was sent to — shown in the sub-heading. */
+  email: string;
+  /** Current error message, or `null`. */
+  error: string | null;
+  /** Whether a verify/resend request is in flight. */
+  pending: boolean;
+  /** Seconds left on the resend cooldown (0 = can resend). */
+  resendIn: number;
+  /** Label for the back link (e.g. "Use password instead", "Back"). */
+  backLabel: string;
+  /** Verify the entered code. Return `true` on success. */
+  onVerify: (token: string) => Promise<boolean>;
+  /** Request a fresh code. */
+  onResend: () => void;
+  /** Leave the code step. */
+  onBack: () => void;
+};
 
-/** 6-digit email OTP entry. Shared shape with the /login/reset flow. */
-export function CodeStep({ login }: { login: LoginController }) {
-  const { email, error, pending, resendIn } = login;
+/** 6-digit email OTP entry. Shared by /login (sign-in) and /login/reset. */
+export function CodeStep({
+  email,
+  error,
+  pending,
+  resendIn,
+  backLabel,
+  onVerify,
+  onResend,
+  onBack,
+}: CodeStepProps) {
   const [code, setCode] = useState("");
 
   async function verify(token: string) {
-    const ok = await login.verifyCode(token);
+    const ok = await onVerify(token);
     if (!ok) setCode("");
   }
 
@@ -29,12 +54,12 @@ export function CodeStep({ login }: { login: LoginController }) {
         type="button"
         onClick={() => {
           setCode("");
-          login.backToForm();
+          onBack();
         }}
         className="text-caption text-muted-foreground hover:text-foreground flex items-center gap-1.5 self-start font-sans font-medium transition-colors"
       >
         <ChevronLeft className="size-4" />
-        Use password instead
+        {backLabel}
       </button>
 
       <h1 className="font-display text-h2 mt-6">Enter your code</h1>
@@ -70,7 +95,7 @@ export function CodeStep({ login }: { login: LoginController }) {
         ) : (
           <button
             type="button"
-            onClick={() => void login.sendCode()}
+            onClick={onResend}
             disabled={pending}
             className="text-primary hover:text-primary-hover font-medium disabled:opacity-50"
           >

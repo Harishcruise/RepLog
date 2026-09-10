@@ -15,7 +15,16 @@ export function LoginForm({ next }: { next: string }) {
       {login.step === "form" ? (
         <CredentialsForm login={login} />
       ) : (
-        <CodeStep login={login} />
+        <CodeStep
+          email={login.email}
+          error={login.error}
+          pending={login.pending}
+          resendIn={login.resendIn}
+          backLabel="Use password instead"
+          onVerify={login.verifyCode}
+          onResend={() => void login.sendCode()}
+          onBack={login.backToForm}
+        />
       )}
     </div>
   );

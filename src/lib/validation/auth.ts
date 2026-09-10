@@ -10,10 +10,14 @@ export const signInSchema = z.object({
 });
 export type SignInInput = z.infer<typeof signInSchema>;
 
+export const passwordSchema = z
+  .string()
+  .min(8, "Password must be at least 8 characters.");
+
 export const signUpSchema = z.object({
   name: z.string().trim().max(80).optional(),
   email: emailSchema,
-  password: z.string().min(8, "Password must be at least 8 characters."),
+  password: passwordSchema,
 });
 export type SignUpInput = z.infer<typeof signUpSchema>;
 

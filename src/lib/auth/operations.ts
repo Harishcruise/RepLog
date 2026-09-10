@@ -3,6 +3,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/lib/supabase/database.types";
 import {
   emailSchema,
+  passwordSchema,
   signInSchema,
   signUpSchema,
   verifyOtpSchema,
@@ -90,6 +91,36 @@ export async function verifyEmailOtp(
   if (!parsed.success) return fail("invalid_or_expired_code");
   try {
     const { error } = await sb.auth.verifyOtp(parsed.data);
+    return error ? fail(toAuthErrorCode(error)) : done(undefined);
+  } catch (err) {
+    return fail(toAuthErrorCode(err));
+  }
+}
+
+/** Sends a password-recovery email (6-digit code, per the template). */
+export async function sendPasswordReset(
+  sb: Sb,
+  input: { email: string },
+): Promise<AuthResult> {
+  const email = emailSchema.safeParse(input.email);
+  if (!email.success) return fail("invalid_input");
+  try {
+    const { error } = await sb.auth.resetPasswordForEmail(email.data);
+    return error ? fail(toAuthErrorCode(error)) : done(undefined);
+  } catch (err) {
+    return fail(toAuthErrorCode(err));
+  }
+}
+
+/** Sets a new password on the current (e.g. recovery) session. */
+export async function updatePassword(
+  sb: Sb,
+  input: { password: string },
+): Promise<AuthResult> {
+  const parsed = passwordSchema.safeParse(input.password);
+  if (!parsed.success) return fail("weak_password");
+  try {
+    const { error } = await sb.auth.updateUser({ password: parsed.data });
     return error ? fail(toAuthErrorCode(error)) : done(undefined);
   } catch (err) {
     return fail(toAuthErrorCode(err));
