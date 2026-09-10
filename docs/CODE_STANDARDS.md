@@ -37,14 +37,30 @@ per-file. `docs/**` and `design/**` are excluded (hand-formatted).
   a page stays a Server Component; the interactive bit is a small client child.
 - Data fetching lives on the server (Server Components, Route Handlers). Never
   fetch app data from a client component's `useEffect`.
-- **Mutations:**
-  - Need to set cookies / redirect / revalidate → **Server Action**.
-  - Interactive multi-step against a client SDK (e.g. the auth OTP flow) →
-    client calls with the browser Supabase client, then `router.replace()` +
-    `router.refresh()`.
 - Supabase: `@/lib/supabase/server` in Server Components / Route Handlers / Server
   Actions; `@/lib/supabase/client` only in client components; `@/lib/supabase/proxy`
   only in `src/proxy.ts`.
+
+## Logic layering (web + a future mobile client)
+
+Supabase's SDK *is* the API — a mobile app calls it directly, not through Next. So
+share **code**, not an HTTP layer:
+
+- **`src/lib/<feature>/`** — framework-free. No React, no Next. Prefer functions
+  that **take a Supabase client as an argument** and return a normalized result
+  (`{ ok: true; data } | { ok: false; code }`) — they never throw. This is what a
+  future `packages/core` is carved from. See `src/lib/auth/operations.ts`.
+- **`src/lib/validation/`** — Zod schemas shared by forms and any RPC payloads.
+- **`src/server/<feature>/actions.ts`** (`"use server"`) — the **web** write path.
+  Thin: parse input with a `lib/validation` schema → call a `lib/<feature>`
+  function with the **server** client → `redirect()` / `revalidatePath()`. No
+  logic in the action.
+- **Multi-table atomic writes** (finish session → sets + PRs + streak) → a
+  Postgres function in a migration, called `supabase.rpc(...)`. Same call from web
+  and mobile; RLS + integrity enforced server-side.
+- **Auth is the exception** — client-side-direct on every platform. No Server
+  Action; the login component calls `lib/auth` ops with the browser client, then
+  `router.replace()` + `router.refresh()`.
 - `await` every promise (`no-floating-promises`). In a JSX handler that calls an
   async fn and ignores the result: `onClick={() => void doThing()}`.
 - Hooks: stable deps; don't disable `exhaustive-deps` without a one-line why.
@@ -58,10 +74,13 @@ src/
   components/ui/          shadcn primitives — restyle here, never fork upstream
   components/<domain>/    shared feature components (brand/, session/, …)
   lib/                    framework-free helpers, clients, pure logic
-  lib/<domain>/           grouped logic (auth/, metrics/, supabase/, …)
+  lib/<feature>/          grouped logic: auth/, metrics/, supabase/, validation/, …
+  server/<feature>/       "use server" Server Actions (web write path)
   hooks/                  shared hooks
   styles/                 tokens.css · typography.css · base.css
 ```
+
+See **Logic layering** above for what goes in `lib/` vs `server/`.
 
 - One primary export per file. Tiny co-located helpers (a local `Field`,
   `ErrorLine`) are fine in the same file.

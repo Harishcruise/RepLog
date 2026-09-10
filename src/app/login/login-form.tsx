@@ -25,28 +25,18 @@ import {
 } from "@/components/ui/input-otp";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { authErrorMessage } from "@/lib/auth/errors";
+import {
+  sendEmailOtp,
+  signInWithPassword,
+  signUp,
+  verifyEmailOtp,
+} from "@/lib/auth/operations";
 import { createClient } from "@/lib/supabase/client";
 
 type Mode = "signin" | "signup";
 type Step = "form" | "code";
 type OtpType = "email" | "signup";
-
-function friendlyError(err: unknown): string {
-  const m =
-    err instanceof Error ? err.message : typeof err === "string" ? err : "";
-  if (/invalid login credentials/i.test(m)) return "Wrong email or password.";
-  if (/email not confirmed/i.test(m))
-    return "Confirm your email first — enter the code we sent.";
-  if (/expired|invalid.*(token|otp)|otp.*invalid/i.test(m))
-    return "That code didn't work. Try again or resend.";
-  if (/already registered|already exists/i.test(m))
-    return "That email already has an account — sign in instead.";
-  if (/rate limit|too many|after \d+ seconds/i.test(m))
-    return "Too many attempts. Wait a minute and try again.";
-  if (/password should be at least|at least 8/i.test(m))
-    return "Password must be at least 8 characters.";
-  return m || "Something went wrong. Try again.";
-}
 
 function Field({
   id,
@@ -111,81 +101,60 @@ export function LoginForm({ next }: { next: string }) {
     router.refresh();
   }
 
+  function goToCodeStep(type: OtpType) {
+    setOtpType(type);
+    setCode("");
+    setResendIn(30);
+    setStep("code");
+  }
+
   async function submitPassword(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
     setPending(true);
-    try {
-      if (mode === "signin") {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-        if (error) throw error;
-        finish("Signed in");
-        return;
-      }
 
-      const { data, error } = await supabase.auth.signUp({
+    if (mode === "signin") {
+      const res = await signInWithPassword(supabase, { email, password });
+      if (res.ok) finish("Signed in");
+      else setError(authErrorMessage(res.code));
+    } else {
+      const res = await signUp(supabase, {
+        name: name.trim() || undefined,
         email,
         password,
-        options: { data: { display_name: name.trim() || null } },
       });
-      if (error) throw error;
-      if (data.session) {
-        finish("Account created");
-      } else {
-        // email confirmation is on — collect the 6-digit code
-        setOtpType("signup");
-        setCode("");
-        setResendIn(30);
-        setStep("code");
-      }
-    } catch (err) {
-      setError(friendlyError(err));
-    } finally {
-      setPending(false);
+      if (!res.ok) setError(authErrorMessage(res.code));
+      else if (res.data === "session") finish("Account created");
+      else goToCodeStep("signup"); // confirm-email is on — collect the code
     }
+
+    setPending(false);
   }
 
   async function sendCode() {
     setError(null);
     setPending(true);
-    try {
-      const { error } = await supabase.auth.signInWithOtp({
-        email,
-        options: { shouldCreateUser: mode === "signup" },
-      });
-      if (error) throw error;
-      setOtpType("email");
-      setCode("");
-      setResendIn(30);
-      setStep("code");
-    } catch (err) {
-      setError(friendlyError(err));
-    } finally {
-      setPending(false);
-    }
+    const res = await sendEmailOtp(supabase, {
+      email,
+      createUser: mode === "signup",
+    });
+    if (res.ok) goToCodeStep("email");
+    else setError(authErrorMessage(res.code));
+    setPending(false);
   }
 
   async function verifyCode(token: string) {
     if (token.length < 6 || pending) return;
     setError(null);
     setPending(true);
-    try {
-      const { error } = await supabase.auth.verifyOtp({
-        email,
-        token,
-        type: otpType,
-      });
-      if (error) throw error;
+    const res = await verifyEmailOtp(supabase, { email, token, type: otpType });
+    if (res.ok) {
       finish("Signed in");
-    } catch (err) {
-      setError(friendlyError(err));
+    } else {
+      setError(authErrorMessage(res.code));
       setCode("");
-    } finally {
-      setPending(false);
     }
+    setPending(false);
   }
 
   const cta = mode === "signin" ? "Sign in" : "Create account";
