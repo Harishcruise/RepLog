@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
-import { createClient } from "@/lib/supabase/server";
 import { LogoMark } from "@/components/brand/logo-mark";
+import { createClient } from "@/lib/supabase/server";
 
 import { SignOutButton } from "./sign-out-button";
 
@@ -17,11 +17,11 @@ export default async function AppHome() {
       <LogoMark className="size-13" />
       <div className="flex flex-col gap-1">
         <h1 className="font-display text-h1">You&apos;re in</h1>
-        <p className="font-sans text-caption text-muted-foreground">
+        <p className="text-caption text-muted-foreground font-sans">
           {user.email}
         </p>
       </div>
-      <p className="font-mono text-micro text-muted-foreground/70">
+      <p className="text-micro text-muted-foreground/70 font-mono">
         dashboard coming next
       </p>
       <SignOutButton />

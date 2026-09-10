@@ -1,8 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import {
   ArrowRight,
   ChevronLeft,
@@ -13,9 +10,12 @@ import {
   Mail,
   TriangleAlert,
 } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
-import { createClient } from "@/lib/supabase/client";
+import { LogoMark } from "@/components/brand/logo-mark";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -25,14 +25,15 @@ import {
 } from "@/components/ui/input-otp";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LogoMark } from "@/components/brand/logo-mark";
+import { createClient } from "@/lib/supabase/client";
 
 type Mode = "signin" | "signup";
 type Step = "form" | "code";
 type OtpType = "email" | "signup";
 
 function friendlyError(err: unknown): string {
-  const m = err instanceof Error ? err.message : String(err ?? "");
+  const m =
+    err instanceof Error ? err.message : typeof err === "string" ? err : "";
   if (/invalid login credentials/i.test(m)) return "Wrong email or password.";
   if (/email not confirmed/i.test(m))
     return "Confirm your email first — enter the code we sent.";
@@ -65,7 +66,7 @@ function Field({
       <Label htmlFor={id}>{label}</Label>
       <div className="relative">
         {icon ? (
-          <span className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-muted-foreground/70">
+          <span className="text-muted-foreground/70 pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2">
             {icon}
           </span>
         ) : null}
@@ -198,7 +199,7 @@ export function LoginForm({ next }: { next: string }) {
           <span className="font-display text-[27px] font-semibold tracking-[-0.014em]">
             RepLog
           </span>
-          <span className="font-sans text-label text-muted-foreground">
+          <span className="text-label text-muted-foreground font-sans">
             {step === "code"
               ? "Almost there."
               : mode === "signin"
@@ -264,7 +265,7 @@ export function LoginForm({ next }: { next: string }) {
                   type="button"
                   onClick={() => setShowPw((v) => !v)}
                   aria-label={showPw ? "Hide password" : "Show password"}
-                  className="flex size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground flex size-9 items-center justify-center rounded-md transition-colors"
                 >
                   {showPw ? (
                     <EyeOff className="size-[18px]" strokeWidth={1.8} />
@@ -295,7 +296,7 @@ export function LoginForm({ next }: { next: string }) {
               <div className="-mt-1 flex justify-end">
                 <Link
                   href="/login/reset"
-                  className="font-sans text-caption font-medium text-primary hover:text-primary-hover"
+                  className="text-caption text-primary hover:text-primary-hover font-sans font-medium"
                 >
                   Forgot password?
                 </Link>
@@ -322,9 +323,11 @@ export function LoginForm({ next }: { next: string }) {
           </form>
 
           <div className="my-5 flex items-center gap-3">
-            <span className="h-px flex-1 bg-border" />
-            <span className="font-sans text-micro text-muted-foreground">or</span>
-            <span className="h-px flex-1 bg-border" />
+            <span className="bg-border h-px flex-1" />
+            <span className="text-micro text-muted-foreground font-sans">
+              or
+            </span>
+            <span className="bg-border h-px flex-1" />
           </div>
 
           <Button
@@ -339,9 +342,12 @@ export function LoginForm({ next }: { next: string }) {
           </Button>
 
           {mode === "signup" ? (
-            <p className="mt-8 text-center font-sans text-micro leading-4 text-muted-foreground/80">
+            <p className="text-micro text-muted-foreground/80 mt-8 text-center font-sans leading-4">
               By creating an account you agree to the{" "}
-              <Link href="/terms" className="text-primary hover:text-primary-hover">
+              <Link
+                href="/terms"
+                className="text-primary hover:text-primary-hover"
+              >
                 Terms
               </Link>{" "}
               &amp;{" "}
@@ -364,14 +370,14 @@ export function LoginForm({ next }: { next: string }) {
               setError(null);
               setCode("");
             }}
-            className="flex items-center gap-1.5 self-start font-sans text-caption font-medium text-muted-foreground transition-colors hover:text-foreground"
+            className="text-caption text-muted-foreground hover:text-foreground flex items-center gap-1.5 self-start font-sans font-medium transition-colors"
           >
             <ChevronLeft className="size-4" />
             Use password instead
           </button>
 
-          <h1 className="mt-6 font-display text-h2">Enter your code</h1>
-          <p className="mt-2 font-sans text-body text-muted-foreground">
+          <h1 className="font-display text-h2 mt-6">Enter your code</h1>
+          <p className="text-body text-muted-foreground mt-2 font-sans">
             We sent a 6-digit code to{" "}
             <span className="text-foreground">{email}</span>. It expires in 10
             minutes.
@@ -394,7 +400,7 @@ export function LoginForm({ next }: { next: string }) {
             </InputOTP>
           </div>
 
-          <div className="mt-4 font-sans text-caption text-muted-foreground">
+          <div className="text-caption text-muted-foreground mt-4 font-sans">
             {resendIn > 0 ? (
               <>
                 Didn&apos;t get it?{" "}
@@ -409,7 +415,7 @@ export function LoginForm({ next }: { next: string }) {
                   type="button"
                   onClick={sendCode}
                   disabled={pending}
-                  className="font-medium text-primary hover:text-primary-hover disabled:opacity-50"
+                  className="text-primary hover:text-primary-hover font-medium disabled:opacity-50"
                 >
                   Resend code
                 </button>
@@ -426,7 +432,11 @@ export function LoginForm({ next }: { next: string }) {
             disabled={pending || code.length < 6}
             onClick={() => verifyCode(code)}
           >
-            {pending ? <Loader2 className="animate-spin" /> : "Verify & continue"}
+            {pending ? (
+              <Loader2 className="animate-spin" />
+            ) : (
+              "Verify & continue"
+            )}
           </Button>
         </div>
       )}
@@ -443,7 +453,7 @@ function ErrorLine({
 }) {
   return (
     <p
-      className={`flex items-center gap-1.5 font-sans text-caption text-destructive ${className ?? ""}`}
+      className={`text-caption text-destructive flex items-center gap-1.5 font-sans ${className ?? ""}`}
       role="alert"
     >
       <TriangleAlert className="size-3.5 shrink-0" strokeWidth={2.2} />

@@ -38,7 +38,11 @@
   }
 
   ::selection {
-    background-color: color-mix(in oklch, var(--color-primary) 30%, transparent);
+    background-color: color-mix(
+      in oklch,
+      var(--color-primary) 30%,
+      transparent
+    );
   }
 
   /* Native controls inherit the type; numeric fields never trigger iOS zoom. */

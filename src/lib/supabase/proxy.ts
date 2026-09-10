@@ -1,5 +1,7 @@
-import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
+import { NextResponse, type NextRequest } from "next/server";
+
+import { env } from "@/lib/env";
 
 import type { Database } from "./database.types";
 
@@ -14,8 +16,8 @@ export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
 
   const supabase = createServerClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    env.NEXT_PUBLIC_SUPABASE_URL,
+    env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     {
       cookies: {
         getAll() {
@@ -49,7 +51,7 @@ export async function updateSession(request: NextRequest) {
     pathname.startsWith("/terms") ||
     pathname.startsWith("/privacy") ||
     // component gallery — dev only; guarded to non-production below
-    (pathname.startsWith("/dev") && process.env.NODE_ENV !== "production");
+    (pathname.startsWith("/dev") && env.NODE_ENV !== "production");
 
   if (!user && !isPublic) {
     const url = request.nextUrl.clone();

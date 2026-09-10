@@ -5,19 +5,25 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Label } from "@/components/ui/label";
 import { Toaster } from "@/components/ui/sonner";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
-    <section className="flex flex-col gap-4 border-t border-border pt-8">
-      <h2 className="font-display text-[11px] font-semibold uppercase tracking-[0.09em] text-muted-foreground">
+    <section className="border-border flex flex-col gap-4 border-t pt-8">
+      <h2 className="font-display text-muted-foreground text-[11px] font-semibold tracking-[0.09em] uppercase">
         {title}
       </h2>
       {children}
@@ -46,7 +52,7 @@ export default function DevUI() {
 
       <header className="flex flex-col gap-1">
         <h1 className="font-display text-h1">Design system</h1>
-        <p className="font-sans text-caption text-muted-foreground">
+        <p className="text-caption text-muted-foreground font-sans">
           Obsidian &amp; Volt · tokens, type, primitives
         </p>
       </header>
@@ -57,10 +63,10 @@ export default function DevUI() {
           {SURFACES.map((name) => (
             <div key={name} className="flex flex-col gap-1.5">
               <div
-                className="h-12 rounded-lg border border-border"
+                className="border-border h-12 rounded-lg border"
                 style={{ background: `var(--color-${name})` }}
               />
-              <span className="font-mono text-[10px] text-muted-foreground">
+              <span className="text-muted-foreground font-mono text-[10px]">
                 --{name}
               </span>
             </div>
@@ -84,20 +90,22 @@ export default function DevUI() {
       {/* ---- type ---- */}
       <Section title="Type scale">
         <div className="flex flex-col gap-3">
-          <p className="font-mono text-display tabular-nums">128.5</p>
-          <p className="font-mono text-stat tabular-nums">8&nbsp;420</p>
+          <p className="text-display font-mono tabular-nums">128.5</p>
+          <p className="text-stat font-mono tabular-nums">8&nbsp;420</p>
           <p className="font-display text-h1">Active session</p>
           <p className="font-display text-h2">This week</p>
-          <p className="font-sans text-h3">Barbell Bench Press</p>
-          <p className="font-sans text-body">
-            Body copy — 16px Geist, the reading size for everything long-form and
-            every input.
+          <p className="text-h3 font-sans">Barbell Bench Press</p>
+          <p className="text-body font-sans">
+            Body copy — 16px Geist, the reading size for everything long-form
+            and every input.
           </p>
-          <p className="font-display text-label">Label / button — Space Grotesk</p>
-          <p className="font-sans text-caption text-muted-foreground">
+          <p className="font-display text-label">
+            Label / button — Space Grotesk
+          </p>
+          <p className="text-caption text-muted-foreground font-sans">
             Caption — last-time line, field labels
           </p>
-          <p className="font-mono text-micro text-muted-foreground">
+          <p className="text-micro text-muted-foreground font-mono">
             12 Jul · 18:24 — micro / timestamps
           </p>
         </div>
@@ -151,10 +159,16 @@ export default function DevUI() {
             <TabsTrigger value="signin">Sign in</TabsTrigger>
             <TabsTrigger value="signup">Create account</TabsTrigger>
           </TabsList>
-          <TabsContent value="signin" className="pt-3 font-sans text-caption text-muted-foreground">
+          <TabsContent
+            value="signin"
+            className="text-caption text-muted-foreground pt-3 font-sans"
+          >
             Sign-in panel
           </TabsContent>
-          <TabsContent value="signup" className="pt-3 font-sans text-caption text-muted-foreground">
+          <TabsContent
+            value="signup"
+            className="text-caption text-muted-foreground pt-3 font-sans"
+          >
             Create-account panel
           </TabsContent>
         </Tabs>
@@ -197,7 +211,9 @@ export default function DevUI() {
           <Button
             variant="secondary"
             onClick={() =>
-              toast("New PR — Bench 1RM 102 kg", { icon: <Trophy className="size-4" /> })
+              toast("New PR — Bench 1RM 102 kg", {
+                icon: <Trophy className="size-4" />,
+              })
             }
           >
             PR

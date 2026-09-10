@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 
 import { Toaster } from "@/components/ui/sonner";
 
@@ -29,7 +29,11 @@ export const metadata: Metadata = {
   title: { default: "RepLog", template: "%s · RepLog" },
   description: "Log every set. Watch it climb.",
   applicationName: "RepLog",
-  appleWebApp: { capable: true, title: "RepLog", statusBarStyle: "black-translucent" },
+  appleWebApp: {
+    capable: true,
+    title: "RepLog",
+    statusBarStyle: "black-translucent",
+  },
 };
 
 export const viewport: Viewport = {

@@ -14,33 +14,33 @@
 
   /* ---- surfaces & ink (warm obsidian ramp) ---- */
   --background: oklch(0.165 0.007 150);
-  --foreground: oklch(0.950 0.008 150);
+  --foreground: oklch(0.95 0.008 150);
   --card: oklch(0.228 0.009 152);
-  --card-foreground: oklch(0.950 0.008 150);
-  --popover: oklch(0.268 0.010 152);
-  --popover-foreground: oklch(0.950 0.008 150);
-  --muted: oklch(0.300 0.011 152);
+  --card-foreground: oklch(0.95 0.008 150);
+  --popover: oklch(0.268 0.01 152);
+  --popover-foreground: oklch(0.95 0.008 150);
+  --muted: oklch(0.3 0.011 152);
   --muted-foreground: oklch(0.665 0.012 150);
-  --secondary: oklch(0.300 0.011 152);
-  --secondary-foreground: oklch(0.950 0.008 150);
-  --accent: oklch(0.310 0.055 141);
-  --accent-foreground: oklch(0.860 0.150 137);
+  --secondary: oklch(0.3 0.011 152);
+  --secondary-foreground: oklch(0.95 0.008 150);
+  --accent: oklch(0.31 0.055 141);
+  --accent-foreground: oklch(0.86 0.15 137);
   --border: oklch(1 0 0 / 10%);
   --border-strong: oklch(1 0 0 / 16%);
   --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.820 0.170 137);
+  --ring: oklch(0.82 0.17 137);
 
   /* ---- brand (volt) ---- */
-  --primary: oklch(0.820 0.170 137);
-  --primary-foreground: oklch(0.180 0.040 137);
-  --primary-hover: oklch(0.860 0.160 137);
-  --primary-subtle: oklch(0.300 0.060 141);
+  --primary: oklch(0.82 0.17 137);
+  --primary-foreground: oklch(0.18 0.04 137);
+  --primary-hover: oklch(0.86 0.16 137);
+  --primary-subtle: oklch(0.3 0.06 141);
 
   /* ---- semantic (fixed) ---- */
-  --success: oklch(0.800 0.160 148);
-  --warning: oklch(0.800 0.130 78);
-  --destructive: oklch(0.640 0.190 25);
-  --destructive-foreground: oklch(0.990 0 0);
+  --success: oklch(0.8 0.16 148);
+  --warning: oklch(0.8 0.13 78);
+  --destructive: oklch(0.64 0.19 25);
+  --destructive-foreground: oklch(0.99 0 0);
 
   /* ---- data-viz categorical (validated reference order) ---- */
   --chart-1: #3987e5;
@@ -53,12 +53,12 @@
   --chart-8: #e66767;
 
   /* ---- muscle-heatmap ramp (single-hue volt, ordinal) ---- */
-  --heat-0: oklch(0.240 0.030 145);
-  --heat-1: oklch(0.380 0.080 141);
-  --heat-2: oklch(0.520 0.130 139);
-  --heat-3: oklch(0.650 0.160 138);
-  --heat-4: oklch(0.780 0.170 137);
-  --heat-5: oklch(0.870 0.170 136);
+  --heat-0: oklch(0.24 0.03 145);
+  --heat-1: oklch(0.38 0.08 141);
+  --heat-2: oklch(0.52 0.13 139);
+  --heat-3: oklch(0.65 0.16 138);
+  --heat-4: oklch(0.78 0.17 137);
+  --heat-5: oklch(0.87 0.17 136);
 
   /* dark form controls, scrollbars, etc. */
   color-scheme: dark;
@@ -118,7 +118,11 @@
 
   /* font roles — the --font-* vars are wired by next/font in layout.tsx;
      the fallbacks keep things sane before that runs / in isolation */
-  --font-display: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
-  --font-sans: var(--font-geist-sans), "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: var(--font-geist-mono), "Geist Mono", ui-monospace, "SF Mono", monospace;
+  --font-display:
+    var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
+  --font-sans:
+    var(--font-geist-sans), "Geist", system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --font-mono:
+    var(--font-geist-mono), "Geist Mono", ui-monospace, "SF Mono", monospace;
 }
