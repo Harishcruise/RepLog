@@ -64,7 +64,7 @@ export function toAuthErrorCode(err: unknown): AuthErrorCode {
   // the rate-limit case so a throttled send doesn't land here. Message-based
   // only — `unexpected_failure` is too broad a code to claim here.
   if (
-    /error (sending|returned from).*(e-?mail)|failed to send|smtp|delivery failed/.test(
+    /(could not|failed to|error) (sending|send).*(e-?mail)|gomail|smtp|domain is not verified|invalid `?to`? field|delivery failed/.test(
       msg,
     )
   ) {
