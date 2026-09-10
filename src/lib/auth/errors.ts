@@ -8,6 +8,8 @@ export type AuthErrorCode =
   | "invalid_credentials"
   | "email_not_confirmed"
   | "invalid_or_expired_code"
+  | "no_account"
+  | "email_send_failed"
   | "account_exists"
   | "rate_limited"
   | "weak_password"
@@ -29,9 +31,17 @@ export function toAuthErrorCode(err: unknown): AuthErrorCode {
   if (code === "email_not_confirmed" || /email not confirmed/.test(msg)) {
     return "email_not_confirmed";
   }
+  // OTP requested for an address with no account (shouldCreateUser: false).
+  // Supabase reports this as `otp_disabled` / "Signups not allowed for otp".
+  if (
+    code === "user_not_found" ||
+    code === "otp_disabled" ||
+    /signups not allowed|user not found|no user found/.test(msg)
+  ) {
+    return "no_account";
+  }
   if (
     code === "otp_expired" ||
-    code === "otp_disabled" ||
     /token has expired|invalid otp|otp.*(invalid|expired)/.test(msg)
   ) {
     return "invalid_or_expired_code";
@@ -50,11 +60,27 @@ export function toAuthErrorCode(err: unknown): AuthErrorCode {
   ) {
     return "rate_limited";
   }
+  // Valid request, but the provider couldn't deliver the email. Checked after
+  // the rate-limit case so a throttled send doesn't land here. Message-based
+  // only — `unexpected_failure` is too broad a code to claim here.
+  if (
+    /error (sending|returned from).*(e-?mail)|failed to send|smtp|delivery failed/.test(
+      msg,
+    )
+  ) {
+    return "email_send_failed";
+  }
   if (
     code === "weak_password" ||
     /password should be at least|at least 8 characters/.test(msg)
   ) {
     return "weak_password";
+  }
+  if (
+    code === "validation_failed" ||
+    /unable to validate email|invalid format|invalid email/.test(msg)
+  ) {
+    return "invalid_input";
   }
   return "unknown";
 }
@@ -63,6 +89,10 @@ const MESSAGES: Record<AuthErrorCode, string> = {
   invalid_credentials: "Wrong email or password.",
   email_not_confirmed: "Confirm your email first — enter the code we sent.",
   invalid_or_expired_code: "That code didn't work. Try again or resend.",
+  no_account:
+    "No account for that email. Create one, or sign in with a password.",
+  email_send_failed:
+    "Couldn't send the code — check the email address and try again.",
   account_exists: "That email already has an account — sign in instead.",
   rate_limited: "Too many attempts. Wait a minute and try again.",
   weak_password: "Password must be at least 8 characters.",
