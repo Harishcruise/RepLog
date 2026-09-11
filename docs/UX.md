@@ -74,11 +74,13 @@ to the screen edge — inset ~14px from the sides on every `/app/*` screen.
 - No floating action button — this avoids two competing "raised" elements
   fighting for attention on a small screen.
 - Tabs are icon-only at rest — inactive tabs are plain icon circles on a
-  subtle lighter fill. The active tab expands to fill the remaining tray
-  width as a solid volt pill with icon **+ label**; the label confirms
-  where you are rather than helping you choose (you already tapped it).
-  Real build: animate the width/position change on tab switch (shared-layout
-  transition) so it morphs instead of jump-cutting.
+  subtle lighter fill. The active tab becomes a solid volt pill with icon
+  **+ label** at a **fixed width** (sized to the longest label, "Exercises")
+  — so the tray never resizes as you switch tabs, only the active pill's
+  position and label change. The label confirms where you are rather than
+  helping you choose (you already tapped it). Real build: animate the
+  position change on tab switch (shared-layout transition) so it slides
+  instead of jump-cutting.
 - Content scrolling under the pills gets a bottom fade + enough scroll
   padding that nothing is hidden behind the floating stack.
 - Templates reached from Home and from the workout-start sheet. Body +
