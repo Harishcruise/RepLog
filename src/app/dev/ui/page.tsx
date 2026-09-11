@@ -17,6 +17,8 @@ import { NAV_ITEMS } from "@/components/app-shell/nav-items";
 import { NavShell } from "@/components/app-shell/nav-shell";
 import { TabBar } from "@/components/app-shell/tab-bar";
 import { TabHeader } from "@/components/app-shell/tab-header";
+import { RestTimer } from "@/components/session/rest-timer";
+import { useRestTimer } from "@/components/session/use-rest-timer";
 import { Button } from "@/components/ui/button";
 import {
   Field,
@@ -299,6 +301,11 @@ export default function DevUI() {
         <NavShell />
       </Section>
 
+      {/* ---- rest timer — real countdown, restart button re-triggers it ---- */}
+      <Section title="Rest timer">
+        <RestTimerDemo />
+      </Section>
+
       {/* ---- tab bar transition demo (local state, no real navigation —
            lets you exercise every jump, including last <-> first, without
            needing a signed-in session) ---- */}
@@ -306,6 +313,28 @@ export default function DevUI() {
         <TabBarDemo />
       </Section>
     </main>
+  );
+}
+
+function RestTimerDemo() {
+  const timer = useRestTimer(12);
+
+  return (
+    <div className="flex flex-col items-start gap-3">
+      <RestTimer
+        secondsRemaining={timer.secondsRemaining}
+        totalSeconds={timer.totalSeconds}
+        onSkip={timer.skip}
+      />
+      <div className="flex items-center gap-2">
+        <Button size="sm" variant="secondary" onClick={() => timer.restart(12)}>
+          Restart (12s)
+        </Button>
+        <p className="text-micro text-muted-foreground/70 font-mono">
+          {timer.isRunning ? "running" : "finished — skip or restart"}
+        </p>
+      </div>
+    </div>
   );
 }
 
