@@ -166,6 +166,34 @@
     </div>
   </div>
 
+  <!-- ============ 3 · EXERCISES — IDLE, SCROLLED DOWN (nav hidden) ============ -->
+  <div style="display:flex; flex-direction:column; gap:10px;">
+    <div class="screen">
+      <div class="pad" style="padding-top: 22px; padding-bottom: 24px; flex: 1; overflow: hidden; display: flex; flex-direction: column; gap: 12px;">
+        <span class="sg" style="font-size: 20px; font-weight: 600;">Exercises</span>
+        <div class="card" style="padding: 12px 14px; display:flex; justify-content: space-between; align-items:center;">
+          <div><div style="font-size: 14px; font-weight: 500;">Incline dumbbell press</div><div style="font-size:12px; color: oklch(0.665 0.012 150); margin-top:2px;">Chest · dumbbell</div></div>
+        </div>
+        <div class="card" style="padding: 12px 14px; display:flex; justify-content: space-between; align-items:center;">
+          <div><div style="font-size: 14px; font-weight: 500;">Cable fly</div><div style="font-size:12px; color: oklch(0.665 0.012 150); margin-top:2px;">Chest · cable</div></div>
+        </div>
+        <div class="card" style="padding: 12px 14px; display:flex; justify-content: space-between; align-items:center;">
+          <div><div style="font-size: 14px; font-weight: 500;">Tricep pushdown</div><div style="font-size:12px; color: oklch(0.665 0.012 150); margin-top:2px;">Triceps · cable</div></div>
+        </div>
+        <div class="card" style="padding: 12px 14px; display:flex; justify-content: space-between; align-items:center;">
+          <div><div style="font-size: 14px; font-weight: 500;">Overhead extension</div><div style="font-size:12px; color: oklch(0.665 0.012 150); margin-top:2px;">Triceps · dumbbell</div></div>
+        </div>
+        <div class="card" style="padding: 12px 14px; display:flex; justify-content: space-between; align-items:center; opacity: 0.5;">
+          <div><div style="font-size: 14px; font-weight: 500;">Dips</div><div style="font-size:12px; color: oklch(0.665 0.012 150); margin-top:2px;">Chest · bodyweight</div></div>
+        </div>
+      </div>
+      <!-- nothing floating here — shell is off-screen below the frame, not just faded -->
+    </div>
+    <div style="width: 390px; text-align: center; font-size: 12px; color: oklch(0.560 0.012 150);">
+      idle + scrolling down → shell slides fully off-screen, no hint chip left behind
+    </div>
+  </div>
+
   <!-- ============ NOTES ============ -->
   <div style="width: 320px; color: oklch(0.950 0.008 150); display: flex; flex-direction: column; gap: 22px; padding-top: 8px;">
     <div>
@@ -185,7 +213,7 @@
     <div style="display: flex; flex-direction: column; gap: 8px;">
       <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Tab labels — icon-only, active expands</div>
       <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
-        Supersedes "icons + text always shown." Inactive tabs are icon-only circles on a subtle lighter fill; the active tab grows to fill the remaining tray width as a solid volt pill with icon + label. The label now confirms where you are rather than helping you decide where to go — you already tapped it. Real build: animate the width/position change (Framer Motion <span class="mono" style="font-size:12px;">layoutId</span> or an equivalent shared-layout transition) so it morphs instead of jump-cutting.
+        Supersedes "icons + text always shown." Inactive tabs are icon-only circles on a subtle lighter fill; the active tab is a fixed-width (104px) solid volt pill with icon + label, sized to the longest label so the tray never resizes on switch. The label now confirms where you are rather than helping you decide where to go — you already tapped it. Real build: animate the active pill's position (Framer Motion <span class="mono" style="font-size:12px;">layoutId</span> or an equivalent shared-layout transition) so it slides instead of jump-cutting.
       </div>
     </div>
 
@@ -202,6 +230,19 @@
       <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
         Still exactly 4 tabs (Home · History · Exercises · Progress), still no FAB, still one contextual pill that swaps Start ⇄ Resume state and survives tab navigation (frame 2 shown from the Progress tab).
       </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px; border-top: 1px solid oklch(1 0 0 / 8%); padding-top: 18px;">
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">New — auto-hide on scroll (frame 3)</div>
+      <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
+        Hides on scroll-down, reveals on scroll-up — <b style="color: oklch(0.86 0.03 150);">no inactivity timer, no reveal icon.</b> The reveal gesture (scroll up) is self-explanatory; a timer risks hiding the shell while someone is just reading, not scrolling, and a reveal icon would be a 5th permanent element undoing the space savings.
+      </div>
+      <ul style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150); margin: 4px 0 0; padding-left: 18px;">
+        <li><b style="color: oklch(0.86 0.03 150);">Exempt while a session is in_progress</b> — the pill's job there is "Resume," the fastest way back into an active workout. Hiding it fights the app's #1 goal (log a set in ~2 taps), so the shell ignores scroll entirely in that state.</li>
+        <li>Asymmetric thresholds so it doesn't flicker: always visible at <span class="mono" style="font-size:12px;">scrollTop ≤ 24px</span>; hides after <span class="mono" style="font-size:12px;">16px</span> cumulative scroll-down, reveals after just <span class="mono" style="font-size:12px;">4px</span> scroll-up.</li>
+        <li><span class="mono" style="font-size:12px;">translateY</span> + opacity, <span class="mono" style="font-size:12px;">base</span> 180ms, standard easing (<span class="mono" style="font-size:12px;">DESIGN_SYSTEM.md §4</span>). Reduced motion: opacity only.</li>
+        <li>Only matters on real scroll content — History, Exercises, Progress. Home rarely triggers it.</li>
+      </ul>
     </div>
   </div>
 

@@ -86,6 +86,30 @@ to the screen edge — inset ~14px from the sides on every `/app/*` screen.
 - Templates reached from Home and from the workout-start sheet. Body +
   Settings from the Home header avatar (not in the tab bar).
 
+### Auto-hide on scroll
+
+The nav shell hides on scroll-down and reveals on scroll-up — not on an
+inactivity timer, and with no dedicated reveal control. The reveal gesture
+(scroll up) is self-explanatory and needs no extra icon; a timer risks
+hiding the shell while someone is simply reading a chart, not scrolling.
+
+- **Exempt while a session is `in_progress`.** The contextual pill's job in
+  that state is "Resume" — the single fastest way back into an active
+  workout. Hiding it fights the app's #1 goal (log a set in ~2 taps), so
+  the whole shell stays visible and ignores scroll direction whenever a
+  session is active. Hide/show only applies in the **idle** state, where
+  "Start Workout" is lower-urgency.
+- **Thresholds** (asymmetric — harder to hide than to reveal, so it doesn't
+  flicker on small scroll jitter): always visible while `scrollTop ≤ 24px`
+  (space-6). Below that, hide once cumulative downward scroll exceeds
+  `16px` (space-4) since the last direction change; reveal on any upward
+  scroll exceeding `4px`.
+- **Motion**: `translateY` + opacity, `base` 180ms, `standard` easing
+  (`DESIGN_SYSTEM.md §4`). `prefers-reduced-motion`: opacity only, no
+  transform.
+- Only meaningfully relevant on screens with real scroll content: History,
+  Exercises, Progress. Home is mostly above-the-fold and rarely triggers it.
+
 ## Sitemap
 
 ```mermaid
