@@ -11,7 +11,7 @@
     { "file": "Login.dc.html", "x": 0, "y": 0, "w": 1720, "h": 980, "title": "Login / Signup", "page": "screens" },
     { "file": "ForgotPassword.dc.html", "x": 1840, "y": 0, "w": 1180, "h": 980, "title": "Forgot password", "page": "screens" },
     { "file": "Navigation.dc.html", "x": 0, "y": 1120, "w": 1740, "h": 980, "title": "App navigation shell", "page": "screens" },
-    { "file": "Profile.dc.html", "x": 1860, "y": 1120, "w": 1180, "h": 980, "title": "Profile", "page": "screens" }
+    { "file": "Profile.dc.html", "x": 1860, "y": 1120, "w": 1740, "h": 980, "title": "Profile", "page": "screens" }
   ],
   "annotations": [
     { "id": "theme-note", "x": 0, "y": -170, "w": 640, "page": "foundations", "text": "Theme: single, Obsidian & Volt (no light/dark). Ground oklch(0.165 0.007 150), primary oklch(0.82 0.17 137). Surface ramp lifted 2026-09-07 for on-screen separation." },

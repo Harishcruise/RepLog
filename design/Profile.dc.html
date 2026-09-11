@@ -56,12 +56,18 @@
 
       <!-- Identity -->
       <div style="display:flex; flex-direction:column; align-items:center; gap: 10px; padding-top: 6px;">
-        <div style="width: 68px; height: 68px; border-radius: 50%; background: oklch(0.310 0.055 141);
-          display:flex; align-items:center; justify-content:center; font: 600 24px 'Space Grotesk', sans-serif; color: oklch(0.86 0.16 137);">H</div>
-        <div style="display:flex; flex-direction:column; align-items:center; gap: 2px;">
-          <span class="sg" style="font-size: 19px; font-weight: 600;">Harish</span>
-          <span style="font-size: 13px; color: oklch(0.665 0.012 150);">harishbarath2001@gmail.com</span>
+        <div style="position: relative;">
+          <div style="width: 68px; height: 68px; border-radius: 50%; background: oklch(0.310 0.055 141);
+            display:flex; align-items:center; justify-content:center; font: 600 24px 'Space Grotesk', sans-serif; color: oklch(0.86 0.16 137);">H</div>
+          <div style="position:absolute; right:-2px; bottom:-2px; width:22px; height:22px; border-radius:50%; background: oklch(0.228 0.009 152); border: 2px solid oklch(0.165 0.007 150); display:flex; align-items:center; justify-content:center;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="oklch(0.780 0.010 150)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          </div>
         </div>
+        <div class="row" style="gap: 6px;">
+          <span class="sg" style="font-size: 19px; font-weight: 600;">Harish</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="oklch(0.560 0.012 150)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        </div>
+        <span style="font-size: 13px; color: oklch(0.665 0.012 150); margin-top: -6px;">harishbarath2001@gmail.com</span>
         <span class="mono" style="font-size: 11px; color: oklch(0.520 0.012 150);">Member since Sep 2026</span>
       </div>
 
@@ -187,6 +193,44 @@
     </div>
   </div>
 
+  <!-- ============ 3 · PROFILE — AVATAR COLOUR + NAME EDIT ============ -->
+  <div class="screen">
+    <div class="pad" style="padding-top: 20px; flex: 1; overflow: hidden; display: flex; flex-direction: column; gap: 22px;">
+
+      <a class="back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        Home
+      </a>
+
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 10px; padding-top: 6px;">
+        <div style="position: relative;">
+          <div style="width: 68px; height: 68px; border-radius: 50%; background: oklch(0.310 0.055 141);
+            display:flex; align-items:center; justify-content:center; font: 600 24px 'Space Grotesk', sans-serif; color: oklch(0.86 0.16 137);
+            box-shadow: 0 0 0 3px oklch(0.165 0.007 150), 0 0 0 5px oklch(0.82 0.17 137);">H</div>
+        </div>
+
+        <!-- colour swatch row — expanded from tapping the avatar -->
+        <div class="row" style="gap: 10px; margin-top: 2px;">
+          <div style="width:26px; height:26px; border-radius:50%; background: oklch(0.310 0.055 141); box-shadow: 0 0 0 2px oklch(0.82 0.17 137);"></div>
+          <div style="width:26px; height:26px; border-radius:50%; background: oklch(0.32 0.09 25 / 40%);"></div>
+          <div style="width:26px; height:26px; border-radius:50%; background: oklch(0.32 0.09 230 / 40%);"></div>
+          <div style="width:26px; height:26px; border-radius:50%; background: oklch(0.32 0.09 300 / 40%);"></div>
+          <div style="width:26px; height:26px; border-radius:50%; background: oklch(0.32 0.09 350 / 40%);"></div>
+          <div style="width:26px; height:26px; border-radius:50%; background: oklch(0.32 0.09 180 / 40%);"></div>
+        </div>
+
+        <!-- name — inline edit mode -->
+        <div class="input" style="width: 100%; margin-top: 8px; justify-content: space-between;">
+          <span class="sg" style="font-size: 15px; font-weight: 600;">Harish</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="oklch(0.86 0.16 137)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span style="font-size: 13px; color: oklch(0.665 0.012 150);">harishbarath2001@gmail.com</span>
+      </div>
+
+      <div style="flex:1;"></div>
+    </div>
+  </div>
+
   <!-- ============ NOTES ============ -->
   <div style="width: 320px; color: oklch(0.950 0.008 150); display: flex; flex-direction: column; gap: 22px; padding-top: 8px;">
     <div>
@@ -207,6 +251,13 @@
       <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Inline tap-to-edit</div>
       <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
         <b style="color: oklch(0.86 0.03 150);">Units</b> — the segmented control itself is the edit; tapping "lb" switches immediately, no confirm step. <b style="color: oklch(0.86 0.03 150);">Default rest</b> — tapping the row opens an inline stepper (not shown as a separate frame; same pattern as password below). <b style="color: oklch(0.86 0.03 150);">Change password</b> — frame 2: tapping the row expands it in place to two fields + Save, chevron rotates 90° as the open-state affordance. No new route for any of these.
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Name + avatar edit (frame 3)</div>
+      <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
+        Both were missing from the first pass — added per feedback. <b style="color: oklch(0.86 0.03 150);">Name</b>: a pencil icon next to it (frame 1) is the discoverability hint; tapping turns the name into an inline input in place, checkmark confirms. <b style="color: oklch(0.86 0.03 150);">Avatar</b>: a small pencil badge on the circle (frame 1) hints it's tappable; tapping reveals a row of preset colour swatches below it, volt stays the default. <b>Colour only, no photo upload</b> — one new <span class="mono" style="font-size:12px;">profiles.avatar_color</span> column, no Storage bucket/cropping/upload UI. Both trigger independently, same "no new route" rule as everything else on this screen.
       </div>
     </div>
 
