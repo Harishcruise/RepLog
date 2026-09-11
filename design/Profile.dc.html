@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; background: oklch(0.120 0.006 150);
+      font-family: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
+    .sg { font-family: 'Space Grotesk', system-ui, sans-serif; }
+    .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
+    .screen { width: 390px; height: 844px; background: oklch(0.165 0.007 150); border-radius: 30px;
+      border: 1px solid oklch(1 0 0 / 8%); overflow: hidden; box-sizing: border-box;
+      color: oklch(0.950 0.008 150); display: flex; flex-direction: column; }
+    .pad { padding: 0 20px; }
+    .card { background: oklch(0.228 0.009 152); border: 1px solid oklch(1 0 0 / 6%); border-radius: 14px; }
+    .row { display: flex; align-items: center; }
+    .eyebrow { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase; color: oklch(0.665 0.012 150); }
+    .stat-num { font-family: 'Geist Mono', monospace; font-weight: 500; font-size: 18px; }
+    .stat-label { font-size: 10.5px; color: oklch(0.665 0.012 150); margin-top: 2px; }
+    .back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: oklch(0.665 0.012 150); }
+    .field-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; }
+    .field-row + .field-row { border-top: 1px solid oklch(1 0 0 / 6%); }
+    .field-label { font-size: 14px; font-weight: 500; }
+    .field-value { display: flex; align-items: center; gap: 8px; font-size: 13px; color: oklch(0.665 0.012 150); }
+    .chev { color: oklch(0.520 0.012 150); }
+    .seg { display: flex; background: oklch(0.300 0.011 152); border-radius: 8px; padding: 2px; gap: 2px; }
+    .seg span { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 6px; }
+    .seg .on { background: oklch(0.30 0.06 141); color: oklch(0.86 0.16 137); }
+    .seg .off { color: oklch(0.560 0.012 150); }
+    .input { height: 44px; border-radius: 10px; background: oklch(0.165 0.007 150);
+      border: 1px solid oklch(1 0 0 / 12%); display: flex; align-items: center; gap: 8px; padding: 0 12px; font-size: 14px; }
+    .btn-primary { height: 44px; border: 0; border-radius: 10px; background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137);
+      font: 600 14px 'Space Grotesk', sans-serif; display: flex; align-items: center; justify-content: center; }
+    .destructive-text { color: oklch(0.74 0.16 25); }
+  </style>
+</helmet>
+
+<div style="padding: 44px; display: flex; gap: 40px; align-items: flex-start;">
+
+  <!-- ============ 1 · PROFILE — AT REST ============ -->
+  <div class="screen">
+    <div class="pad" style="padding-top: 20px; flex: 1; overflow: hidden; display: flex; flex-direction: column; gap: 22px;">
+
+      <a class="back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        Home
+      </a>
+
+      <!-- Identity -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 10px; padding-top: 6px;">
+        <div style="width: 68px; height: 68px; border-radius: 50%; background: oklch(0.310 0.055 141);
+          display:flex; align-items:center; justify-content:center; font: 600 24px 'Space Grotesk', sans-serif; color: oklch(0.86 0.16 137);">H</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap: 2px;">
+          <span class="sg" style="font-size: 19px; font-weight: 600;">Harish</span>
+          <span style="font-size: 13px; color: oklch(0.665 0.012 150);">harishbarath2001@gmail.com</span>
+        </div>
+        <span class="mono" style="font-size: 11px; color: oklch(0.520 0.012 150);">Member since Sep 2026</span>
+      </div>
+
+      <!-- Stats strip (stubbed) -->
+      <div class="card" style="padding: 14px 16px; display: flex; justify-content: space-between;">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:2px;">
+          <div class="row" style="gap:4px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="oklch(0.80 0.13 78)" stroke="none"><path d="M12 2c-2 4-6 6-6 11a6 6 0 0 0 12 0c0-2-1-3-2-4 .3 2-1 3-2 2 1-3-1-5-2-9z"/></svg>
+            <div class="stat-num">4</div>
+          </div>
+          <div class="stat-label">day streak</div>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:2px;">
+          <div class="stat-num">27</div>
+          <div class="stat-label">sessions</div>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:2px;">
+          <div class="stat-num">96.4k</div>
+          <div class="stat-label">kg lifted</div>
+        </div>
+      </div>
+
+      <!-- Preferences -->
+      <div style="display:flex; flex-direction:column; gap: 8px;">
+        <span class="eyebrow" style="padding-left: 2px;">Preferences</span>
+        <div class="card">
+          <div class="field-row">
+            <span class="field-label">Units</span>
+            <div class="seg"><span class="on">kg</span><span class="off">lb</span></div>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Default rest</span>
+            <div class="field-value">
+              2:00
+              <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Account -->
+      <div style="display:flex; flex-direction:column; gap: 8px;">
+        <span class="eyebrow" style="padding-left: 2px;">Account</span>
+        <div class="card">
+          <div class="field-row">
+            <span class="field-label">Change password</span>
+            <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+          </div>
+          <div class="field-row">
+            <span class="field-label">Bodyweight log</span>
+            <div class="field-value">
+              52.0 kg
+              <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+            </div>
+          </div>
+          <div class="field-row">
+            <span class="field-label destructive-text">Sign out</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="oklch(0.74 0.16 25)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1;"></div>
+      <div style="text-align:center; padding-bottom: 22px; display:flex; justify-content:center; gap: 14px;">
+        <span class="mono" style="font-size: 11px; color: oklch(0.520 0.012 150);">Terms</span>
+        <span class="mono" style="font-size: 11px; color: oklch(0.400 0.012 150);">·</span>
+        <span class="mono" style="font-size: 11px; color: oklch(0.520 0.012 150);">Privacy</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 2 · PROFILE — "CHANGE PASSWORD" EXPANDED INLINE ============ -->
+  <div class="screen">
+    <div class="pad" style="padding-top: 20px; flex: 1; overflow: hidden; display: flex; flex-direction: column; gap: 22px;">
+
+      <a class="back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        Home
+      </a>
+
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 10px; padding-top: 6px;">
+        <div style="width: 68px; height: 68px; border-radius: 50%; background: oklch(0.310 0.055 141);
+          display:flex; align-items:center; justify-content:center; font: 600 24px 'Space Grotesk', sans-serif; color: oklch(0.86 0.16 137);">H</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap: 2px;">
+          <span class="sg" style="font-size: 19px; font-weight: 600;">Harish</span>
+          <span style="font-size: 13px; color: oklch(0.665 0.012 150);">harishbarath2001@gmail.com</span>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap: 8px;">
+        <span class="eyebrow" style="padding-left: 2px;">Account</span>
+        <div class="card">
+          <div class="field-row" style="padding-bottom: 4px;">
+            <span class="field-label">Change password</span>
+            <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform: rotate(90deg);"><path d="m9 18 6-6-6-6"/></svg>
+          </div>
+          <div style="padding: 4px 16px 16px; display:flex; flex-direction:column; gap: 10px; border-top: 1px solid oklch(1 0 0 / 6%);">
+            <div class="input" style="margin-top: 10px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="oklch(0.560 0.012 150)" stroke-width="1.8"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span style="color: oklch(0.520 0.012 150);">New password</span>
+            </div>
+            <div class="input">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="oklch(0.560 0.012 150)" stroke-width="1.8"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span style="color: oklch(0.520 0.012 150);">Confirm password</span>
+            </div>
+            <button class="btn-primary" style="margin-top: 4px;">Save password</button>
+          </div>
+          <div class="field-row" style="border-top: 1px solid oklch(1 0 0 / 6%);">
+            <span class="field-label">Bodyweight log</span>
+            <div class="field-value">
+              52.0 kg
+              <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+            </div>
+          </div>
+          <div class="field-row">
+            <span class="field-label destructive-text">Sign out</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="oklch(0.74 0.16 25)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1;"></div>
+    </div>
+  </div>
+
+  <!-- ============ NOTES ============ -->
+  <div style="width: 320px; color: oklch(0.950 0.008 150); display: flex; flex-direction: column; gap: 22px; padding-top: 8px;">
+    <div>
+      <div class="sg" style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em;">Profile</div>
+      <div style="font-size: 13px; line-height: 20px; color: oklch(0.665 0.012 150); margin-top: 6px;">
+        Route <span class="mono" style="font-size:12px;">/app/profile</span>, opened from the Home header avatar (not a tab, so it gets a back link instead of living in the floating nav). One screen — merges what would otherwise be a separate Settings screen, since v1's settings list is short.
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Stats strip — stubbed</div>
+      <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
+        Streak / sessions / kg lifted shown with plausible sample values for the mockup. Wired the same way as the nav shell's session state: a stub hook returning placeholder data until <span class="mono" style="font-size:12px;">workout_sessions</span> exists (SPEC.md milestone 2), swapped for a real query with no UI changes needed.
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Inline tap-to-edit</div>
+      <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
+        <b style="color: oklch(0.86 0.03 150);">Units</b> — the segmented control itself is the edit; tapping "lb" switches immediately, no confirm step. <b style="color: oklch(0.86 0.03 150);">Default rest</b> — tapping the row opens an inline stepper (not shown as a separate frame; same pattern as password below). <b style="color: oklch(0.86 0.03 150);">Change password</b> — frame 2: tapping the row expands it in place to two fields + Save, chevron rotates 90° as the open-state affordance. No new route for any of these.
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Reuses existing auth plumbing</div>
+      <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
+        "Change password" calls <span class="mono" style="font-size:12px;">updatePassword</span> — the exact op built for <span class="mono" style="font-size:12px;">/login/reset</span>'s last step. It works on any authenticated session, not just a recovery one, so no new auth logic is needed here — just a new caller.
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Identity</div>
+      <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
+        Avatar is initials-only, no photo upload (matches SPEC.md keeping photo/media handling out of v1). Name pulls from <span class="mono" style="font-size:12px;">user_metadata.display_name</span> (set at signup); email and "member since" are read-only, straight off <span class="mono" style="font-size:12px;">auth.users</span>. No in-app email change in v1 — that needs its own re-verification flow.
+      </div>
+    </div>
+
+    <div style="font-size: 12px; line-height: 18px; color: oklch(0.560 0.012 150);">
+      Bodyweight log row → <span class="mono" style="font-size:12px;">/app/body</span> (its own screen — chart + daily entry, doesn't belong inline here). Sign out reuses the existing <span class="mono" style="font-size:12px;">SignOutButton</span> logic.
+    </div>
+  </div>
+
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":1180,"height":980}}'>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>

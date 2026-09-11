@@ -37,8 +37,8 @@ Companion to [`SPEC.md`](SPEC.md).
 | `/app/templates/new` | Build template | authed | Name, ordered exercises, targets. |
 | `/app/templates/[id]` | Template detail / edit | authed | Start session from here. |
 | `/app/progress` | Progress overview | authed | Full muscle heatmap, tonnage, frequency, per-lift 1RM. |
-| `/app/body` | Bodyweight | authed | One entry/day, trend chart. |
-| `/app/settings` | Settings | authed | Units, default rest, data export, account/sign out. |
+| `/app/body` | Bodyweight | authed | One entry/day, trend chart. Reached from Profile. |
+| `/app/profile` | Profile | authed | Opened from the Home header avatar. Identity, stubbed stats strip, inline-editable preferences (unit, default rest), change password, → Body, sign out, legal links. Merges what would otherwise be a separate Settings screen — v1's settings list is short enough not to need its own route. |
 
 ## Navigation model
 
@@ -83,8 +83,10 @@ to the screen edge — inset ~14px from the sides on every `/app/*` screen.
   instead of jump-cutting.
 - Content scrolling under the pills gets a bottom fade + enough scroll
   padding that nothing is hidden behind the floating stack.
-- Templates reached from Home and from the workout-start sheet. Body +
-  Settings from the Home header avatar (not in the tab bar).
+- Templates reached from Home and from the workout-start sheet. Profile
+  (identity, preferences, account — see `/app/profile`) from the Home header
+  avatar, not in the tab bar. Body reached from within Profile, not directly
+  from the avatar.
 
 ### Auto-hide on scroll
 
