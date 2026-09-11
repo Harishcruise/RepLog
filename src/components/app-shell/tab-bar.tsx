@@ -34,7 +34,12 @@ export function TabBar({ items, activeHref }: TabBarProps) {
             aria-current={active ? "page" : undefined}
             className={cn(
               "relative flex h-[42px] items-center justify-center gap-1.5 rounded-full",
-              active ? "w-[104px]" : "bg-secondary w-[42px] shrink-0",
+              // z-10 on the active tab: the sliding pill lives inside
+              // whichever tab is active, and without this a tab earlier in
+              // the tray (e.g. Home) paints *under* later siblings while
+              // the pill is mid-flight toward it, making it disappear
+              // behind them instead of visibly passing over/through.
+              active ? "z-10 w-[104px]" : "bg-secondary w-[42px] shrink-0",
             )}
           >
             {active ? (

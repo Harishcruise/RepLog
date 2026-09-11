@@ -10,9 +10,12 @@ import {
   TriangleAlert,
   Trophy,
 } from "lucide-react";
+import { useState } from "react";
 import { toast } from "sonner";
 
+import { NAV_ITEMS } from "@/components/app-shell/nav-items";
 import { NavShell } from "@/components/app-shell/nav-shell";
+import { TabBar } from "@/components/app-shell/tab-bar";
 import { Button } from "@/components/ui/button";
 import {
   Field,
@@ -286,6 +289,34 @@ export default function DevUI() {
       <Section title="App shell nav">
         <NavShell />
       </Section>
+
+      {/* ---- tab bar transition demo (local state, no real navigation —
+           lets you exercise every jump, including last <-> first, without
+           needing a signed-in session) ---- */}
+      <Section title="Tab bar — transition demo">
+        <TabBarDemo />
+      </Section>
     </main>
+  );
+}
+
+function TabBarDemo() {
+  const [active, setActive] = useState(NAV_ITEMS[0]!.href);
+
+  return (
+    <div
+      className="flex flex-col items-start gap-3"
+      onClickCapture={(e) => {
+        const link = (e.target as HTMLElement).closest("a[href]");
+        if (!link) return;
+        e.preventDefault();
+        setActive(link.getAttribute("href") ?? active);
+      }}
+    >
+      <TabBar items={NAV_ITEMS} activeHref={active} />
+      <p className="text-micro text-muted-foreground/70 font-mono">
+        click any tab — clicks are intercepted here, no real navigation
+      </p>
+    </div>
   );
 }
