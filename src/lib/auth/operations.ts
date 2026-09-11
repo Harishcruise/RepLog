@@ -2,6 +2,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 
 import type { Database } from "@/lib/supabase/database.types";
 import {
+  displayNameSchema,
   emailSchema,
   passwordSchema,
   signInSchema,
@@ -121,6 +122,23 @@ export async function updatePassword(
   if (!parsed.success) return fail("weak_password");
   try {
     const { error } = await sb.auth.updateUser({ password: parsed.data });
+    return error ? fail(toAuthErrorCode(error)) : done(undefined);
+  } catch (err) {
+    return fail(toAuthErrorCode(err));
+  }
+}
+
+/** Updates the current user's display name (`user_metadata.display_name`). */
+export async function updateDisplayName(
+  sb: Sb,
+  input: { name: string },
+): Promise<AuthResult> {
+  const parsed = displayNameSchema.safeParse(input.name);
+  if (!parsed.success) return fail("invalid_input");
+  try {
+    const { error } = await sb.auth.updateUser({
+      data: { display_name: parsed.data },
+    });
     return error ? fail(toAuthErrorCode(error)) : done(undefined);
   } catch (err) {
     return fail(toAuthErrorCode(err));
