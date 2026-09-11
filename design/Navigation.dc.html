@@ -36,18 +36,17 @@
     .cta-idle { background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137); }
     .cta-active { background: oklch(0.268 0.010 152); border: 1px solid oklch(0.82 0.17 137 / 45%);
       color: oklch(0.86 0.16 137); }
-    .tab-pill { width: 100%; height: 68px; border-radius: 30px; background: oklch(0.228 0.009 152 / 92%);
+    .tab-pill { width: 100%; height: 62px; border-radius: 31px; background: oklch(0.228 0.009 152 / 94%);
       backdrop-filter: blur(14px); border: 1px solid oklch(1 0 0 / 9%);
-      box-shadow: 0 12px 32px oklch(0 0 0 / 42%); display: flex; align-items: center; padding: 0 8px; }
-    .tab { flex: 1; display: flex; align-items: center; justify-content: center; height: 52px; }
-    .tab-chip { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-    .tab.on .tab-chip { background: oklch(0.310 0.055 141); border-radius: 18px; padding: 6px 14px 7px; }
-    .tab.on svg { stroke: oklch(0.86 0.16 137); }
-    .tab.on .tab-label { color: oklch(0.86 0.16 137); }
-    .tab.off .tab-chip { padding: 6px 14px 7px; }
-    .tab.off svg { stroke: oklch(0.560 0.012 150); }
-    .tab.off .tab-label { color: oklch(0.560 0.012 150); }
-    .tab-label { font-size: 10.5px; font-weight: 500; }
+      box-shadow: 0 12px 32px oklch(0 0 0 / 42%); display: flex; align-items: center; gap: 7px; padding: 7px; }
+    .tab-off { flex: 0 0 46px; width: 46px; height: 46px; border-radius: 999px;
+      background: oklch(0.300 0.011 152); display: flex; align-items: center; justify-content: center; }
+    .tab-off svg { stroke: oklch(0.760 0.010 150); }
+    .tab-on { flex: 1; min-width: 0; height: 46px; border-radius: 999px; background: oklch(0.82 0.17 137);
+      display: flex; align-items: center; justify-content: center; gap: 7px; padding: 0 16px; }
+    .tab-on svg { stroke: oklch(0.18 0.04 137); flex-shrink: 0; }
+    .tab-on .tab-label { color: oklch(0.18 0.04 137); }
+    .tab-label { font: 600 13px 'Space Grotesk', sans-serif; white-space: nowrap; }
     .dot { width: 6px; height: 6px; border-radius: 50%; background: oklch(0.82 0.17 137); }
 
     .eyebrow { font: 600 11px 'Space Grotesk', sans-serif; letter-spacing: 0.07em; text-transform: uppercase; color: oklch(0.665 0.012 150); }
@@ -111,29 +110,18 @@
         Start Workout
       </div>
       <div class="tab-pill">
-        <div class="tab on">
-          <div class="tab-chip">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg>
-            <span class="tab-label">Home</span>
-          </div>
+        <div class="tab-on">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg>
+          <span class="tab-label">Home</span>
         </div>
-        <div class="tab off">
-          <div class="tab-chip">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.34"/><path d="M3 4v5h5"/><path d="M12 7v5l4 2"/></svg>
-            <span class="tab-label">History</span>
-          </div>
+        <div class="tab-off">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.34"/><path d="M3 4v5h5"/><path d="M12 7v5l4 2"/></svg>
         </div>
-        <div class="tab off">
-          <div class="tab-chip">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="3" height="6" rx="1"/><rect x="19" y="9" width="3" height="6" rx="1"/><rect x="7" y="10.3" width="10" height="3.4" rx="1"/><rect x="5" y="7.5" width="2" height="9" rx="1"/><rect x="17" y="7.5" width="2" height="9" rx="1"/></svg>
-            <span class="tab-label">Exercises</span>
-          </div>
+        <div class="tab-off">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="3" height="6" rx="1"/><rect x="19" y="9" width="3" height="6" rx="1"/><rect x="7" y="10.3" width="10" height="3.4" rx="1"/><rect x="5" y="7.5" width="2" height="9" rx="1"/><rect x="17" y="7.5" width="2" height="9" rx="1"/></svg>
         </div>
-        <div class="tab off">
-          <div class="tab-chip">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg>
-            <span class="tab-label">Progress</span>
-          </div>
+        <div class="tab-off">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg>
         </div>
       </div>
     </div>
@@ -161,29 +149,18 @@
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><path d="M9 18l6-6-6-6"/></svg>
       </div>
       <div class="tab-pill">
-        <div class="tab off">
-          <div class="tab-chip">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg>
-            <span class="tab-label">Home</span>
-          </div>
+        <div class="tab-off">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg>
         </div>
-        <div class="tab off">
-          <div class="tab-chip">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.34"/><path d="M3 4v5h5"/><path d="M12 7v5l4 2"/></svg>
-            <span class="tab-label">History</span>
-          </div>
+        <div class="tab-off">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.34"/><path d="M3 4v5h5"/><path d="M12 7v5l4 2"/></svg>
         </div>
-        <div class="tab off">
-          <div class="tab-chip">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="3" height="6" rx="1"/><rect x="19" y="9" width="3" height="6" rx="1"/><rect x="7" y="10.3" width="10" height="3.4" rx="1"/><rect x="5" y="7.5" width="2" height="9" rx="1"/><rect x="17" y="7.5" width="2" height="9" rx="1"/></svg>
-            <span class="tab-label">Exercises</span>
-          </div>
+        <div class="tab-off">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="3" height="6" rx="1"/><rect x="19" y="9" width="3" height="6" rx="1"/><rect x="7" y="10.3" width="10" height="3.4" rx="1"/><rect x="5" y="7.5" width="2" height="9" rx="1"/><rect x="17" y="7.5" width="2" height="9" rx="1"/></svg>
         </div>
-        <div class="tab on">
-          <div class="tab-chip">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg>
-            <span class="tab-label">Progress</span>
-          </div>
+        <div class="tab-on">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg>
+          <span class="tab-label">Progress</span>
         </div>
       </div>
     </div>
@@ -206,9 +183,15 @@
     </div>
 
     <div style="display: flex; flex-direction: column; gap: 8px;">
-      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">What changed from the docked version</div>
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Tab labels — icon-only, active expands</div>
+      <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
+        Supersedes "icons + text always shown." Inactive tabs are icon-only circles on a subtle lighter fill; the active tab grows to fill the remaining tray width as a solid volt pill with icon + label. The label now confirms where you are rather than helping you decide where to go — you already tapped it. Real build: animate the width/position change (Framer Motion <span class="mono" style="font-size:12px;">layoutId</span> or an equivalent shared-layout transition) so it morphs instead of jump-cutting.
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Other changes from the docked version</div>
       <ul style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150); margin: 0; padding-left: 18px;">
-        <li>Active tab = filled volt-tinted chip behind icon+label, not a top-border indicator (a hard edge reads wrong against a fully rounded shape).</li>
         <li>Content needs a bottom fade + ~150px scroll padding so it doesn't hard-cut under the floating stack.</li>
         <li><span class="mono" style="font-size:12px;">backdrop-filter: blur</span> on the tab pill so content peeking through the gap between the two pills still feels like one system.</li>
       </ul>

@@ -523,7 +523,8 @@ never fork upstream.
 ## 11. Resolved / open questions
 
 1. ~~Landing page~~ — resolved: none, `/login` is the entry.
-2. ~~Bottom-nav labels~~ — resolved: icons **+ text**.
+2. ~~Bottom-nav labels~~ — resolved: **icon-only at rest, active tab expands**
+   to icon + label (floating pill nav, see `UX.md` Navigation model).
 3. ~~Rest timer~~ — resolved: **pill** (expands to a sheet), not a full-screen takeover.
 4. ~~Volt hue / light-vs-dark~~ — resolved: single **Obsidian & Volt** theme; ground
    `oklch(0.165 0.007 150)`, primary `oklch(0.82 0.17 137)`.

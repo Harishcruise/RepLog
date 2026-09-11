@@ -14,7 +14,7 @@
   ],
   "annotations": [
     { "id": "theme-note", "x": 0, "y": -170, "w": 640, "page": "foundations", "text": "Theme: single, Obsidian & Volt (no light/dark). Ground oklch(0.165 0.007 150), primary oklch(0.82 0.17 137). Surface ramp lifted 2026-09-07 for on-screen separation." },
-    { "id": "open-questions", "x": 0, "y": 1810, "w": 470, "page": "foundations", "text": "Open questions (DESIGN_SYSTEM.md §10)\n1. Landing page — resolved: none, /login is the entry.\n2. Bottom-nav labels — icons + text (drawn).\n3. Rest timer — pill (drawn).\n4. Theme — resolved: Obsidian & Volt, single." },
+    { "id": "open-questions", "x": 0, "y": 1810, "w": 470, "page": "foundations", "text": "Open questions (DESIGN_SYSTEM.md §10)\n1. Landing page — resolved: none, /login is the entry.\n2. Bottom-nav labels — icon-only at rest, active tab expands (drawn).\n3. Rest timer — pill (drawn).\n4. Theme — resolved: Obsidian & Volt, single." },
     { "id": "screens-note", "x": 0, "y": -150, "w": 640, "page": "screens", "text": "App screens, mid-fi, phone frame 390×844 on the Obsidian & Volt system. Auth: password primary + 6-digit email OTP code (no magic link). The Enter-code screen is shared by code sign-in and password reset." }
   ],
   "launch": { "view": "canvas", "page": "screens" }
