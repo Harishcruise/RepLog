@@ -232,9 +232,14 @@ flowchart TD
 taps" drives every choice below. Pushed/immersive like Profile and Body:
 no floating nav, no tab bar, no contextual pill (its job is getting you
 *back* here — redundant once you're already here).
-- Sticky header: session name (tap to rename) + live elapsed timer (mono)
-  on the left; **Finish** + overflow (⋮ → rename, discard) on the right.
-  No back chevron — leave via Finish or Discard, not by backing out.
+- Sticky header: a small **‹ back** in the top-left corner, then session
+  name (tap to rename) + live elapsed timer (mono); **Finish** +
+  overflow (⋮ → rename, discard) on the right.
+  - ‹ back leaves the session running in the background and returns to
+    Home — the same as backgrounding the app, not a third way to end
+    it. Nothing is logged or discarded. The Resume pill elsewhere in
+    the nav picks it back up. Distinct from **Finish** (completes it)
+    and **Discard**, in the ⋮ menu (cancels it).
 - Per exercise card: name + muscle chip, then set rows
   **SET · PREV · KG · REPS · ✓**:
   - SET badge is tappable (drawn 22px, tap target padded to ~40px) →
