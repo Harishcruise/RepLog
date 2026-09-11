@@ -207,9 +207,8 @@
 
     <!-- docked keypad -->
     <div style="background: oklch(0.228 0.009 152); border-top: 1px solid oklch(1 0 0 / 10%); border-radius: 20px 20px 0 0; padding: 14px 16px calc(14px + 8px);">
-      <div class="row" style="justify-content: space-between; margin-bottom: 10px;">
+      <div class="row" style="margin-bottom: 6px;">
         <span class="meta" style="font-weight: 600; color: oklch(0.86 0.16 137);">Weight (kg)</span>
-        <button class="sg" style="height: 30px; padding: 0 12px; border: 0; border-radius: 8px; background: oklch(0.30 0.06 141); color: oklch(0.86 0.16 137); font-size: 13px; font-weight: 600;">Next: Reps →</button>
       </div>
       <div class="mono" style="font-size: 34px; font-weight: 600; margin-bottom: 12px;">100</div>
       <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
@@ -279,17 +278,13 @@
       </div>
     </div>
 
-    <!-- docked keypad — reps step: back on the left, log-set (the finishing action) on the right -->
+    <!-- docked keypad — reps step: one CTA (the grid button), back is a small icon next to the label -->
     <div style="background: oklch(0.228 0.009 152); border-top: 1px solid oklch(1 0 0 / 10%); border-radius: 20px 20px 0 0; padding: 14px 16px calc(14px + 8px);">
-      <div class="row" style="justify-content: space-between; margin-bottom: 10px;">
-        <button class="sg" style="height: 30px; padding: 0 10px 0 6px; border: 0; border-radius: 8px; background: transparent; color: oklch(0.665 0.012 150); font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 3px;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-          Back: KG
+      <div class="row" style="gap: 5px; margin-bottom: 6px;">
+        <button aria-label="Back to weight" style="width: 22px; height: 22px; border: 0; border-radius: 6px; background: transparent; color: oklch(0.665 0.012 150); display: inline-flex; align-items: center; justify-content: center; padding: 0; margin-left: -3px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
         </button>
-        <button class="sg" style="height: 30px; padding: 0 12px; border: 0; border-radius: 8px; background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137); font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
-          Log set
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </button>
+        <span class="meta" style="font-weight: 600; color: oklch(0.86 0.16 137);">Reps</span>
       </div>
       <div class="mono" style="font-size: 34px; font-weight: 600; margin-bottom: 12px;">7</div>
       <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
@@ -443,9 +438,9 @@
     </div>
 
     <div style="display: flex; flex-direction: column; gap: 8px;">
-      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Keypad actions: one forward slot, back only where it means something</div>
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">One CTA, not two — the grid button saves and exits the field</div>
       <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
-        The big bottom-right grid button always does "confirm this field and move forward" — same reachable spot both steps, only its label/color reasoning changes: <b>Next</b> on KG (frame 2), <b>Log set</b> on Reps (frame 3, filled — it's the terminal action for the set). The header echoes the same action in words for context ("Next: Reps →" / "Log set ✓"). A <b>Back: KG</b> control appears on the Reps step only — there's somewhere meaningful to go back to (you might've mistyped weight); KG has nothing before it, so no back control shows there.
+        First pass had two buttons doing the same thing — a header pill and the grid button, both "confirm and advance." Cut to one: the big bottom-right grid button, same reachable spot on both steps, saves the current field's value and exits it — <b>Next</b> moves you into Reps (frame 2), filled <b>Log set</b> commits the whole set and closes the keypad (frame 3, terminal action). The field label ("Weight (kg)" / "Reps") sits alone at the top now, matching pattern on both steps. A small back-chevron next to the "Reps" label (frame 3 only) returns to KG to fix a mistype — icon-only so it doesn't compete with the one real CTA.
       </div>
     </div>
 

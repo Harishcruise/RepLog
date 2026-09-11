@@ -265,14 +265,16 @@ no floating nav, no tab bar, no contextual pill (its job is getting you
   OS-keyboard-covers-input entirely rather than working around it (the
   same class of problem Profile's dialogs avoid by not being a bottom
   sheet), and keypad height is predictable across every device.
-  - One forward slot, consistent across both fields: the big grid button
-    (bottom-right, thumb reach) always confirms the current field and
-    advances — **Next** on the weight step, filled **Log set** on the
-    reps step (the terminal action). The header echoes the same action
-    in words ("Next: Reps →" / "Log set ✓") for context at the top.
-  - **Back: KG** appears on the reps step only, to fix a mistyped
-    weight without leaving the keypad — there's nothing to go back to
-    from the weight step, so no back control shows there.
+  - **One CTA, not two.** The big grid button (bottom-right, thumb
+    reach) is the only action — it saves the current field's value and
+    exits it: **Next** on the weight step (moves into Reps), filled
+    **Log set** on the reps step (commits the set, closes the keypad).
+    The field label ("Weight (kg)" / "Reps") sits alone above the value
+    on both steps — no duplicate button next to it.
+  - A small back-chevron next to the "Reps" label (reps step only)
+    returns to KG to fix a mistype — icon-only, so it never competes
+    with the one real CTA. Nothing to go back to from the weight step,
+    so no back control shows there.
 - Rest-timer pill: floats in the same bottom slot the nav's contextual
   pill normally occupies elsewhere in the app (free real estate here,
   since this screen has no nav) — "Resting — mm:ss", tap to adjust/skip,
