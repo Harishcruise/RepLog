@@ -1,7 +1,12 @@
+import { AppShell } from "@/components/app-shell/app-shell";
 import { TabHeader } from "@/components/app-shell/tab-header";
 import { createClient } from "@/lib/supabase/server";
 
-/** Renders the shared avatar/name/streak header once for all 4 main tabs. */
+/**
+ * The 4 main tabs only: shared avatar/name/streak header + the floating
+ * nav shell. Pushed screens (Profile, Body, ...) sit outside this route
+ * group and get neither — see app-shell.tsx.
+ */
 export default async function TabsLayout({ children }: LayoutProps<"/app">) {
   const supabase = await createClient();
   const {
@@ -14,10 +19,5 @@ export default async function TabsLayout({ children }: LayoutProps<"/app">) {
       ? metaName
       : (user?.email?.split("@")[0] ?? "there");
 
-  return (
-    <>
-      <TabHeader name={name} />
-      {children}
-    </>
-  );
+  return <AppShell header={<TabHeader name={name} />}>{children}</AppShell>;
 }

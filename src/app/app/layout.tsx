@@ -1,9 +1,12 @@
 import { redirect } from "next/navigation";
 
-import { AppShell } from "@/components/app-shell/app-shell";
 import { createClient } from "@/lib/supabase/server";
 
-/** Gates every /app/* route and wraps it in the floating nav shell. */
+/**
+ * Gates every /app/* route. Nothing else — the floating nav shell lives in
+ * `(tabs)/layout.tsx` now, not here, so pushed screens (Profile, Body,
+ * future workout/* routes) don't inherit it.
+ */
 export default async function AppLayout({ children }: LayoutProps<"/app">) {
   const supabase = await createClient();
   const {
@@ -11,5 +14,5 @@ export default async function AppLayout({ children }: LayoutProps<"/app">) {
   } = await supabase.auth.getUser();
   if (!user) redirect("/login?next=/app");
 
-  return <AppShell>{children}</AppShell>;
+  return <>{children}</>;
 }
