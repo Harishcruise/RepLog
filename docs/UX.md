@@ -248,6 +248,15 @@ no floating nav, no tab bar, no contextual pill (its job is getting you
     lifters, permanent-column real estate isn't worth it); revisit if it
     turns out to matter.
   - **+ Add set** at the card's bottom.
+  - A completed set **collapses to one quiet line** (check + "100 kg × 8"
+    in muted mono) instead of staying full-height with a highlighted
+    background — keeps visual weight on the active/pending row, not on
+    everything already done. The row stays tappable indefinitely to
+    reopen and re-edit it.
+  - Undo has two doors: tapping ✓ fires an instant "Set logged · Undo"
+    toast for fast recovery from a mis-tap, and separately the collapsed
+    row itself is always tappable to reopen — no time pressure either
+    way.
 - Weight/reps entry: a **custom docked numeric keypad**, not the OS
   keyboard. Tapping a cell docks it at the bottom — shows the active
   field + its value large, a digit grid, and a chained "next field" key

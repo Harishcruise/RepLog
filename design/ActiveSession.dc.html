@@ -29,7 +29,6 @@
     .th { font-size: 11px; font-weight: 600; letter-spacing: 0.04em; color: oklch(0.560 0.012 150); }
     .set-row { display: grid; grid-template-columns: 28px 1fr 54px 46px 40px; gap: 6px; padding: 7px 8px;
       align-items: center; border-radius: 9px; }
-    .set-row.complete { background: color-mix(in oklch, oklch(0.82 0.17 137) 11%, transparent); }
     .set-badge { width: 22px; height: 22px; border-radius: 7px; background: oklch(0.300 0.011 152);
       display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
     .cell { font-size: 15px; text-align: center; font-weight: 500; }
@@ -38,6 +37,16 @@
       display: inline-flex; align-items: center; justify-content: center; }
     .check.off { border: 2px solid oklch(1 0 0 / 20%); }
     .check.on { background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137); }
+    /* completed row — collapses to one quiet line instead of a highlighted grid row */
+    .set-row.complete { display: flex; align-items: center; gap: 9px; padding: 5px 8px 5px 3px; }
+    .set-row.complete .set-badge { width: 22px; height: 22px; background: transparent; opacity: 0.5; }
+    .set-row.complete .done-check { width: 15px; height: 15px; flex-shrink: 0; color: oklch(0.70 0.15 137); }
+    .set-row.complete .done-text { font-size: 13px; color: oklch(0.560 0.012 150); }
+    .toast { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 8px 0 14px;
+      border-radius: 12px; background: oklch(0.268 0.010 152); border: 1px solid oklch(1 0 0 / 10%);
+      box-shadow: 0 12px 28px oklch(0 0 0 / 42%); }
+    .toast .undo { height: 30px; padding: 0 12px; border: 0; border-radius: 8px; background: transparent;
+      color: oklch(0.86 0.16 137); font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; }
     .add-set { height: 38px; border: 0; border-radius: 10px; background: transparent; color: oklch(0.82 0.17 137);
       font: 500 13.5px 'Space Grotesk', sans-serif; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
     .finish-btn { height: 36px; padding: 0 16px; border: 0; border-radius: 10px; background: oklch(0.82 0.17 137);
@@ -85,17 +94,13 @@
           </div>
           <div class="set-row complete">
             <span class="set-badge">1</span>
-            <span class="meta mono">100 × 8</span>
-            <span class="cell mono">100</span>
-            <span class="cell mono">8</span>
-            <span class="check on"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span class="done-text mono">100 kg × 8</span>
           </div>
           <div class="set-row complete">
             <span class="set-badge">2</span>
-            <span class="meta mono">100 × 8</span>
-            <span class="cell mono">100</span>
-            <span class="cell mono">8</span>
-            <span class="check on"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span class="done-text mono">100 kg × 8</span>
           </div>
           <div class="set-row">
             <span class="set-badge">3</span>
@@ -169,14 +174,14 @@
             <span class="th" style="text-align:center;">REPS</span><span></span>
           </div>
           <div class="set-row complete">
-            <span class="set-badge">1</span><span class="meta mono">100 × 8</span>
-            <span class="cell mono">100</span><span class="cell mono">8</span>
-            <span class="check on"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="set-badge">1</span>
+            <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span class="done-text mono">100 kg × 8</span>
           </div>
           <div class="set-row complete">
-            <span class="set-badge">2</span><span class="meta mono">100 × 8</span>
-            <span class="cell mono">100</span><span class="cell mono">8</span>
-            <span class="check on"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="set-badge">2</span>
+            <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span class="done-text mono">100 kg × 8</span>
           </div>
           <!-- weight cell focused -->
           <div class="set-row" style="background: color-mix(in oklch, oklch(0.82 0.17 137) 6%, transparent);">
@@ -239,26 +244,34 @@
             <span class="th" style="text-align:center;">REPS</span><span></span>
           </div>
           <div class="set-row complete">
-            <span class="set-badge">1</span><span class="meta mono">100 × 8</span>
-            <span class="cell mono">100</span><span class="cell mono">8</span>
-            <span class="check on"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="set-badge">1</span>
+            <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span class="done-text mono">100 kg × 8</span>
           </div>
           <div class="set-row complete">
-            <span class="set-badge">2</span><span class="meta mono">100 × 8</span>
-            <span class="cell mono">100</span><span class="cell mono">8</span>
-            <span class="check on"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="set-badge">2</span>
+            <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span class="done-text mono">100 kg × 8</span>
           </div>
-          <!-- just completed -->
+          <!-- just completed — the row this frame's toast refers to -->
           <div class="set-row complete">
-            <span class="set-badge">3</span><span class="meta mono">100 × 7</span>
-            <span class="cell mono">100</span><span class="cell mono">7</span>
-            <span class="check on"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="set-badge">3</span>
+            <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span class="done-text mono">100 kg × 7</span>
           </div>
         </div>
         <button class="add-set">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
           Add set
         </button>
+      </div>
+    </div>
+
+    <!-- undo toast — fires the instant ✓ is tapped, sits just above the rest pill -->
+    <div style="position:absolute; left:18px; right:18px; bottom: 86px; display:flex; justify-content:center;">
+      <div class="toast">
+        <span class="mono" style="font-size: 13px; color: oklch(0.900 0.010 150);">Set logged</span>
+        <button class="undo">Undo</button>
       </div>
     </div>
 
@@ -308,6 +321,20 @@
       <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Ghost placeholders</div>
       <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
         An un-logged set's KG/REPS cells show last time's numbers as muted ghost text (frame 1, set 3 on each card) instead of blank — tap ✓ to confirm as-is with zero typing if you're repeating the same numbers, or tap the cell to open the keypad and change it.
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Completed rows collapse</div>
+      <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
+        The first pass highlighted every finished row with a green tint — with 3-5 sets per exercise that meant most of the card fighting for attention, and nothing marking which row was actually next. Now a completed set collapses to one quiet line — small check + "100 kg × 8" in muted mono — so only the active/pending row keeps full visual weight. Whole row stays tappable to reopen it, no time limit.
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Undo has two doors (frame 3)</div>
+      <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
+        Tapping ✓ by accident mid-set shouldn't need precision to fix. An instant "Set logged · Undo" toast fires right away for fast recovery — and separately, the collapsed row itself stays tappable forever to reopen and re-edit, so missing the toast's window costs nothing.
       </div>
     </div>
 
