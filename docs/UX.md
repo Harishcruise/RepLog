@@ -270,11 +270,13 @@ no floating nav, no tab bar, no contextual pill (its job is getting you
     means the same plain thing — **Save**: commit what's typed and
     close the keypad, no other side effect. Quiet gray, not brand
     green, since it's a utility action, not a milestone.
-  - The header buttons stay green and carry the consequential actions:
-    weight step shows a single **Next: Reps →** on the right, chaining
+  - The header buttons carry the consequential actions and now share
+    one consistent tinted-green pill so they read as a family: weight
+    step shows a single **Next: Reps →** on the right, chaining
     straight into reps entry. Reps step groups **← KG** and **Log set**
-    together on the right — Log set is what actually completes the set
-    (checks it off, starts rest); grid-Save on the same field would
+    together on the right, same treatment — Log set is what actually
+    completes the set (checks it off, starts rest); grid-Save on the
+    same field would
     just save the rep count and close, leaving the set unchecked.
 - Rest-timer pill: floats in the same bottom slot the nav's contextual
   pill normally occupies elsewhere in the app (free real estate here,
