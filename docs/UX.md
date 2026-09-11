@@ -42,15 +42,28 @@ Companion to [`SPEC.md`](SPEC.md).
 
 ## Navigation model
 
-Bottom tab bar (mobile), 5 items. Everything else is pushed on top.
+Bottom tab bar (mobile), 4 equal-weight items, plus one contextual full-width
+bar stacked directly above it. Everything else is pushed on top.
 
 ```
-[ Home ]   [ History ]   [ ( + )  Start ]   [ Exercises ]   [ Progress ]
+┌─────────────────────────────────────┐
+│   Start Workout  /  Resume — 12:34   │  ← contextual bar (state-driven)
+├─────────────────────────────────────┤
+│  Home  History  Exercises  Progress  │  ← tab bar (always the same 4)
+└─────────────────────────────────────┘
 ```
 
-- Centre **Start** is a prominent FAB-style action → `/app/workout/new`.
-- Templates reached from Start sheet and from Home. Body + Settings from Home header avatar.
-- When a session is `in_progress`, a persistent **"Resume workout"** bar sits above the tab bar on every screen.
+- The contextual bar is the single primary action, always present, and
+  changes state instead of coexisting with a separate FAB:
+  - **Idle** (no `in_progress` session): "Start Workout" → `/app/workout/new`.
+  - **Active** (an `in_progress` session exists): "Resume — mm:ss elapsed",
+    volt-tinted, live-updating timer → `/app/workout/[id]`.
+- No floating action button — this avoids two competing "raised" elements
+  fighting for attention on a small screen.
+- Tabs are flat, equal weight, icon + label always shown. Active = volt icon
+  + label + 2px top indicator; inactive = `--muted-foreground`.
+- Templates reached from Home and from the workout-start sheet. Body +
+  Settings from the Home header avatar (not in the tab bar).
 
 ## Sitemap
 
@@ -162,8 +175,8 @@ flowchart TD
 
 **Home `/app`**
 - Header: avatar (→ settings/body), app name, streak flame + count
-- Big **Start Workout** button
-- Resume banner if `in_progress` session exists
+- No in-page Start/Resume button — that's the nav's contextual bar
+  (see Navigation model above), present on every screen
 - "This week": total volume, sessions count, sparkline
 - Mini muscle heatmap (tap → Progress)
 - Recent sessions (3) → History

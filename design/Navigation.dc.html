@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; background: oklch(0.120 0.006 150);
+      font-family: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
+    .sg { font-family: 'Space Grotesk', system-ui, sans-serif; }
+    .mono { font-family: 'Geist Mono', ui-monospace, monospace; }
+    .screen { width: 390px; height: 844px; background: oklch(0.165 0.007 150); border-radius: 30px;
+      border: 1px solid oklch(1 0 0 / 8%); overflow: hidden; box-sizing: border-box;
+      color: oklch(0.950 0.008 150); display: flex; flex-direction: column; position: relative; }
+    .pad { padding: 0 20px; }
+    .avatar { width: 38px; height: 38px; border-radius: 50%; background: oklch(0.310 0.055 141);
+      display: flex; align-items: center; justify-content: center; font: 600 14px 'Space Grotesk', sans-serif;
+      color: oklch(0.86 0.16 137); flex-shrink: 0; }
+    .card { background: oklch(0.228 0.009 152); border: 1px solid oklch(1 0 0 / 6%); border-radius: 14px; }
+    .stat-num { font-family: 'Geist Mono', monospace; font-weight: 500; font-size: 20px; }
+    .stat-label { font-size: 11px; color: oklch(0.665 0.012 150); margin-top: 2px; }
+    .row { display: flex; align-items: center; }
+
+    /* ---- nav shell ---- */
+    .nav-shell { position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; }
+    .cta-bar { height: 52px; margin: 0 12px 10px; border-radius: 14px; display: flex; align-items: center;
+      justify-content: center; gap: 8px; font: 600 15px 'Space Grotesk', sans-serif; }
+    .cta-idle { background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137);
+      box-shadow: 0 6px 20px oklch(0.82 0.17 137 / 22%); }
+    .cta-active { background: oklch(0.268 0.010 152); border: 1px solid oklch(0.82 0.17 137 / 45%);
+      color: oklch(0.86 0.16 137); }
+    .tab-bar { height: 74px; padding-bottom: 14px; display: flex; align-items: flex-start; padding-top: 9px;
+      background: oklch(0.150 0.007 150); border-top: 1px solid oklch(1 0 0 / 7%); }
+    .tab { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; }
+    .tab-indicator { position: absolute; top: -9px; width: 20px; height: 2px; border-radius: 1px; background: oklch(0.82 0.17 137); }
+    .tab-label { font-size: 11px; font-weight: 500; }
+    .tab.on svg { stroke: oklch(0.86 0.16 137); }
+    .tab.on .tab-label { color: oklch(0.86 0.16 137); }
+    .tab.off svg { stroke: oklch(0.560 0.012 150); }
+    .tab.off .tab-label { color: oklch(0.560 0.012 150); }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: oklch(0.82 0.17 137); }
+
+    .eyebrow { font: 600 11px 'Space Grotesk', sans-serif; letter-spacing: 0.07em; text-transform: uppercase; color: oklch(0.665 0.012 150); }
+  </style>
+</helmet>
+
+<div style="padding: 44px; display: flex; gap: 40px; align-items: flex-start;">
+
+  <!-- ============ 1 · HOME — IDLE (no session) ============ -->
+  <div class="screen">
+    <div class="pad" style="padding-top: 22px; flex: 1; overflow: hidden; display: flex; flex-direction: column; gap: 20px;">
+
+      <div class="row" style="justify-content: space-between;">
+        <div class="row" style="gap: 10px;">
+          <div class="avatar">H</div>
+          <div style="display:flex; flex-direction:column;">
+            <span style="font-size: 13px; color: oklch(0.665 0.012 150);">Welcome back</span>
+            <span class="sg" style="font-size: 17px; font-weight: 600;">Harish</span>
+          </div>
+        </div>
+        <div class="row" style="gap: 5px; background: oklch(0.228 0.009 152); padding: 7px 12px; border-radius: 20px; border: 1px solid oklch(1 0 0 / 8%);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="oklch(0.80 0.13 78)" stroke="none"><path d="M12 2c-2 4-6 6-6 11a6 6 0 0 0 12 0c0-2-1-3-2-4 .3 2-1 3-2 2 1-3-1-5-2-9z"/></svg>
+          <span class="mono" style="font-size: 13px; font-weight: 500;">4</span>
+        </div>
+      </div>
+
+      <div class="card" style="padding: 14px 16px; display: flex; justify-content: space-between;">
+        <div><div class="stat-num">18.2k</div><div class="stat-label">kg this week</div></div>
+        <div><div class="stat-num">3</div><div class="stat-label">sessions</div></div>
+        <div><div class="stat-num">52m</div><div class="stat-label">avg time</div></div>
+      </div>
+
+      <div class="card" style="padding: 14px 16px;">
+        <div class="eyebrow">Muscles worked · 7d</div>
+        <div class="row" style="justify-content: center; gap: 18px; margin-top: 10px;">
+          <svg width="52" height="90" viewBox="0 0 52 90"><circle cx="26" cy="10" r="8" fill="oklch(0.300 0.011 152)"/><rect x="14" y="20" width="24" height="30" rx="8" fill="oklch(0.60 0.15 137)"/><rect x="10" y="50" width="13" height="34" rx="6" fill="oklch(0.300 0.011 152)"/><rect x="29" y="50" width="13" height="34" rx="6" fill="oklch(0.82 0.17 137)"/></svg>
+          <svg width="52" height="90" viewBox="0 0 52 90"><circle cx="26" cy="10" r="8" fill="oklch(0.300 0.011 152)"/><rect x="14" y="20" width="24" height="30" rx="8" fill="oklch(0.300 0.011 152)"/><rect x="10" y="50" width="13" height="34" rx="6" fill="oklch(0.45 0.10 137)"/><rect x="29" y="50" width="13" height="34" rx="6" fill="oklch(0.45 0.10 137)"/></svg>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap: 10px;">
+        <div class="eyebrow">Recent sessions</div>
+        <div class="card" style="padding: 12px 14px; display:flex; justify-content: space-between; align-items:center;">
+          <div><div style="font-size: 14px; font-weight: 500;">Push day</div><div style="font-size:12px; color: oklch(0.665 0.012 150); margin-top:2px;">Yesterday · 48m</div></div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="oklch(0.560 0.012 150)" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </div>
+        <div class="card" style="padding: 12px 14px; display:flex; justify-content: space-between; align-items:center;">
+          <div><div style="font-size: 14px; font-weight: 500;">Pull day</div><div style="font-size:12px; color: oklch(0.665 0.012 150); margin-top:2px;">3 days ago · 55m</div></div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="oklch(0.560 0.012 150)" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-shell">
+      <div class="cta-bar cta-idle">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M7 4v16l14-8z"/></svg>
+        Start Workout
+      </div>
+      <div class="tab-bar">
+        <div class="tab on">
+          <div class="tab-indicator"></div>
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg>
+          <span class="tab-label">Home</span>
+        </div>
+        <div class="tab off">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.34"/><path d="M3 4v5h5"/><path d="M12 7v5l4 2"/></svg>
+          <span class="tab-label">History</span>
+        </div>
+        <div class="tab off">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="3" height="6" rx="1"/><rect x="19" y="9" width="3" height="6" rx="1"/><rect x="7" y="10.3" width="10" height="3.4" rx="1"/><rect x="5" y="7.5" width="2" height="9" rx="1"/><rect x="17" y="7.5" width="2" height="9" rx="1"/></svg>
+          <span class="tab-label">Exercises</span>
+        </div>
+        <div class="tab off">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg>
+          <span class="tab-label">Progress</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 2 · HOME — ACTIVE SESSION (viewed from a different tab) ============ -->
+  <div class="screen">
+    <div class="pad" style="padding-top: 22px; flex: 1; overflow: hidden; display: flex; flex-direction: column; gap: 16px;">
+      <span class="sg" style="font-size: 20px; font-weight: 600;">Progress</span>
+      <div class="card" style="padding: 14px 16px; height: 150px; display:flex; align-items:center; justify-content:center;">
+        <span style="font-size: 12px; color: oklch(0.560 0.012 150);">— heatmap + charts —</span>
+      </div>
+      <div class="card" style="padding: 14px 16px; height: 90px;"></div>
+      <div class="card" style="padding: 14px 16px; flex:1;"></div>
+    </div>
+
+    <div class="nav-shell">
+      <div class="cta-bar cta-active">
+        <span class="dot" style="animation: none;"></span>
+        Resume
+        <span class="mono" style="font-weight: 500; opacity: 0.85;">— 12:34</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><path d="M9 18l6-6-6-6"/></svg>
+      </div>
+      <div class="tab-bar">
+        <div class="tab off">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg>
+          <span class="tab-label">Home</span>
+        </div>
+        <div class="tab off">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.34"/><path d="M3 4v5h5"/><path d="M12 7v5l4 2"/></svg>
+          <span class="tab-label">History</span>
+        </div>
+        <div class="tab off">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="3" height="6" rx="1"/><rect x="19" y="9" width="3" height="6" rx="1"/><rect x="7" y="10.3" width="10" height="3.4" rx="1"/><rect x="5" y="7.5" width="2" height="9" rx="1"/><rect x="17" y="7.5" width="2" height="9" rx="1"/></svg>
+          <span class="tab-label">Exercises</span>
+        </div>
+        <div class="tab on">
+          <div class="tab-indicator"></div>
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg>
+          <span class="tab-label">Progress</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ NOTES ============ -->
+  <div style="width: 320px; color: oklch(0.950 0.008 150); display: flex; flex-direction: column; gap: 22px; padding-top: 8px;">
+    <div>
+      <div class="sg" style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em;">Navigation shell</div>
+      <div style="font-size: 13px; line-height: 20px; color: oklch(0.665 0.012 150); margin-top: 6px;">
+        One nav shell, present on every <span class="mono" style="font-size:12px;">/app/*</span> screen: a state-driven <b style="color: oklch(0.86 0.03 150);">contextual bar</b> stacked directly above a flat <b style="color: oklch(0.86 0.03 150);">4-tab bar</b>. No FAB — the contextual bar <i>is</i> the primary action, and it's the only element that changes shape.
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Frame 1 — idle</div>
+      <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
+        No <span class="mono" style="font-size:12px;">in_progress</span> session. Bar reads <b>"Start Workout"</b>, solid volt fill, → <span class="mono" style="font-size:12px;">/app/workout/new</span>.
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Frame 2 — active session</div>
+      <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
+        Bar reads <b>"Resume — mm:ss"</b> (live, ticking), volt outline on card surface instead of solid fill — visible but calmer than the idle CTA since it's now persistent rather than a one-off prompt. Tapping it always returns to <span class="mono" style="font-size:12px;">/app/workout/[id]</span> regardless of which tab you're on — shown here from the Progress tab to prove it survives navigation.
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Tab bar — always 4</div>
+      <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
+        Home · History · Exercises · Progress. Flat, equal weight, icon + label always shown. Active = volt icon + label + 2px top indicator; inactive = <span class="mono" style="font-size:12px;">--muted-foreground</span>. Templates: reached from Home, not a tab. Body + Settings: from the Home header avatar.
+      </div>
+    </div>
+
+    <div style="font-size: 12px; line-height: 18px; color: oklch(0.560 0.012 150);">
+      Supersedes the 5-tab / raised-centre-FAB sketch on the Components artboard and the "resume banner" bullet in UX.md's Home checklist — this bar replaces both.
+    </div>
+  </div>
+
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":1180,"height":980}}'>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>
