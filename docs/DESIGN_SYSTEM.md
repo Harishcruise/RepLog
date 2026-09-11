@@ -180,6 +180,29 @@ translucent border. Where a shadow is used (sheets, toasts, the timer pill):
 Easing `standard` `cubic-bezier(0.2, 0, 0, 1)`; sheets use a soft spring.
 `prefers-reduced-motion`: no transforms/slide, opacity only, timer ring still animates.
 
+**Navigation transitions** — the motion depends on the *kind* of navigation,
+not a single blanket transition:
+- **Tab switches** (bottom nav — parallel, non-hierarchical destinations):
+  content crossfades only (opacity, `fast`, no transform — sliding would
+  imply an order between tabs that doesn't exist, and adds latency to
+  something used constantly mid-workout). The nav's active-tab indicator
+  pill is the only thing that visibly moves: it slides + resizes to the new
+  tab (shared-layout animation, `base`, `standard` easing) — see
+  `Navigation.dc.html`.
+- **Drill-down** (list → detail: Exercises → exercise detail, History →
+  session detail): genuinely hierarchical, so a directional slide earns its
+  keep — new screen in from the right (`base`, `standard`), back reverses it.
+- **Sheets** (exercise picker, rest-timer expand): slide up + backdrop fade,
+  soft spring (as above) — a third category, not to be confused with the
+  other two.
+- **Tap feedback**: every tappable element gets a quick press-scale (~0.96,
+  `fast`) independent of whatever screen transition follows — tactile
+  confirmation matters more than usual here (sweaty hands, gym gloves).
+- **The one deliberate exception**: PR hits and session-finish get a touch
+  more flourish (scale + settle on the stat/badge, not a slide) — reserving
+  it for the moment that's supposed to feel good (principle 6, "calm by
+  default, loud on achievement") rather than diluting it everywhere.
+
 ---
 
 ## 5. Layout
