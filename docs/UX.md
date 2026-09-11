@@ -228,12 +228,39 @@ flowchart TD
 - Mini muscle heatmap (tap → Progress)
 - Recent sessions (3) → History
 
-**Active session `/app/workout/[id]`**
-- Sticky header: session name/time, elapsed timer, **Finish** button, overflow (rename, discard)
-- Rest-timer pill (appears after completing a set; tap to adjust/skip)
-- Per exercise: name, "last time" line, set table (set #, prev, kg, reps, RPE, ✓), **+ Add set**
-- Drag handle to reorder; swipe row to delete
-- **+ Add exercise** (opens picker sheet)
+**Active session `/app/workout/[id]`** — the core loop; "log a set in ~2
+taps" drives every choice below. Pushed/immersive like Profile and Body:
+no floating nav, no tab bar, no contextual pill (its job is getting you
+*back* here — redundant once you're already here).
+- Sticky header: session name (tap to rename) + live elapsed timer (mono)
+  on the left; **Finish** + overflow (⋮ → rename, discard) on the right.
+  No back chevron — leave via Finish or Discard, not by backing out.
+- Per exercise card: name + muscle chip, then set rows
+  **SET · PREV · KG · REPS · ✓**:
+  - SET badge is tappable → compact inline set-type picker
+    (normal/warmup/dropset/failure/amrap), not a permanent column.
+  - PREV shows last time's numbers for reference; KG/REPS cells show
+    last time's value as a ghost placeholder — tap-confirm without
+    retyping if it's the same as last time.
+  - ✓ is a large tap target: completes the set and starts rest.
+  - No separate "last time" summary line — PREV already covers that job.
+  - RPE stays out of the row entirely in v1 (opt-in-by-habit for most
+    lifters, permanent-column real estate isn't worth it); revisit if it
+    turns out to matter.
+  - **+ Add set** at the card's bottom.
+- Weight/reps entry: a **custom docked numeric keypad**, not the OS
+  keyboard. Tapping a cell docks it at the bottom — shows the active
+  field + its value large, a digit grid, and a chained "next field" key
+  (weight → reps → next set) so advancing never needs a re-tap. Sidesteps
+  OS-keyboard-covers-input entirely rather than working around it (the
+  same class of problem Profile's dialogs avoid by not being a bottom
+  sheet), and keypad height is predictable across every device.
+- Rest-timer pill: floats in the same bottom slot the nav's contextual
+  pill normally occupies elsewhere in the app (free real estate here,
+  since this screen has no nav) — "Resting — mm:ss", tap to adjust/skip,
+  same rounded-pill treatment as the Resume pill.
+- Drag handle to reorder exercises; swipe a set row to delete.
+- **+ Add exercise** at the bottom of the stack (opens the picker sheet).
 
 **Exercise picker `/app/workout/[id]/pick`**
 - Search field (autofocus)
