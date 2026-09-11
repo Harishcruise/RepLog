@@ -265,16 +265,17 @@ no floating nav, no tab bar, no contextual pill (its job is getting you
   OS-keyboard-covers-input entirely rather than working around it (the
   same class of problem Profile's dialogs avoid by not being a bottom
   sheet), and keypad height is predictable across every device.
-  - **One CTA, not two.** The big grid button (bottom-right, thumb
-    reach) is the only action — it saves the current field's value and
-    exits it: **Next** on the weight step (moves into Reps), filled
-    **Log set** on the reps step (commits the set, closes the keypad).
-    The field label ("Weight (kg)" / "Reps") sits alone above the value
-    on both steps — no duplicate button next to it.
-  - A small back-chevron next to the "Reps" label (reps step only)
-    returns to KG to fix a mistype — icon-only, so it never competes
-    with the one real CTA. Nothing to go back to from the weight step,
-    so no back control shows there.
+  - Two different jobs, not one button doing double duty. The grid's
+    big bottom-right button (same reachable spot on every step) always
+    means the same plain thing — **Save**: commit what's typed and
+    close the keypad, no other side effect. Quiet gray, not brand
+    green, since it's a utility action, not a milestone.
+  - The header buttons stay green and carry the consequential actions:
+    weight step shows a single **Next: Reps →** on the right, chaining
+    straight into reps entry. Reps step groups **← KG** and **Log set**
+    together on the right — Log set is what actually completes the set
+    (checks it off, starts rest); grid-Save on the same field would
+    just save the rep count and close, leaving the set unchecked.
 - Rest-timer pill: floats in the same bottom slot the nav's contextual
   pill normally occupies elsewhere in the app (free real estate here,
   since this screen has no nav) — "Resting — mm:ss", tap to adjust/skip,
