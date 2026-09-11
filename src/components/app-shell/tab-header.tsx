@@ -10,8 +10,8 @@ type TabHeaderProps = {
 
 /**
  * Shared header for the 4 main tabs (Home/History/Exercises/Progress):
- * avatar + name (tap → Profile) and a streak chip. Rendered once by the
- * `(tabs)` route group's layout, not per-screen.
+ * avatar + "Welcome back" / name (tap → Profile) and a streak chip.
+ * Rendered once by the `(tabs)` route group's layout, not per-screen.
  */
 export function TabHeader({ name }: TabHeaderProps) {
   const initial = name.trim().charAt(0).toUpperCase() || "?";
@@ -23,7 +23,12 @@ export function TabHeader({ name }: TabHeaderProps) {
         <span className="bg-accent text-primary-hover font-display flex size-9 shrink-0 items-center justify-center rounded-full text-[14px] font-semibold">
           {initial}
         </span>
-        <span className="font-display text-[17px] font-semibold">{name}</span>
+        <span className="flex flex-col">
+          <span className="text-muted-foreground text-[13px]">
+            Welcome back
+          </span>
+          <span className="font-display text-[17px] font-semibold">{name}</span>
+        </span>
       </Link>
 
       <div className="border-border bg-card flex items-center gap-1.5 rounded-full border px-3 py-1.5">
