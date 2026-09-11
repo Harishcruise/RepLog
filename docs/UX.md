@@ -280,6 +280,10 @@ no floating nav, no tab bar, no contextual pill (its job is getting you
     secondary color, not primary green — it's a correction, not a
     milestone, so it doesn't compete visually with the action that's
     actually finishing the set.
+  - Digit keys sit a shade lighter than the panel with a hairline
+    border so they read as physical keys, not a flat block; Save keeps
+    its quiet fill but picks up a green-tinted border to mark it as the
+    one key that does something different from a plain digit.
 - Rest-timer pill: floats in the same bottom slot the nav's contextual
   pill normally occupies elsewhere in the app (free real estate here,
   since this screen has no nav) — "Resting — mm:ss", tap to adjust/skip,
