@@ -42,26 +42,37 @@ Companion to [`SPEC.md`](SPEC.md).
 
 ## Navigation model
 
-Bottom tab bar (mobile), 4 equal-weight items, plus one contextual full-width
-bar stacked directly above it. Everything else is pushed on top.
+Two floating, elevated pills stacked above the content — not docked flush
+to the screen edge — inset ~14px from the sides on every `/app/*` screen.
 
 ```
-┌─────────────────────────────────────┐
-│   Start Workout  /  Resume — 12:34   │  ← contextual bar (state-driven)
-├─────────────────────────────────────┤
-│  Home  History  Exercises  Progress  │  ← tab bar (always the same 4)
-└─────────────────────────────────────┘
+        ╭─────────────────────────────────╮
+        │  Start Workout / Resume — 12:34  │  ← contextual pill (state-driven)
+        ╰─────────────────────────────────╯
+        ╭─────────────────────────────────╮
+        │ Home   History   Exercises  Prog │  ← tab pill (always the same 4)
+        ╰─────────────────────────────────╯
 ```
 
-- The contextual bar is the single primary action, always present, and
+- **Floating, not docked.** Every other surface in the system (cards,
+  popovers, OTP boxes) is an inset rounded shape on the obsidian ground —
+  the nav bar follows the same rule instead of being the one element flush
+  to the edge. It also reads correctly at any viewport: the app is a
+  centred ≤480px column everywhere (`DESIGN_SYSTEM.md §5`), so a bar flush
+  to the *column's* edges implies a phone chassis that isn't there on web.
+- The contextual pill is the single primary action, always present, and
   changes state instead of coexisting with a separate FAB:
   - **Idle** (no `in_progress` session): "Start Workout" → `/app/workout/new`.
   - **Active** (an `in_progress` session exists): "Resume — mm:ss elapsed",
-    volt-tinted, live-updating timer → `/app/workout/[id]`.
+    volt-tinted, live-updating timer → `/app/workout/[id]`. Survives
+    navigating between tabs.
 - No floating action button — this avoids two competing "raised" elements
   fighting for attention on a small screen.
-- Tabs are flat, equal weight, icon + label always shown. Active = volt icon
-  + label + 2px top indicator; inactive = `--muted-foreground`.
+- Tabs are flat, equal weight, icon + label always shown. Active = filled
+  volt-tinted chip behind icon+label (not a top-border indicator — a hard
+  edge reads wrong against a fully rounded pill); inactive = `--muted-foreground`.
+- Content scrolling under the pills gets a bottom fade + enough scroll
+  padding that nothing is hidden behind the floating stack.
 - Templates reached from Home and from the workout-start sheet. Body +
   Settings from the Home header avatar (not in the tab bar).
 

@@ -27,23 +27,27 @@
     .stat-label { font-size: 11px; color: oklch(0.665 0.012 150); margin-top: 2px; }
     .row { display: flex; align-items: center; }
 
-    /* ---- nav shell ---- */
-    .nav-shell { position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; }
-    .cta-bar { height: 52px; margin: 0 12px 10px; border-radius: 14px; display: flex; align-items: center;
-      justify-content: center; gap: 8px; font: 600 15px 'Space Grotesk', sans-serif; }
-    .cta-idle { background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137);
-      box-shadow: 0 6px 20px oklch(0.82 0.17 137 / 22%); }
+    /* ---- floating nav shell ---- */
+    .nav-shell { position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column;
+      align-items: center; gap: 10px; padding: 0 14px 20px; }
+    .cta-pill { width: 100%; height: 50px; border-radius: 25px; display: flex; align-items: center;
+      justify-content: center; gap: 8px; font: 600 15px 'Space Grotesk', sans-serif;
+      box-shadow: 0 10px 28px oklch(0 0 0 / 38%); }
+    .cta-idle { background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137); }
     .cta-active { background: oklch(0.268 0.010 152); border: 1px solid oklch(0.82 0.17 137 / 45%);
       color: oklch(0.86 0.16 137); }
-    .tab-bar { height: 74px; padding-bottom: 14px; display: flex; align-items: flex-start; padding-top: 9px;
-      background: oklch(0.150 0.007 150); border-top: 1px solid oklch(1 0 0 / 7%); }
-    .tab { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; }
-    .tab-indicator { position: absolute; top: -9px; width: 20px; height: 2px; border-radius: 1px; background: oklch(0.82 0.17 137); }
-    .tab-label { font-size: 11px; font-weight: 500; }
+    .tab-pill { width: 100%; height: 68px; border-radius: 30px; background: oklch(0.228 0.009 152 / 92%);
+      backdrop-filter: blur(14px); border: 1px solid oklch(1 0 0 / 9%);
+      box-shadow: 0 12px 32px oklch(0 0 0 / 42%); display: flex; align-items: center; padding: 0 8px; }
+    .tab { flex: 1; display: flex; align-items: center; justify-content: center; height: 52px; }
+    .tab-chip { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .tab.on .tab-chip { background: oklch(0.310 0.055 141); border-radius: 18px; padding: 6px 14px 7px; }
     .tab.on svg { stroke: oklch(0.86 0.16 137); }
     .tab.on .tab-label { color: oklch(0.86 0.16 137); }
+    .tab.off .tab-chip { padding: 6px 14px 7px; }
     .tab.off svg { stroke: oklch(0.560 0.012 150); }
     .tab.off .tab-label { color: oklch(0.560 0.012 150); }
+    .tab-label { font-size: 10.5px; font-weight: 500; }
     .dot { width: 6px; height: 6px; border-radius: 50%; background: oklch(0.82 0.17 137); }
 
     .eyebrow { font: 600 11px 'Space Grotesk', sans-serif; letter-spacing: 0.07em; text-transform: uppercase; color: oklch(0.665 0.012 150); }
@@ -54,7 +58,7 @@
 
   <!-- ============ 1 · HOME — IDLE (no session) ============ -->
   <div class="screen">
-    <div class="pad" style="padding-top: 22px; flex: 1; overflow: hidden; display: flex; flex-direction: column; gap: 20px;">
+    <div class="pad" style="padding-top: 22px; padding-bottom: 150px; flex: 1; overflow: hidden; display: flex; flex-direction: column; gap: 20px;">
 
       <div class="row" style="justify-content: space-between;">
         <div class="row" style="gap: 10px;">
@@ -97,36 +101,47 @@
       </div>
     </div>
 
+    <!-- fade so content doesn't hard-cut under the floating shell -->
+    <div style="position:absolute; left:0; right:0; bottom:0; height:170px; pointer-events:none;
+      background: linear-gradient(oklch(0.165 0.007 150 / 0%), oklch(0.165 0.007 150 / 92%) 60%);"></div>
+
     <div class="nav-shell">
-      <div class="cta-bar cta-idle">
+      <div class="cta-pill cta-idle">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M7 4v16l14-8z"/></svg>
         Start Workout
       </div>
-      <div class="tab-bar">
+      <div class="tab-pill">
         <div class="tab on">
-          <div class="tab-indicator"></div>
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg>
-          <span class="tab-label">Home</span>
+          <div class="tab-chip">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg>
+            <span class="tab-label">Home</span>
+          </div>
         </div>
         <div class="tab off">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.34"/><path d="M3 4v5h5"/><path d="M12 7v5l4 2"/></svg>
-          <span class="tab-label">History</span>
+          <div class="tab-chip">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.34"/><path d="M3 4v5h5"/><path d="M12 7v5l4 2"/></svg>
+            <span class="tab-label">History</span>
+          </div>
         </div>
         <div class="tab off">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="3" height="6" rx="1"/><rect x="19" y="9" width="3" height="6" rx="1"/><rect x="7" y="10.3" width="10" height="3.4" rx="1"/><rect x="5" y="7.5" width="2" height="9" rx="1"/><rect x="17" y="7.5" width="2" height="9" rx="1"/></svg>
-          <span class="tab-label">Exercises</span>
+          <div class="tab-chip">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="3" height="6" rx="1"/><rect x="19" y="9" width="3" height="6" rx="1"/><rect x="7" y="10.3" width="10" height="3.4" rx="1"/><rect x="5" y="7.5" width="2" height="9" rx="1"/><rect x="17" y="7.5" width="2" height="9" rx="1"/></svg>
+            <span class="tab-label">Exercises</span>
+          </div>
         </div>
         <div class="tab off">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg>
-          <span class="tab-label">Progress</span>
+          <div class="tab-chip">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg>
+            <span class="tab-label">Progress</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ============ 2 · HOME — ACTIVE SESSION (viewed from a different tab) ============ -->
+  <!-- ============ 2 · PROGRESS TAB — ACTIVE SESSION ============ -->
   <div class="screen">
-    <div class="pad" style="padding-top: 22px; flex: 1; overflow: hidden; display: flex; flex-direction: column; gap: 16px;">
+    <div class="pad" style="padding-top: 22px; padding-bottom: 150px; flex: 1; overflow: hidden; display: flex; flex-direction: column; gap: 16px;">
       <span class="sg" style="font-size: 20px; font-weight: 600;">Progress</span>
       <div class="card" style="padding: 14px 16px; height: 150px; display:flex; align-items:center; justify-content:center;">
         <span style="font-size: 12px; color: oklch(0.560 0.012 150);">— heatmap + charts —</span>
@@ -135,30 +150,40 @@
       <div class="card" style="padding: 14px 16px; flex:1;"></div>
     </div>
 
+    <div style="position:absolute; left:0; right:0; bottom:0; height:170px; pointer-events:none;
+      background: linear-gradient(oklch(0.165 0.007 150 / 0%), oklch(0.165 0.007 150 / 92%) 60%);"></div>
+
     <div class="nav-shell">
-      <div class="cta-bar cta-active">
-        <span class="dot" style="animation: none;"></span>
+      <div class="cta-pill cta-active">
+        <span class="dot"></span>
         Resume
         <span class="mono" style="font-weight: 500; opacity: 0.85;">— 12:34</span>
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><path d="M9 18l6-6-6-6"/></svg>
       </div>
-      <div class="tab-bar">
+      <div class="tab-pill">
         <div class="tab off">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg>
-          <span class="tab-label">Home</span>
+          <div class="tab-chip">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg>
+            <span class="tab-label">Home</span>
+          </div>
         </div>
         <div class="tab off">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.34"/><path d="M3 4v5h5"/><path d="M12 7v5l4 2"/></svg>
-          <span class="tab-label">History</span>
+          <div class="tab-chip">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.34"/><path d="M3 4v5h5"/><path d="M12 7v5l4 2"/></svg>
+            <span class="tab-label">History</span>
+          </div>
         </div>
         <div class="tab off">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="3" height="6" rx="1"/><rect x="19" y="9" width="3" height="6" rx="1"/><rect x="7" y="10.3" width="10" height="3.4" rx="1"/><rect x="5" y="7.5" width="2" height="9" rx="1"/><rect x="17" y="7.5" width="2" height="9" rx="1"/></svg>
-          <span class="tab-label">Exercises</span>
+          <div class="tab-chip">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="3" height="6" rx="1"/><rect x="19" y="9" width="3" height="6" rx="1"/><rect x="7" y="10.3" width="10" height="3.4" rx="1"/><rect x="5" y="7.5" width="2" height="9" rx="1"/><rect x="17" y="7.5" width="2" height="9" rx="1"/></svg>
+            <span class="tab-label">Exercises</span>
+          </div>
         </div>
         <div class="tab on">
-          <div class="tab-indicator"></div>
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg>
-          <span class="tab-label">Progress</span>
+          <div class="tab-chip">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg>
+            <span class="tab-label">Progress</span>
+          </div>
         </div>
       </div>
     </div>
@@ -167,35 +192,33 @@
   <!-- ============ NOTES ============ -->
   <div style="width: 320px; color: oklch(0.950 0.008 150); display: flex; flex-direction: column; gap: 22px; padding-top: 8px;">
     <div>
-      <div class="sg" style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em;">Navigation shell</div>
+      <div class="sg" style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em;">Navigation shell — floating</div>
       <div style="font-size: 13px; line-height: 20px; color: oklch(0.665 0.012 150); margin-top: 6px;">
-        One nav shell, present on every <span class="mono" style="font-size:12px;">/app/*</span> screen: a state-driven <b style="color: oklch(0.86 0.03 150);">contextual bar</b> stacked directly above a flat <b style="color: oklch(0.86 0.03 150);">4-tab bar</b>. No FAB — the contextual bar <i>is</i> the primary action, and it's the only element that changes shape.
+        Same structure as before (contextual bar + 4-tab bar), new treatment: both are inset ~14px from the screen edges, fully rounded, elevated with a soft shadow — <b style="color: oklch(0.86 0.03 150);">floating</b> above the content instead of docked flush to the bottom edge.
       </div>
     </div>
 
     <div style="display: flex; flex-direction: column; gap: 8px;">
-      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Frame 1 — idle</div>
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Why floating over docked</div>
       <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
-        No <span class="mono" style="font-size:12px;">in_progress</span> session. Bar reads <b>"Start Workout"</b>, solid volt fill, → <span class="mono" style="font-size:12px;">/app/workout/new</span>.
+        Every other surface in the system (cards, popovers, OTP boxes) is an inset rounded shape on the obsidian ground. A bar flush to the screen edge was the one exception. Floating also reads correctly at any viewport — the app is a centred ≤480px column everywhere (<span class="mono" style="font-size:12px;">DESIGN_SYSTEM.md §5</span>), so a bar flush to the <i>column's</i> edges implies a phone chassis that isn't there on web. A floating bar makes no such claim.
       </div>
     </div>
 
     <div style="display: flex; flex-direction: column; gap: 8px;">
-      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Frame 2 — active session</div>
-      <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
-        Bar reads <b>"Resume — mm:ss"</b> (live, ticking), volt outline on card surface instead of solid fill — visible but calmer than the idle CTA since it's now persistent rather than a one-off prompt. Tapping it always returns to <span class="mono" style="font-size:12px;">/app/workout/[id]</span> regardless of which tab you're on — shown here from the Progress tab to prove it survives navigation.
-      </div>
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">What changed from the docked version</div>
+      <ul style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150); margin: 0; padding-left: 18px;">
+        <li>Active tab = filled volt-tinted chip behind icon+label, not a top-border indicator (a hard edge reads wrong against a fully rounded shape).</li>
+        <li>Content needs a bottom fade + ~150px scroll padding so it doesn't hard-cut under the floating stack.</li>
+        <li><span class="mono" style="font-size:12px;">backdrop-filter: blur</span> on the tab pill so content peeking through the gap between the two pills still feels like one system.</li>
+      </ul>
     </div>
 
     <div style="display: flex; flex-direction: column; gap: 8px;">
-      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Tab bar — always 4</div>
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Unchanged</div>
       <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
-        Home · History · Exercises · Progress. Flat, equal weight, icon + label always shown. Active = volt icon + label + 2px top indicator; inactive = <span class="mono" style="font-size:12px;">--muted-foreground</span>. Templates: reached from Home, not a tab. Body + Settings: from the Home header avatar.
+        Still exactly 4 tabs (Home · History · Exercises · Progress), still no FAB, still one contextual pill that swaps Start ⇄ Resume state and survives tab navigation (frame 2 shown from the Progress tab).
       </div>
-    </div>
-
-    <div style="font-size: 12px; line-height: 18px; color: oklch(0.560 0.012 150);">
-      Supersedes the 5-tab / raised-centre-FAB sketch on the Components artboard and the "resume banner" bullet in UX.md's Home checklist — this bar replaces both.
     </div>
   </div>
 
