@@ -1,7 +1,8 @@
 "use client";
 
-import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
+
+import { BackLink } from "@/components/app-shell/back-link";
 
 import { AccountSection } from "./account-section";
 import { IdentitySection } from "./identity-section";
@@ -18,13 +19,7 @@ type ProfileFormProps = {
 export function ProfileForm({ name, email, memberSince }: ProfileFormProps) {
   return (
     <div className="flex flex-col gap-6">
-      <Link
-        href="/app"
-        className="text-caption text-muted-foreground hover:text-foreground flex items-center gap-1.5 self-start font-sans font-medium transition-colors"
-      >
-        <ChevronLeft className="size-4" />
-        Home
-      </Link>
+      <BackLink href="/app" label="Home" />
 
       <IdentitySection name={name} email={email} memberSince={memberSince} />
       <StatsStrip />
