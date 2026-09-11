@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
+import { NavShell } from "@/components/app-shell/nav-shell";
 import { Button } from "@/components/ui/button";
 import {
   Field,
@@ -279,6 +280,11 @@ export default function DevUI() {
             PR
           </Button>
         </div>
+      </Section>
+
+      {/* ---- app shell nav ---- */}
+      <Section title="App shell nav">
+        <NavShell />
       </Section>
     </main>
   );
