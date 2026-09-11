@@ -37,7 +37,7 @@ Companion to [`SPEC.md`](SPEC.md).
 | `/app/templates/new` | Build template | authed | Name, ordered exercises, targets. |
 | `/app/templates/[id]` | Template detail / edit | authed | Start session from here. |
 | `/app/progress` | Progress overview | authed | Full muscle heatmap, tonnage, frequency, per-lift 1RM. |
-| `/app/body` | Bodyweight | authed | One entry/day, trend chart. Reached from Profile. |
+| `/app/body` | Bodyweight | authed | One entry/day, trend chart, recent history. Reached from Profile (back link reads `< Profile`). Logging today's weight opens the same shadcn Dialog as Profile's edits — the page itself stays a normal screen (chart + history need the space), only the data-entry moment is a dialog. |
 | `/app/profile` | Profile | authed | Opened from the Home header avatar. Identity (editable name + avatar colour), stubbed stats strip, preferences (unit, default rest), change password, → Body, sign out, legal links. Every field that's a form (name, avatar colour, default rest, change password) opens the same shadcn Dialog (centred, not a bottom sheet — avoids the mobile keyboard covering the field being edited); units is the one instant, dialog-free toggle. Merges what would otherwise be a separate Settings screen — v1's settings list is short enough not to need its own route. |
 
 ## Navigation model
