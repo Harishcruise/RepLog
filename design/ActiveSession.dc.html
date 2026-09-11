@@ -220,7 +220,7 @@
         <button class="mono" style="height: 46px; border: 0; border-radius: 10px; background: oklch(0.300 0.011 152); font-size: 18px; font-weight: 500;">4</button>
         <button class="mono" style="height: 46px; border: 0; border-radius: 10px; background: oklch(0.300 0.011 152); font-size: 18px; font-weight: 500;">5</button>
         <button class="mono" style="height: 46px; border: 0; border-radius: 10px; background: oklch(0.300 0.011 152); font-size: 18px; font-weight: 500;">6</button>
-        <button class="mono" style="height: 46px; border-radius: 10px; grid-row: span 2; background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137); font-size: 14px; font-weight: 600;">Done</button>
+        <button class="mono" style="height: 46px; border-radius: 10px; grid-row: span 2; background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137); font-size: 14px; font-weight: 600;">Next</button>
         <button class="mono" style="height: 46px; border: 0; border-radius: 10px; background: oklch(0.300 0.011 152); font-size: 18px; font-weight: 500;">7</button>
         <button class="mono" style="height: 46px; border: 0; border-radius: 10px; background: oklch(0.300 0.011 152); font-size: 18px; font-weight: 500;">8</button>
         <button class="mono" style="height: 46px; border: 0; border-radius: 10px; background: oklch(0.300 0.011 152); font-size: 18px; font-weight: 500;">9</button>
@@ -230,7 +230,87 @@
     </div>
   </div>
 
-  <!-- ============ 3 · REST TIMER PILL ACTIVE (in the nav's bottom slot) ============ -->
+  <!-- ============ 3 · DOCKED NUMERIC KEYPAD — REPS STEP (back + log set) ============ -->
+  <div class="screen">
+    <div class="pad" style="padding-top: 18px; padding-bottom: 12px; border-bottom: 1px solid oklch(1 0 0 / 7%);">
+      <div class="row" style="justify-content: space-between;">
+        <div style="display:flex; flex-direction:column; gap: 2px;">
+          <span class="sg" style="font-size: 16px; font-weight: 600;">Push Day</span>
+          <span class="mono" style="font-size: 12px; color: oklch(0.665 0.012 150);">24:56 elapsed</span>
+        </div>
+        <button class="finish-btn">Finish</button>
+      </div>
+    </div>
+
+    <div class="pad" style="padding-top: 14px; flex: 1; display: flex; flex-direction: column; gap: 12px;">
+      <div class="card">
+        <div class="row" style="gap: 8px;">
+          <span style="font-size: 16px; font-weight: 600;">Barbell Bench Press</span>
+          <span class="chip">Chest</span>
+        </div>
+        <div>
+          <div class="thead">
+            <span class="th">SET</span><span class="th">PREV</span>
+            <span class="th" style="text-align:center;">KG</span>
+            <span class="th" style="text-align:center;">REPS</span><span></span>
+          </div>
+          <div class="set-row complete">
+            <span class="set-badge">1</span>
+            <span class="prev-dash mono">—</span>
+            <span class="cell mono">100</span>
+            <span class="cell mono">8</span>
+            <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="set-row complete">
+            <span class="set-badge">2</span>
+            <span class="prev-dash mono">—</span>
+            <span class="cell mono">100</span>
+            <span class="cell mono">8</span>
+            <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <!-- weight confirmed, reps cell now focused -->
+          <div class="set-row" style="background: color-mix(in oklch, oklch(0.82 0.17 137) 6%, transparent);">
+            <span class="set-badge">3</span><span class="meta mono">100 × 7</span>
+            <span class="cell mono">100</span>
+            <span class="cell mono" style="border-radius: 6px; box-shadow: 0 0 0 2px oklch(0.82 0.17 137);">7</span>
+            <span class="check off"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- docked keypad — reps step: back on the left, log-set (the finishing action) on the right -->
+    <div style="background: oklch(0.228 0.009 152); border-top: 1px solid oklch(1 0 0 / 10%); border-radius: 20px 20px 0 0; padding: 14px 16px calc(14px + 8px);">
+      <div class="row" style="justify-content: space-between; margin-bottom: 10px;">
+        <button class="sg" style="height: 30px; padding: 0 10px 0 6px; border: 0; border-radius: 8px; background: transparent; color: oklch(0.665 0.012 150); font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 3px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          Back: KG
+        </button>
+        <button class="sg" style="height: 30px; padding: 0 12px; border: 0; border-radius: 8px; background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137); font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
+          Log set
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+      </div>
+      <div class="mono" style="font-size: 34px; font-weight: 600; margin-bottom: 12px;">7</div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+        <button class="mono" style="height: 46px; border: 0; border-radius: 10px; background: oklch(0.300 0.011 152); font-size: 18px; font-weight: 500;">1</button>
+        <button class="mono" style="height: 46px; border: 0; border-radius: 10px; background: oklch(0.300 0.011 152); font-size: 18px; font-weight: 500;">2</button>
+        <button class="mono" style="height: 46px; border: 0; border-radius: 10px; background: oklch(0.300 0.011 152); font-size: 18px; font-weight: 500;">3</button>
+        <button style="height: 46px; border: 0; border-radius: 10px; background: transparent; color: oklch(0.665 0.012 150); display:flex; align-items:center; justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="m8 6-6 6 6 6"/></svg></button>
+        <button class="mono" style="height: 46px; border: 0; border-radius: 10px; background: oklch(0.300 0.011 152); font-size: 18px; font-weight: 500;">4</button>
+        <button class="mono" style="height: 46px; border: 0; border-radius: 10px; background: oklch(0.300 0.011 152); font-size: 18px; font-weight: 500;">5</button>
+        <button class="mono" style="height: 46px; border: 0; border-radius: 10px; background: oklch(0.300 0.011 152); font-size: 18px; font-weight: 500;">6</button>
+        <button class="mono" style="height: 46px; border-radius: 10px; grid-row: span 2; background: oklch(0.82 0.17 137); color: oklch(0.18 0.04 137); font-size: 13px; font-weight: 600;">Log set</button>
+        <button class="mono" style="height: 46px; border: 0; border-radius: 10px; background: oklch(0.300 0.011 152); font-size: 18px; font-weight: 500;">7</button>
+        <button class="mono" style="height: 46px; border: 0; border-radius: 10px; background: oklch(0.300 0.011 152); font-size: 18px; font-weight: 500;">8</button>
+        <button class="mono" style="height: 46px; border: 0; border-radius: 10px; background: oklch(0.300 0.011 152); font-size: 18px; font-weight: 500;">9</button>
+        <button class="mono" style="height: 46px; border: 0; border-radius: 10px; background: oklch(0.300 0.011 152); font-size: 18px; font-weight: 500;">.</button>
+        <button class="mono" style="height: 46px; border: 0; border-radius: 10px; background: oklch(0.300 0.011 152); font-size: 18px; font-weight: 500;">0</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 4 · REST TIMER PILL ACTIVE (in the nav's bottom slot) ============ -->
   <div class="screen">
     <div class="pad" style="padding-top: 18px; padding-bottom: 12px; border-bottom: 1px solid oklch(1 0 0 / 7%);">
       <div class="row" style="justify-content: space-between;">
@@ -330,7 +410,7 @@
     <div style="display: flex; flex-direction: column; gap: 8px;">
       <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Set row — 5 columns, not 6</div>
       <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
-        SET · PREV · KG · REPS · ✓. RPE dropped from the earlier Components.dc.html sketch — opt-in-by-habit for most lifters, not worth a permanent column on every row. The SET badge is tappable → the set-type picker (frame 3, shown detached for reference): normal/warmup/drop set/failure/AMRAP, replacing the old "W badge + red-dot" per-type styling with one consistent interaction.
+        SET · PREV · KG · REPS · ✓. RPE dropped from the earlier Components.dc.html sketch — opt-in-by-habit for most lifters, not worth a permanent column on every row. The SET badge is tappable → the set-type picker (frame 4, shown detached for reference): normal/warmup/drop set/failure/AMRAP, replacing the old "W badge + red-dot" per-type styling with one consistent interaction.
       </div>
     </div>
 
@@ -349,21 +429,28 @@
     </div>
 
     <div style="display: flex; flex-direction: column; gap: 8px;">
-      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Undo has two doors (frame 3)</div>
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Undo has two doors (frame 4)</div>
       <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
         Tapping ✓ by accident mid-set shouldn't need precision to fix. An instant "Set logged · Undo" toast fires right away for fast recovery — and separately, the collapsed row itself stays tappable forever to reopen and re-edit, so missing the toast's window costs nothing.
       </div>
     </div>
 
     <div style="display: flex; flex-direction: column; gap: 8px;">
-      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Docked numeric keypad (frame 2)</div>
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Docked numeric keypad (frames 2-3)</div>
       <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
-        Tapping a KG/REPS cell docks this instead of the OS keyboard — predictable height, never covers the row above it, ring-highlights the focused cell. "Next: Reps →" chains straight to the next field without re-tapping the row; after reps it becomes "Done". Sidesteps OS-keyboard-covers-input entirely, the same class of problem Profile's dialogs avoid by not being a bottom sheet.
+        Tapping a KG/REPS cell docks this instead of the OS keyboard — predictable height, never covers the row above it, ring-highlights the focused cell. Sidesteps OS-keyboard-covers-input entirely, the same class of problem Profile's dialogs avoid by not being a bottom sheet.
       </div>
     </div>
 
     <div style="display: flex; flex-direction: column; gap: 8px;">
-      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Rest pill reuses the nav's real estate (frame 3)</div>
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Keypad actions: one forward slot, back only where it means something</div>
+      <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
+        The big bottom-right grid button always does "confirm this field and move forward" — same reachable spot both steps, only its label/color reasoning changes: <b>Next</b> on KG (frame 2), <b>Log set</b> on Reps (frame 3, filled — it's the terminal action for the set). The header echoes the same action in words for context ("Next: Reps →" / "Log set ✓"). A <b>Back: KG</b> control appears on the Reps step only — there's somewhere meaningful to go back to (you might've mistyped weight); KG has nothing before it, so no back control shows there.
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Rest pill reuses the nav's real estate (frame 4)</div>
       <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
         Same floating-pill treatment as the Resume pill elsewhere in the app, in the exact bottom slot the nav shell would occupy if it were showing — which it isn't here, so that space is free. Auto-starts on ✓, tap → expands to the sheet already speced in Components.dc.html (−15s/+15s, target rest, Skip). Fires a local notification + short vibration at 0.
       </div>
