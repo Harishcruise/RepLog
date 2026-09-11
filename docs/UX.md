@@ -273,7 +273,8 @@ no floating nav, no tab bar, no contextual pill (its job is getting you
   - The header buttons carry the consequential actions and now share
     one consistent tinted-green pill so they read as a family: weight
     step shows a single **Next: Reps →** on the right, chaining
-    straight into reps entry. Reps step groups **← KG** and **Log set**
+    straight into reps entry. Reps step groups **← Back: KG** and
+    **Log set**
     together on the right, same treatment — Log set is what actually
     completes the set (checks it off, starts rest); grid-Save on the
     same field would
