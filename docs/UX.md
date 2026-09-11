@@ -60,6 +60,11 @@ to the screen edge — inset ~14px from the sides on every `/app/*` screen.
   to the edge. It also reads correctly at any viewport: the app is a
   centred ≤480px column everywhere (`DESIGN_SYSTEM.md §5`), so a bar flush
   to the *column's* edges implies a phone chassis that isn't there on web.
+- **Compact, not stretched.** Both pills size to their own content (padding,
+  not `width: 100%`) and centre themselves in the available width — a short
+  label like "Start Workout" shouldn't be floating inside a bar stretched to
+  the full column width, and the tab tray only needs to be as wide as its
+  4 items plus the active tab's label.
 - The contextual pill is the single primary action, always present, and
   changes state instead of coexisting with a separate FAB:
   - **Idle** (no `in_progress` session): "Start Workout" → `/app/workout/new`.
