@@ -239,10 +239,11 @@ no floating nav, no tab bar, no contextual pill (its job is getting you
   **SET · PREV · KG · REPS · ✓**:
   - SET badge is tappable (drawn 22px, tap target padded to ~40px) →
     a popover anchored directly below it (normal/warmup/dropset/
-    failure/amrap), not a permanent column, and not a detached fixed
-    box. Flips above if the row's near the bottom of the screen. Tap
-    an option to apply immediately and close — no confirm step; tap
-    outside to dismiss with no change.
+    failure), not a permanent column, and not a detached fixed box.
+    Flips above if the row's near the bottom of the screen. Tap an
+    option to apply immediately and close — no confirm step; tap
+    outside to dismiss with no change. AMRAP dropped for now — not a
+    familiar term to most users; revisit if it turns out to matter.
   - The badge keeps showing the set number always (you're scanning
     "which set" constantly) — a non-Normal type tints the badge's
     ring/fill per type instead of replacing the number, so ordering

@@ -39,8 +39,6 @@
       border: 1.5px solid oklch(0.75 0.14 305 / 55%); color: oklch(0.85 0.12 305); }
     .set-badge.failure { background: color-mix(in oklch, oklch(0.64 0.19 25) 22%, oklch(0.300 0.011 152));
       border: 1.5px solid oklch(0.64 0.19 25 / 55%); color: oklch(0.80 0.15 25); }
-    .set-badge.amrap { background: color-mix(in oklch, oklch(0.75 0.13 220) 22%, oklch(0.300 0.011 152));
-      border: 1.5px solid oklch(0.75 0.13 220 / 55%); color: oklch(0.83 0.11 220); }
     .cell { font-size: 15px; text-align: center; font-weight: 500; }
     .cell.ghost { color: oklch(0.480 0.012 150); font-weight: 400; }
     .check { width: 27px; height: 27px; border-radius: 8px; justify-self: center;
@@ -52,7 +50,7 @@
     .set-row.complete { padding: 5px 8px; }
     /* only the plain (Normal) badge dims to near-invisible — a tagged badge keeps its color at
        full strength even once the row collapses, since scanning tags across done sets is the point */
-    .set-row.complete .set-badge:not(.warmup):not(.dropset):not(.failure):not(.amrap) {
+    .set-row.complete .set-badge:not(.warmup):not(.dropset):not(.failure) {
       background: transparent; opacity: 0.5; }
     .set-row.complete .prev-dash { font-size: 15px; color: oklch(0.42 0.010 150); text-align: left; }
     .set-row.complete .cell { color: oklch(0.560 0.012 150); font-weight: 400; }
@@ -463,7 +461,6 @@
             <span style="padding: 7px 9px; border-radius: 7px; font-size: 12.5px; color: oklch(0.88 0.11 78);">Warmup</span>
             <span style="padding: 7px 9px; border-radius: 7px; font-size: 12.5px; color: oklch(0.85 0.12 305);">Drop set</span>
             <span style="padding: 7px 9px; border-radius: 7px; font-size: 12.5px; color: oklch(0.80 0.15 25);">Failure</span>
-            <span style="padding: 7px 9px; border-radius: 7px; font-size: 12.5px; color: oklch(0.83 0.11 220);">AMRAP</span>
             <span style="margin-top: 3px; padding: 5px 9px 2px; border-top: 1px solid oklch(1 0 0 / 8%); font-size: 10px; line-height: 13px; color: oklch(0.560 0.012 150); font-style: italic;">Normal is the default — no carry-over between sets.</span>
           </div>
         </div>
@@ -513,13 +510,6 @@
             <span class="cell mono">9</span>
             <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
-          <div class="set-row complete">
-            <span class="set-badge amrap">5</span>
-            <span class="prev-dash mono">—</span>
-            <span class="cell mono">32</span>
-            <span class="cell mono">11</span>
-            <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
         </div>
       </div>
     </div>
@@ -544,8 +534,8 @@
     <div style="display: flex; flex-direction: column; gap: 8px;">
       <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Set-type picker — the full loop (frame 5)</div>
       <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
-        Tap the SET badge (drawn 22px, tap target padded to ~40px) → a popover anchors right below it — not a detached corner box, flips above if the row's near the bottom of the screen. Five options, current selection checked; tap one and it applies immediately, popover closes — no confirm step. Tap outside to dismiss with no change.<br><br>
-        <b>Badge feedback:</b> stays showing the set number always (you're scanning "which set" constantly) — the ring/fill just tints per type (Incline DB Press card, this frame: 1 amber-Warmup, 3 violet-Drop set, 4 red-Failure, 5 blue-AMRAP). Normal stays the plain gray badge.<br><br>
+        Tap the SET badge (drawn 22px, tap target padded to ~40px) → a popover anchors right below it — not a detached corner box, flips above if the row's near the bottom of the screen. Four options, current selection checked; tap one and it applies immediately, popover closes — no confirm step. Tap outside to dismiss with no change.<br><br>
+        <b>Badge feedback:</b> stays showing the set number always (you're scanning "which set" constantly) — the ring/fill just tints per type (Incline DB Press card, this frame: 1 amber-Warmup, 3 violet-Drop set, 4 red-Failure). Normal stays the plain gray badge.<br><br>
         <b>Retroactive:</b> the badge stays tappable even on a completed/collapsed row — re-tag a set after the fact without reopening anything else.<br><br>
         <b>Defaults:</b> every new set starts Normal regardless of the previous set's type — explicit tagging only, no silent carry-over that could mislabel data.<br><br>
         <b>Scope for v1:</b> type is a tag, not a different data-entry shape. A drop set is still one row with one weight/reps pair — an actual mid-set weight drop is a second row you add and tag yourself. Warmup sets are excluded from volume/PR stats behind the scenes; the row itself looks the same as any other.
