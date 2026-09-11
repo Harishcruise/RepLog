@@ -248,11 +248,12 @@ no floating nav, no tab bar, no contextual pill (its job is getting you
     lifters, permanent-column real estate isn't worth it); revisit if it
     turns out to matter.
   - **+ Add set** at the card's bottom.
-  - A completed set **collapses to one quiet line** (check + "100 kg × 8"
-    in muted mono) instead of staying full-height with a highlighted
-    background — keeps visual weight on the active/pending row, not on
-    everything already done. The row stays tappable indefinitely to
-    reopen and re-edit it.
+  - A completed set **stays grid-aligned to SET/PREV/KG/REPS/✓** (values
+    sit under their real headers, PREV goes to a quiet "—") but is
+    de-emphasized: muted text, no background fill, a small filled check
+    in place of the toggle. Keeps visual weight on the active/pending
+    row without a logged value ever appearing to sit under the wrong
+    column. The row stays tappable indefinitely to reopen and re-edit.
   - Undo has two doors: tapping ✓ fires an instant "Set logged · Undo"
     toast for fast recovery from a mis-tap, and separately the collapsed
     row itself is always tappable to reopen — no time pressure either
