@@ -237,8 +237,26 @@ no floating nav, no tab bar, no contextual pill (its job is getting you
   No back chevron — leave via Finish or Discard, not by backing out.
 - Per exercise card: name + muscle chip, then set rows
   **SET · PREV · KG · REPS · ✓**:
-  - SET badge is tappable → compact inline set-type picker
-    (normal/warmup/dropset/failure/amrap), not a permanent column.
+  - SET badge is tappable (drawn 22px, tap target padded to ~40px) →
+    a popover anchored directly below it (normal/warmup/dropset/
+    failure/amrap), not a permanent column, and not a detached fixed
+    box. Flips above if the row's near the bottom of the screen. Tap
+    an option to apply immediately and close — no confirm step; tap
+    outside to dismiss with no change.
+  - The badge keeps showing the set number always (you're scanning
+    "which set" constantly) — a non-Normal type tints the badge's
+    ring/fill per type instead of replacing the number, so ordering
+    stays legible even on a tagged set.
+  - The badge stays tappable on a completed/collapsed row too, so a
+    set can be re-tagged after the fact without reopening anything
+    else.
+  - Every new set defaults to Normal regardless of the previous set's
+    type — explicit tagging only, no silent carry-over.
+  - v1 scope: type is a tag, not a different data-entry shape. A drop
+    set is still one row with one weight/reps pair — an actual
+    mid-set weight drop is a second row added and tagged manually.
+    Warmup sets are excluded from volume/PR stats behind the scenes;
+    the row itself looks like any other.
   - PREV shows last time's numbers for reference; KG/REPS cells show
     last time's value as a ghost placeholder — tap-confirm without
     retyping if it's the same as last time.

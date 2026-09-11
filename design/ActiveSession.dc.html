@@ -30,7 +30,17 @@
     .set-row { display: grid; grid-template-columns: 28px 1fr 54px 46px 40px; gap: 6px; padding: 7px 8px;
       align-items: center; border-radius: 9px; }
     .set-badge { width: 22px; height: 22px; border-radius: 7px; background: oklch(0.300 0.011 152);
-      display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
+      display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600;
+      box-sizing: border-box; }
+    /* set-type tags — badge keeps its number (still the thing you scan for), the ring/fill just tints per type */
+    .set-badge.warmup { background: color-mix(in oklch, oklch(0.8 0.13 78) 22%, oklch(0.300 0.011 152));
+      border: 1.5px solid oklch(0.8 0.13 78 / 55%); color: oklch(0.88 0.11 78); }
+    .set-badge.dropset { background: color-mix(in oklch, oklch(0.75 0.14 305) 22%, oklch(0.300 0.011 152));
+      border: 1.5px solid oklch(0.75 0.14 305 / 55%); color: oklch(0.85 0.12 305); }
+    .set-badge.failure { background: color-mix(in oklch, oklch(0.64 0.19 25) 22%, oklch(0.300 0.011 152));
+      border: 1.5px solid oklch(0.64 0.19 25 / 55%); color: oklch(0.80 0.15 25); }
+    .set-badge.amrap { background: color-mix(in oklch, oklch(0.75 0.13 220) 22%, oklch(0.300 0.011 152));
+      border: 1.5px solid oklch(0.75 0.13 220 / 55%); color: oklch(0.83 0.11 220); }
     .cell { font-size: 15px; text-align: center; font-weight: 500; }
     .cell.ghost { color: oklch(0.480 0.012 150); font-weight: 400; }
     .check { width: 27px; height: 27px; border-radius: 8px; justify-self: center;
@@ -40,7 +50,10 @@
     /* completed row — quieter, but stays grid-aligned to the SET/PREV/KG/REPS header
        so a logged value never sits under the wrong label (it briefly did, under PREV) */
     .set-row.complete { padding: 5px 8px; }
-    .set-row.complete .set-badge { background: transparent; opacity: 0.5; }
+    /* only the plain (Normal) badge dims to near-invisible — a tagged badge keeps its color at
+       full strength even once the row collapses, since scanning tags across done sets is the point */
+    .set-row.complete .set-badge:not(.warmup):not(.dropset):not(.failure):not(.amrap) {
+      background: transparent; opacity: 0.5; }
     .set-row.complete .prev-dash { font-size: 15px; color: oklch(0.42 0.010 150); text-align: left; }
     .set-row.complete .cell { color: oklch(0.560 0.012 150); font-weight: 400; }
     .done-check { width: 20px; height: 20px; border-radius: 999px; justify-self: center;
@@ -395,13 +408,119 @@
       </div>
     </div>
 
-    <!-- set-type picker inset, shown detached for reference -->
-    <div style="position:absolute; right: 18px; top: 168px; width: 132px; border-radius: 12px; background: oklch(0.300 0.011 152); border: 1px solid oklch(1 0 0 / 14%); box-shadow: 0 12px 24px oklch(0 0 0 / 40%); padding: 6px; display:flex; flex-direction:column; gap: 2px;">
-      <span style="padding: 6px 8px; border-radius: 7px; background: oklch(0.30 0.06 141); color: oklch(0.86 0.16 137); font-size: 12.5px; font-weight: 600;">Normal</span>
-      <span style="padding: 6px 8px; border-radius: 7px; font-size: 12.5px; color: oklch(0.780 0.010 150);">Warmup</span>
-      <span style="padding: 6px 8px; border-radius: 7px; font-size: 12.5px; color: oklch(0.780 0.010 150);">Drop set</span>
-      <span style="padding: 6px 8px; border-radius: 7px; font-size: 12.5px; color: oklch(0.780 0.010 150);">Failure</span>
-      <span style="padding: 6px 8px; border-radius: 7px; font-size: 12.5px; color: oklch(0.780 0.010 150);">AMRAP</span>
+  </div>
+
+  <!-- ============ 5 · SET-TYPE PICKER — anchored to the tapped badge, not detached ============ -->
+  <div class="screen">
+    <div class="pad" style="padding-top: 18px; padding-bottom: 12px; border-bottom: 1px solid oklch(1 0 0 / 7%);">
+      <div class="row" style="justify-content: space-between;">
+        <div style="display:flex; flex-direction:column; gap: 2px;">
+          <span class="sg" style="font-size: 16px; font-weight: 600;">Push Day</span>
+          <span class="mono" style="font-size: 12px; color: oklch(0.665 0.012 150);">25:06 elapsed</span>
+        </div>
+        <button class="finish-btn">Finish</button>
+      </div>
+    </div>
+
+    <div class="pad" style="padding-top: 14px; flex: 1; overflow: hidden; display: flex; flex-direction: column; gap: 12px; position: relative;">
+      <div class="card">
+        <div class="row" style="gap: 8px;">
+          <span style="font-size: 16px; font-weight: 600;">Barbell Bench Press</span>
+          <span class="chip">Chest</span>
+        </div>
+        <div>
+          <div class="thead">
+            <span class="th">SET</span><span class="th">PREV</span>
+            <span class="th" style="text-align:center;">KG</span>
+            <span class="th" style="text-align:center;">REPS</span><span></span>
+          </div>
+          <div class="set-row complete">
+            <span class="set-badge">1</span>
+            <span class="prev-dash mono">—</span>
+            <span class="cell mono">100</span>
+            <span class="cell mono">8</span>
+            <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="set-row complete">
+            <span class="set-badge warmup">2</span>
+            <span class="prev-dash mono">—</span>
+            <span class="cell mono">100</span>
+            <span class="cell mono">8</span>
+            <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <!-- badge tapped — picker open, anchored right under it -->
+          <div class="set-row" style="background: color-mix(in oklch, oklch(0.82 0.17 137) 6%, transparent);">
+            <span class="set-badge" style="box-shadow: 0 0 0 2px oklch(0.82 0.17 137);">3</span>
+            <span class="meta mono">100 × 7</span>
+            <span class="cell mono ghost">100</span>
+            <span class="cell mono ghost">7</span>
+            <span class="check off"></span>
+          </div>
+
+          <!-- anchored popover: sits right below the tapped badge, flips above if a row is near the bottom -->
+          <div style="position: absolute; left: 30px; top: 132px; width: 138px; border-radius: 12px; background: oklch(0.300 0.011 152); border: 1px solid oklch(1 0 0 / 14%); box-shadow: 0 14px 28px oklch(0 0 0 / 45%); padding: 5px; display:flex; flex-direction:column; gap: 2px; z-index: 5;">
+            <span style="padding: 7px 9px; border-radius: 7px; background: oklch(0.30 0.06 141); color: oklch(0.86 0.16 137); font-size: 12.5px; font-weight: 600;">Normal ✓</span>
+            <span style="padding: 7px 9px; border-radius: 7px; font-size: 12.5px; color: oklch(0.88 0.11 78);">Warmup</span>
+            <span style="padding: 7px 9px; border-radius: 7px; font-size: 12.5px; color: oklch(0.85 0.12 305);">Drop set</span>
+            <span style="padding: 7px 9px; border-radius: 7px; font-size: 12.5px; color: oklch(0.80 0.15 25);">Failure</span>
+            <span style="padding: 7px 9px; border-radius: 7px; font-size: 12.5px; color: oklch(0.83 0.11 220);">AMRAP</span>
+          </div>
+        </div>
+        <button class="add-set">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+          Add set
+        </button>
+      </div>
+
+      <!-- Exercise 2 — every tag shown at once, for reference (not a real simultaneous state) -->
+      <div class="card">
+        <div class="row" style="gap: 8px;">
+          <span style="font-size: 16px; font-weight: 600;">Incline DB Press</span>
+          <span class="chip">Chest</span>
+        </div>
+        <div>
+          <div class="thead">
+            <span class="th">SET</span><span class="th">PREV</span>
+            <span class="th" style="text-align:center;">KG</span>
+            <span class="th" style="text-align:center;">REPS</span><span></span>
+          </div>
+          <div class="set-row complete">
+            <span class="set-badge warmup">1</span>
+            <span class="prev-dash mono">—</span>
+            <span class="cell mono">24</span>
+            <span class="cell mono">12</span>
+            <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="set-row complete">
+            <span class="set-badge">2</span>
+            <span class="prev-dash mono">—</span>
+            <span class="cell mono">32</span>
+            <span class="cell mono">10</span>
+            <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="set-row complete">
+            <span class="set-badge dropset">3</span>
+            <span class="prev-dash mono">—</span>
+            <span class="cell mono">24</span>
+            <span class="cell mono">14</span>
+            <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="set-row complete">
+            <span class="set-badge failure">4</span>
+            <span class="prev-dash mono">—</span>
+            <span class="cell mono">32</span>
+            <span class="cell mono">9</span>
+            <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="set-row complete">
+            <span class="set-badge amrap">5</span>
+            <span class="prev-dash mono">—</span>
+            <span class="cell mono">32</span>
+            <span class="cell mono">11</span>
+            <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -417,7 +536,18 @@
     <div style="display: flex; flex-direction: column; gap: 8px;">
       <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Set row — 5 columns, not 6</div>
       <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
-        SET · PREV · KG · REPS · ✓. RPE dropped from the earlier Components.dc.html sketch — opt-in-by-habit for most lifters, not worth a permanent column on every row. The SET badge is tappable → the set-type picker (frame 4, shown detached for reference): normal/warmup/drop set/failure/AMRAP, replacing the old "W badge + red-dot" per-type styling with one consistent interaction.
+        SET · PREV · KG · REPS · ✓. RPE dropped from the earlier Components.dc.html sketch — opt-in-by-habit for most lifters, not worth a permanent column on every row. The SET badge is tappable → the set-type picker (frame 5), replacing the old "W badge + red-dot" per-type styling with one consistent interaction.
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div class="sg" style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.665 0.012 150);">Set-type picker — the full loop (frame 5)</div>
+      <div style="font-size: 13px; line-height: 19px; color: oklch(0.780 0.010 150);">
+        Tap the SET badge (drawn 22px, tap target padded to ~40px) → a popover anchors right below it — not a detached corner box, flips above if the row's near the bottom of the screen. Five options, current selection checked; tap one and it applies immediately, popover closes — no confirm step. Tap outside to dismiss with no change.<br><br>
+        <b>Badge feedback:</b> stays showing the set number always (you're scanning "which set" constantly) — the ring/fill just tints per type (Incline DB Press card, this frame: 1 amber-Warmup, 3 violet-Drop set, 4 red-Failure, 5 blue-AMRAP). Normal stays the plain gray badge.<br><br>
+        <b>Retroactive:</b> the badge stays tappable even on a completed/collapsed row — re-tag a set after the fact without reopening anything else.<br><br>
+        <b>Defaults:</b> every new set starts Normal regardless of the previous set's type — explicit tagging only, no silent carry-over that could mislabel data.<br><br>
+        <b>Scope for v1:</b> type is a tag, not a different data-entry shape. A drop set is still one row with one weight/reps pair — an actual mid-set weight drop is a second row you add and tag yourself. Warmup sets are excluded from volume/PR stats behind the scenes; the row itself looks the same as any other.
       </div>
     </div>
 
