@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import { NAV_ITEMS } from "@/components/app-shell/nav-items";
 import { NavShell } from "@/components/app-shell/nav-shell";
 import { TabBar } from "@/components/app-shell/tab-bar";
+import { TabHeader } from "@/components/app-shell/tab-header";
 import { Button } from "@/components/ui/button";
 import {
   Field,
@@ -282,6 +283,14 @@ export default function DevUI() {
           >
             PR
           </Button>
+        </div>
+      </Section>
+
+      {/* ---- tab header ---- */}
+      <Section title="Tab header">
+        <div className="border-border bg-background overflow-hidden rounded-xl border">
+          <TabHeader name="Harish" />
+          <div className="h-16" />
         </div>
       </Section>
 

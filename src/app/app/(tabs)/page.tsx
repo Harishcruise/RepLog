@@ -12,7 +12,7 @@ export default async function AppHome() {
   } = await supabase.auth.getUser();
 
   return (
-    <main className="mx-auto flex w-full max-w-sm flex-col items-center gap-4 px-6 pt-[22vh] text-center">
+    <main className="mx-auto flex w-full max-w-sm flex-col items-center gap-4 px-6 pt-[14vh] text-center">
       <LogoMark className="size-13" />
       <div className="flex flex-col gap-1">
         <h1 className="font-display text-h1">You&apos;re in</h1>
