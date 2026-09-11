@@ -38,7 +38,7 @@ Companion to [`SPEC.md`](SPEC.md).
 | `/app/templates/[id]` | Template detail / edit | authed | Start session from here. |
 | `/app/progress` | Progress overview | authed | Full muscle heatmap, tonnage, frequency, per-lift 1RM. |
 | `/app/body` | Bodyweight | authed | One entry/day, trend chart. Reached from Profile. |
-| `/app/profile` | Profile | authed | Opened from the Home header avatar. Identity, stubbed stats strip, inline-editable preferences (unit, default rest), change password, → Body, sign out, legal links. Merges what would otherwise be a separate Settings screen — v1's settings list is short enough not to need its own route. |
+| `/app/profile` | Profile | authed | Opened from the Home header avatar. Identity (editable name + avatar colour), stubbed stats strip, preferences (unit, default rest), change password, → Body, sign out, legal links. Every field that's a form (name, avatar colour, default rest, change password) opens the same bottom sheet; units is the one instant, sheet-free toggle. Merges what would otherwise be a separate Settings screen — v1's settings list is short enough not to need its own route. |
 
 ## Navigation model
 
