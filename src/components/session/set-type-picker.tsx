@@ -49,7 +49,15 @@ export function SetTypePicker({
         </button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="start" className="w-[172px] p-1.5">
+      <DropdownMenuContent
+        align="start"
+        className="w-[172px] p-1.5"
+        // Radix moves focus back to the trigger when the menu closes, and a
+        // programmatic .focus() call reads as keyboard-driven to the
+        // browser — so a plain tap-to-select left a focus-visible ring
+        // sitting on the badge afterward. Skip the auto-refocus entirely.
+        onCloseAutoFocus={(e) => e.preventDefault()}
+      >
         <DropdownMenuRadioGroup
           value={type}
           onValueChange={(value) => onTypeChange(value as SetType)}
