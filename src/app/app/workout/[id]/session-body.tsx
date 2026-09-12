@@ -1,8 +1,9 @@
 "use client";
 
-import { Reorder } from "framer-motion";
 import { Plus } from "lucide-react";
 import { toast } from "sonner";
+
+import { ReorderList } from "@/components/reorder/reorderable-list";
 
 import { ExerciseCard } from "./exercise-card";
 import type { ActiveSessionController } from "./use-active-session";
@@ -17,11 +18,9 @@ type SessionBodyProps = {
 export function SessionBody({ controller }: SessionBodyProps) {
   return (
     <div className="flex-1 overflow-y-auto px-4 pt-3.5 pb-6">
-      <Reorder.Group
-        axis="y"
+      <ReorderList
         values={controller.exercises}
         onReorder={controller.reorderExercises}
-        className="flex flex-col gap-3"
       >
         {controller.exercises.map((exercise) => (
           <ExerciseCard
@@ -30,7 +29,7 @@ export function SessionBody({ controller }: SessionBodyProps) {
             onRemove={() => controller.removeExercise(exercise.id)}
           />
         ))}
-      </Reorder.Group>
+      </ReorderList>
 
       <button
         type="button"

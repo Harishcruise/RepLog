@@ -1,9 +1,12 @@
 "use client";
 
-import { Reorder, useDragControls } from "framer-motion";
-import { EllipsisVertical, GripVertical } from "lucide-react";
-import type { PointerEvent, ReactNode } from "react";
+import { EllipsisVertical } from "lucide-react";
+import type { ReactNode } from "react";
 
+import {
+  DraggableItem,
+  DragHandle,
+} from "@/components/reorder/reorderable-list";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -20,38 +23,24 @@ type ExerciseCardProps = {
   children?: ReactNode;
 };
 
-/**
- * Draggable wrapper for one exercise's card — must render inside a
- * `Reorder.Group`. Only the grip handle starts a drag (`dragListener={false}`
- * + `dragControls`), so tapping anywhere else on the card — the kebab now,
- * set rows once they're built — is never mistaken for a reorder gesture.
- */
+/** One exercise's card — must render inside a `ReorderList`. Composes the
+ *  generic drag-reorder primitives rather than owning drag logic itself. */
 export function ExerciseCard({
   exercise,
   onRemove,
   children,
 }: ExerciseCardProps) {
-  const dragControls = useDragControls();
-
   return (
-    <Reorder.Item
+    <DraggableItem
       value={exercise}
-      dragListener={false}
-      dragControls={dragControls}
       className="bg-card border-border flex flex-col gap-2.5 rounded-2xl border p-3.5"
     >
       <div className="flex items-start justify-between gap-2">
         <div className="flex min-w-0 items-center gap-2">
-          <button
-            type="button"
-            onPointerDown={(e: PointerEvent<HTMLButtonElement>) =>
-              dragControls.start(e)
-            }
+          <DragHandle
             aria-label={`Reorder ${exercise.name}`}
-            className="text-muted-foreground -ml-1 flex size-7 shrink-0 cursor-grab touch-none items-center justify-center active:cursor-grabbing"
-          >
-            <GripVertical className="size-4" />
-          </button>
+            className="-ml-1"
+          />
           <span className="text-h3 truncate font-sans">{exercise.name}</span>
           <span className="bg-secondary text-muted-foreground shrink-0 rounded-full px-2 py-0.5 font-sans text-[11.5px] font-medium">
             {exercise.muscle}
@@ -77,6 +66,6 @@ export function ExerciseCard({
       </div>
 
       {children}
-    </Reorder.Item>
+    </DraggableItem>
   );
 }
