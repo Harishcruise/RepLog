@@ -86,23 +86,25 @@ export function SetLogTable({
                   }
                   onClick={() => onToggleComplete(set.id)}
                   className={cn(
-                    // Same 27px box in both states — only the fill changes
-                    // (outline vs filled). Sizing the box itself off
+                    // Outer box stays 27px in both states — sizing it off
                     // `completed` made it the row's tallest element while
                     // pending, then shrink on check, visibly squeezing the
-                    // row's padding.
-                    // rounded-sm (8px in this project's scale) — rounded-lg
-                    // is 12px here (see tokens.css --radius), which on a
-                    // 27px box reads as a near-circle instead of the
-                    // design's rounded-square check.
+                    // row's padding. rounded-sm (8px in this project's
+                    // scale) — rounded-lg is 12px here (see tokens.css
+                    // --radius), which on a 27px box reads as a near-circle
+                    // instead of the design's rounded-square outline.
                     "flex size-[27px] items-center justify-center rounded-sm",
-                    set.completed
-                      ? "bg-primary text-primary-foreground"
-                      : "border-border border-2",
+                    !set.completed && "border-border border-2",
                   )}
                 >
                   {set.completed && (
-                    <Check className="size-4" strokeWidth={3} />
+                    // Matches ActiveSession.dc.html's .done-check — a
+                    // quiet icon-only check, not a filled box (that's
+                    // .check.on, unused dead CSS from an earlier pass).
+                    <Check
+                      className="size-5 text-[oklch(0.70_0.15_137)]"
+                      strokeWidth={3}
+                    />
                   )}
                 </button>
               </TableCell>
