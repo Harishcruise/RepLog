@@ -27,9 +27,13 @@ export function ActiveSessionForm({
   });
 
   return (
-    <div className="mx-auto flex min-h-dvh w-full max-w-sm flex-col">
+    <div className="flex min-h-dvh flex-col">
+      {/* Full-bleed bar — SessionHeader centres its own inner content to
+          match the width of the body below. */}
       <SessionHeader controller={controller} />
-      <SessionBody controller={controller} />
+      <div className="mx-auto flex w-full max-w-sm flex-1 flex-col">
+        <SessionBody controller={controller} />
+      </div>
     </div>
   );
 }
