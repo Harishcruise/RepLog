@@ -25,6 +25,9 @@ type ExerciseCardProps = {
   onToggleSetComplete: (setId: string) => void;
   onSetTypeChange: (setId: string, type: SetType) => void;
   onAddSet: () => void;
+  onOpenKeypad: (setId: string, field: "kg" | "reps") => void;
+  activeSetId: string | null;
+  activeField: "kg" | "reps" | null;
 };
 
 /** One exercise's card — must render inside a `ReorderList`. Composes the
@@ -35,6 +38,9 @@ export function ExerciseCard({
   onToggleSetComplete,
   onSetTypeChange,
   onAddSet,
+  onOpenKeypad,
+  activeSetId,
+  activeField,
 }: ExerciseCardProps) {
   return (
     <DraggableItem
@@ -75,6 +81,9 @@ export function ExerciseCard({
         sets={exercise.sets}
         onToggleComplete={onToggleSetComplete}
         onTypeChange={onSetTypeChange}
+        onOpenKeypad={onOpenKeypad}
+        activeSetId={activeSetId}
+        activeField={activeField}
       />
 
       <button

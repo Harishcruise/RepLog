@@ -20,6 +20,12 @@ type SetLogTableProps = {
   sets: LoggedSet[];
   onToggleComplete: (setId: string) => void;
   onTypeChange: (setId: string, type: SetType) => void;
+  onOpenKeypad: (setId: string, field: "kg" | "reps") => void;
+  /** Which set/field the docked keypad currently has open — null when it's
+   *  closed. Drives the focused-cell ring + row tint from
+   *  ActiveSession.dc.html's frames 2-3. */
+  activeSetId: string | null;
+  activeField: "kg" | "reps" | null;
 };
 
 function formatPrevious(previous: LoggedSet["previous"]) {
@@ -37,6 +43,9 @@ export function SetLogTable({
   sets,
   onToggleComplete,
   onTypeChange,
+  onOpenKeypad,
+  activeSetId,
+  activeField,
 }: SetLogTableProps) {
   return (
     <Table>
@@ -55,28 +64,68 @@ export function SetLogTable({
           // time); completed values are plain muted text, not bold — the
           // active/pending row is the one meant to keep visual weight.
           const numberClass = cn(
-            "text-center font-mono text-[15px]",
+            "h-full w-full rounded-md text-center font-mono text-[15px]",
             set.completed
               ? "text-muted-foreground font-medium"
               : "text-muted-foreground/70 font-normal",
           );
+          const isRowFocused = activeSetId === set.id;
+          // `border-radius` is a no-op on <tr> in every browser, so the
+          // focused-row tint from ActiveSession.dc.html's .set-row (9px
+          // radius) has to come from the first/last cell instead — with
+          // Tailwind's preflight border-collapse: collapse, adjacent cell
+          // backgrounds sit flush, so rounding only the outer two corners
+          // reads as one continuous rounded row.
+          const rowTint = isRowFocused ? "bg-primary/6" : undefined;
 
           return (
             <TableRow key={set.id}>
-              <TableCell>
+              <TableCell className={cn(rowTint, "rounded-l-md")}>
                 <SetTypePicker
                   setNumber={set.setNumber}
                   type={set.type}
                   onTypeChange={(type) => onTypeChange(set.id, type)}
                 />
               </TableCell>
-              <TableCell className="text-caption text-muted-foreground font-mono text-[15px]">
+              <TableCell
+                className={cn(
+                  rowTint,
+                  "text-caption text-muted-foreground font-mono text-[15px]",
+                )}
+              >
                 {formatPrevious(set.previous)}
               </TableCell>
-              {/* TODO: tapping KG/REPS opens the docked numeric keypad once it's built */}
-              <TableCell className={numberClass}>{set.weightKg}</TableCell>
-              <TableCell className={numberClass}>{set.reps}</TableCell>
-              <TableCell>
+              <TableCell className={rowTint}>
+                <button
+                  type="button"
+                  aria-label={`Edit set ${set.setNumber} weight`}
+                  onClick={() => onOpenKeypad(set.id, "kg")}
+                  className={cn(
+                    numberClass,
+                    isRowFocused &&
+                      activeField === "kg" &&
+                      "ring-primary ring-2",
+                  )}
+                >
+                  {set.weightKg}
+                </button>
+              </TableCell>
+              <TableCell className={rowTint}>
+                <button
+                  type="button"
+                  aria-label={`Edit set ${set.setNumber} reps`}
+                  onClick={() => onOpenKeypad(set.id, "reps")}
+                  className={cn(
+                    numberClass,
+                    isRowFocused &&
+                      activeField === "reps" &&
+                      "ring-primary ring-2",
+                  )}
+                >
+                  {set.reps}
+                </button>
+              </TableCell>
+              <TableCell className={cn(rowTint, "rounded-r-md")}>
                 <button
                   type="button"
                   aria-label={
