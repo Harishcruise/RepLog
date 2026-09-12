@@ -4,7 +4,10 @@ import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { toast } from "sonner";
 
+import type { SetType } from "@/components/session/set-type";
+
 import type { SessionExercise } from "./exercise";
+import type { LoggedSet } from "./set";
 import { useElapsedTimer } from "./use-elapsed-timer";
 
 export type ActiveSessionController = ReturnType<typeof useActiveSession>;
@@ -43,6 +46,67 @@ export function useActiveSession({
     setExercises((prev) => prev.filter((e) => e.id !== exerciseId));
   }, []);
 
+  const updateSet = useCallback(
+    (exerciseId: string, setId: string, patch: Partial<LoggedSet>) => {
+      setExercises((prev) =>
+        prev.map((exercise) =>
+          exercise.id !== exerciseId
+            ? exercise
+            : {
+                ...exercise,
+                sets: exercise.sets.map((set) =>
+                  set.id === setId ? { ...set, ...patch } : set,
+                ),
+              },
+        ),
+      );
+    },
+    [],
+  );
+
+  const toggleSetComplete = useCallback((exerciseId: string, setId: string) => {
+    setExercises((prev) =>
+      prev.map((exercise) =>
+        exercise.id !== exerciseId
+          ? exercise
+          : {
+              ...exercise,
+              sets: exercise.sets.map((set) =>
+                set.id === setId ? { ...set, completed: !set.completed } : set,
+              ),
+            },
+      ),
+    );
+  }, []);
+
+  const setSetType = useCallback(
+    (exerciseId: string, setId: string, type: SetType) => {
+      updateSet(exerciseId, setId, { type });
+    },
+    [updateSet],
+  );
+
+  /** Copies the last set's numbers as a starting point — mirrors how a
+   *  brand-new set otherwise has nothing to ghost-placeholder against. */
+  const addSet = useCallback((exerciseId: string) => {
+    setExercises((prev) =>
+      prev.map((exercise) => {
+        if (exercise.id !== exerciseId) return exercise;
+        const last = exercise.sets.at(-1);
+        const newSet: LoggedSet = {
+          id: crypto.randomUUID(),
+          setNumber: exercise.sets.length + 1,
+          type: "normal",
+          previous: last ? { weightKg: last.weightKg, reps: last.reps } : null,
+          weightKg: last?.weightKg ?? 0,
+          reps: last?.reps ?? 0,
+          completed: false,
+        };
+        return { ...exercise, sets: [...exercise.sets, newSet] };
+      }),
+    );
+  }, []);
+
   const rename = useCallback((next: string) => {
     const trimmed = next.trim();
     if (trimmed) setName(trimmed);
@@ -73,5 +137,8 @@ export function useActiveSession({
     exercises,
     reorderExercises,
     removeExercise,
+    toggleSetComplete,
+    setSetType,
+    addSet,
   };
 }

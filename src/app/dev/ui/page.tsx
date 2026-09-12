@@ -170,10 +170,10 @@ export default function DevUI() {
           <Button disabled>
             <Loader2 className="animate-spin" /> Loading
           </Button>
-          <Button className="w-full" size="lg">
-            Full-width lg
-          </Button>
         </div>
+        <Button className="w-full" size="lg">
+          Full-width lg
+        </Button>
       </Section>
 
       {/* ---- badge ---- */}

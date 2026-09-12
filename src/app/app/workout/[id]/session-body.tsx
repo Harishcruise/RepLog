@@ -27,6 +27,13 @@ export function SessionBody({ controller }: SessionBodyProps) {
             key={exercise.id}
             exercise={exercise}
             onRemove={() => controller.removeExercise(exercise.id)}
+            onToggleSetComplete={(setId) =>
+              controller.toggleSetComplete(exercise.id, setId)
+            }
+            onSetTypeChange={(setId, type) =>
+              controller.setSetType(exercise.id, setId, type)
+            }
+            onAddSet={() => controller.addSet(exercise.id)}
           />
         ))}
       </ReorderList>

@@ -1,12 +1,12 @@
 "use client";
 
-import { EllipsisVertical } from "lucide-react";
-import type { ReactNode } from "react";
+import { EllipsisVertical, Plus } from "lucide-react";
 
 import {
   DraggableItem,
   DragHandle,
 } from "@/components/reorder/reorderable-list";
+import type { SetType } from "@/components/session/set-type";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,11 +17,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import type { SessionExercise } from "./exercise";
+import { SetLogTable } from "./set-log-table";
 
 type ExerciseCardProps = {
   exercise: SessionExercise;
   onRemove: () => void;
-  children?: ReactNode;
+  onToggleSetComplete: (setId: string) => void;
+  onSetTypeChange: (setId: string, type: SetType) => void;
+  onAddSet: () => void;
 };
 
 /** One exercise's card — must render inside a `ReorderList`. Composes the
@@ -29,7 +32,9 @@ type ExerciseCardProps = {
 export function ExerciseCard({
   exercise,
   onRemove,
-  children,
+  onToggleSetComplete,
+  onSetTypeChange,
+  onAddSet,
 }: ExerciseCardProps) {
   return (
     <DraggableItem
@@ -66,7 +71,20 @@ export function ExerciseCard({
         </DropdownMenu>
       </div>
 
-      {children}
+      <SetLogTable
+        sets={exercise.sets}
+        onToggleComplete={onToggleSetComplete}
+        onTypeChange={onSetTypeChange}
+      />
+
+      <button
+        type="button"
+        onClick={onAddSet}
+        className="text-primary text-label flex h-9 items-center justify-center gap-1.5 font-sans font-medium"
+      >
+        <Plus className="size-3.5" />
+        Add set
+      </button>
     </DraggableItem>
   );
 }
