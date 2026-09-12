@@ -4,15 +4,18 @@ import { cn } from "@/lib/utils";
 
 import type { SetType } from "./set-type";
 
-// Warmup/Failure reuse the app's --warning/--destructive tokens (their oklch
-// values match the design exactly); Drop set has no equivalent token, so its
-// base hue is a one-off literal.
+// Normal uses the app's --accent/--accent-foreground tokens (the same
+// tinted green the set-type picker already uses for its "DEFAULT" tag) —
+// it's the default type, so it gets the default/brand color rather than a
+// plain neutral one. Warmup/Failure reuse --warning/--destructive (their
+// oklch values match the design exactly); Drop set has no equivalent
+// token, so its base hue is a one-off literal.
 const badgeVariants = cva(
   "flex size-[22px] items-center justify-center rounded-[7px] text-[12px] font-semibold",
   {
     variants: {
       type: {
-        normal: "bg-secondary text-secondary-foreground",
+        normal: "bg-accent text-accent-foreground",
         warmup:
           "border-[1.5px] border-[color-mix(in_oklch,var(--warning)_55%,transparent)] bg-[color-mix(in_oklch,var(--warning)_22%,var(--secondary))] text-[oklch(0.88_0.11_78)]",
         dropset:
@@ -20,17 +23,8 @@ const badgeVariants = cva(
         failure:
           "border-[1.5px] border-[color-mix(in_oklch,var(--destructive)_55%,transparent)] bg-[color-mix(in_oklch,var(--destructive)_22%,var(--secondary))] text-[oklch(0.80_0.15_25)]",
       },
-      dimmed: {
-        true: "",
-        false: "",
-      },
     },
-    compoundVariants: [
-      // Only the plain (Normal) badge dims once its set is done — a tagged
-      // badge keeps full color so scanning types across done sets still works.
-      { type: "normal", dimmed: true, className: "bg-transparent opacity-50" },
-    ],
-    defaultVariants: { type: "normal", dimmed: false },
+    defaultVariants: { type: "normal" },
   },
 );
 
@@ -39,16 +33,12 @@ type SetBadgeProps = {
   className?: string;
 } & VariantProps<typeof badgeVariants>;
 
-export function SetBadge({
-  setNumber,
-  type,
-  dimmed,
-  className,
-}: SetBadgeProps) {
+// Every type — Normal included, now that it has real color — stays at full
+// strength once its set is done, so scanning tags across completed sets
+// still works. There's no "dimmed" state to opt into anymore.
+export function SetBadge({ setNumber, type, className }: SetBadgeProps) {
   return (
-    <span className={cn(badgeVariants({ type, dimmed }), className)}>
-      {setNumber}
-    </span>
+    <span className={cn(badgeVariants({ type }), className)}>{setNumber}</span>
   );
 }
 

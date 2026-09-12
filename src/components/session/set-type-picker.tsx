@@ -18,8 +18,6 @@ type SetTypePickerProps = {
   setNumber: number;
   type: SetType;
   onTypeChange: (type: SetType) => void;
-  /** Dims the badge once its set is complete — see SetBadge for the Normal-only rule. */
-  dimmed?: boolean;
 };
 
 /**
@@ -33,7 +31,6 @@ export function SetTypePicker({
   setNumber,
   type,
   onTypeChange,
-  dimmed,
 }: SetTypePickerProps) {
   const currentLabel =
     SET_TYPES.find((t) => t.value === type)?.label ?? "Normal";
@@ -48,7 +45,7 @@ export function SetTypePicker({
           aria-label={`Set ${setNumber} type: ${currentLabel}. Tap to change.`}
           className="focus-visible:ring-ring/50 -m-[9px] rounded-lg p-[9px] outline-none focus-visible:ring-[3px]"
         >
-          <SetBadge setNumber={setNumber} type={type} dimmed={dimmed} />
+          <SetBadge setNumber={setNumber} type={type} />
         </button>
       </DropdownMenuTrigger>
 

@@ -397,16 +397,10 @@ function SetTypePickerDemo() {
             }
           />
         ))}
-        <SetTypePicker
-          setNumber={5}
-          type="normal"
-          dimmed
-          onTypeChange={() => undefined}
-        />
       </div>
       <p className="text-micro text-muted-foreground/70 font-mono">
-        tap a badge to retag it — the 5th is a dimmed (completed, Normal)
-        reference
+        tap a badge to retag it — every type keeps full color even once its set
+        is complete
       </p>
     </div>
   );

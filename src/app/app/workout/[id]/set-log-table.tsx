@@ -67,19 +67,11 @@ export function SetLogTable({
                 <SetTypePicker
                   setNumber={set.setNumber}
                   type={set.type}
-                  dimmed={set.completed}
                   onTypeChange={(type) => onTypeChange(set.id, type)}
                 />
               </TableCell>
-              <TableCell
-                className={cn(
-                  "font-mono text-[15px]",
-                  set.completed
-                    ? "text-muted-foreground/60"
-                    : "text-caption text-muted-foreground",
-                )}
-              >
-                {set.completed ? "—" : formatPrevious(set.previous)}
+              <TableCell className="text-caption text-muted-foreground font-mono text-[15px]">
+                {formatPrevious(set.previous)}
               </TableCell>
               {/* TODO: tapping KG/REPS opens the docked numeric keypad once it's built */}
               <TableCell className={numberClass}>{set.weightKg}</TableCell>
@@ -94,7 +86,11 @@ export function SetLogTable({
                   }
                   onClick={() => onToggleComplete(set.id)}
                   className={cn(
-                    "flex items-center justify-center rounded-lg",
+                    // rounded-sm (8px in this project's scale) — rounded-lg
+                    // is 12px here (see tokens.css --radius), which on a
+                    // 27px box reads as a near-circle instead of the
+                    // design's rounded-square check.
+                    "flex items-center justify-center rounded-sm",
                     set.completed
                       ? "text-primary size-5"
                       : "border-border size-[27px] border-2",
