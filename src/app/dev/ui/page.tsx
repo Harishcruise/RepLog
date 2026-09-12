@@ -26,6 +26,7 @@ import { RestTimer } from "@/components/session/rest-timer";
 import type { SetType } from "@/components/session/set-type";
 import { SetTypePicker } from "@/components/session/set-type-picker";
 import { useRestTimer } from "@/components/session/use-rest-timer";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Field,
@@ -172,6 +173,17 @@ export default function DevUI() {
           <Button className="w-full" size="lg">
             Full-width lg
           </Button>
+        </div>
+      </Section>
+
+      {/* ---- badge ---- */}
+      <Section title="Badge">
+        <div className="flex flex-wrap items-center gap-2">
+          <Badge>Default</Badge>
+          <Badge variant="secondary">Secondary</Badge>
+          <Badge variant="muted">Chest</Badge>
+          <Badge variant="destructive">Destructive</Badge>
+          <Badge variant="outline">Outline</Badge>
         </div>
       </Section>
 

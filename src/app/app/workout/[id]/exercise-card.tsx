@@ -7,6 +7,7 @@ import {
   DraggableItem,
   DragHandle,
 } from "@/components/reorder/reorderable-list";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -42,9 +43,9 @@ export function ExerciseCard({
             className="-ml-1"
           />
           <span className="text-h3 truncate font-sans">{exercise.name}</span>
-          <span className="bg-secondary text-muted-foreground shrink-0 rounded-full px-2 py-0.5 font-sans text-[11.5px] font-medium">
+          <Badge variant="muted" className="shrink-0">
             {exercise.muscle}
-          </span>
+          </Badge>
         </div>
 
         <DropdownMenu>
