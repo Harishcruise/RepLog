@@ -27,7 +27,7 @@ export function ActiveSessionForm({
   });
 
   return (
-    <div className="flex min-h-dvh flex-col">
+    <div className="mx-auto flex min-h-dvh w-full max-w-sm flex-col">
       <SessionHeader controller={controller} />
       <SessionBody controller={controller} />
     </div>
