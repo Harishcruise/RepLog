@@ -22,6 +22,7 @@ import {
   DragHandle,
   ReorderList,
 } from "@/components/reorder/reorderable-list";
+import { NumberPad, type NumberPadStep } from "@/components/session/number-pad";
 import { RestTimer } from "@/components/session/rest-timer";
 import type { SetType } from "@/components/session/set-type";
 import { SetTypePicker } from "@/components/session/set-type-picker";
@@ -325,6 +326,12 @@ export default function DevUI() {
         <RestTimerDemo />
       </Section>
 
+      {/* ---- number pad — docked keypad from ActiveSession.dc.html frames
+           2-3, kg/reps step chained here the same way the real screen will ---- */}
+      <Section title="Number pad">
+        <NumberPadDemo />
+      </Section>
+
       {/* ---- set-type picker — tap a badge to retag it, state kept here ---- */}
       <Section title="Set-type picker">
         <SetTypePickerDemo />
@@ -423,6 +430,38 @@ function RestTimerDemo() {
         <p className="text-micro text-muted-foreground/70 font-mono">
           {timer.isRunning ? "running" : "finished — skip or restart"}
         </p>
+      </div>
+    </div>
+  );
+}
+
+function NumberPadDemo() {
+  const [step, setStep] = useState<NumberPadStep>("kg");
+  const [value, setValue] = useState("100");
+
+  return (
+    <div className="flex flex-col items-start gap-3">
+      <p className="text-micro text-muted-foreground/70 font-mono">
+        tap Next/Back to switch steps — Save vs Log set are deliberately
+        different actions, both just toast here
+      </p>
+      <div className="w-full max-w-sm overflow-hidden rounded-2xl">
+        <NumberPad
+          step={step}
+          value={value}
+          onDigit={(digit) => setValue((prev) => prev + digit)}
+          onErase={() => setValue((prev) => prev.slice(0, -1))}
+          onSave={() => toast(`Saved ${step}: ${value}`)}
+          onNext={() => {
+            setStep("reps");
+            setValue("7");
+          }}
+          onBack={() => {
+            setStep("kg");
+            setValue("100");
+          }}
+          onLogSet={() => toast(`Set logged — ${value} reps`)}
+        />
       </div>
     </div>
   );
