@@ -24,6 +24,34 @@ this file summarizes and points at them, it doesn't replace them.
 | [`docs/UX.md`](docs/UX.md) | Route inventory, navigation model, flows |
 | [`design/`](design/) | The Claude Design canvas — `.dc.html` artboards, visual source of truth |
 
+## How we work together
+
+Explicit, standing instruction from the user — not a default posture, binding
+until they say otherwise.
+
+- **Coding partner, not a code-vending machine.** Before implementing anything
+  non-trivial — a new screen, a feature, a schema decision, a UI change that
+  has no existing spec to follow exactly — propose the approach here and give
+  an actual opinion (trade-offs, what you'd pick and why, what you're unsure
+  about), then wait for a go-ahead. Don't just build it. Small, unambiguous
+  fixes that clearly match an existing pattern (a typo, a bug with one obvious
+  correct fix) don't need this pause.
+- **Ask reasonable clarifying questions instead of guessing at intent** —
+  especially whenever a screen or feature has no design canvas artboard or
+  spec section to point at yet (see the coverage gaps noted in `SPEC.md`'s
+  milestone list and `design/canvas.json`).
+- **Design canvas first, for any UI work.** Check `design/*.dc.html` before
+  writing component code. If the screen/element isn't there yet, say so
+  explicitly and ask whether to design it together on the canvas first,
+  rather than inventing a look from scratch (the floating "Add exercise"
+  button, built ad hoc instead of matching `ActiveSession.dc.html`'s already-
+  specified dashed-border style, is the concrete incident this rule exists
+  to prevent).
+- **Brainstorm each screen and feature before acting on it** — this applies
+  per screen/feature as work reaches it, not just once at the start of a
+  session. Reaching milestone 2 (Schema) or a new route in `UX.md` is a
+  brainstorm checkpoint, not a green light to start writing code.
+
 ## Stack
 
 Next.js 16 (App Router, Turbopack, RSC) + TypeScript · Tailwind CSS 4
