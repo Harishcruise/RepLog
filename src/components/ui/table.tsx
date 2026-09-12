@@ -8,7 +8,11 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
   return (
     <div
       data-slot="table-container"
-      className="relative w-full overflow-x-auto"
+      // overflow-x-auto alone lets the browser compute overflow-y as auto
+      // too (CSS: neither axis can stay "visible" once the other isn't) —
+      // a 1px row-height change (e.g. the check button resizing on toggle)
+      // was enough to pop a vertical scrollbar for no real overflow.
+      className="relative w-full overflow-x-auto overflow-y-hidden"
     >
       <table
         data-slot="table"
