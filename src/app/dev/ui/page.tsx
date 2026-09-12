@@ -18,6 +18,8 @@ import { NavShell } from "@/components/app-shell/nav-shell";
 import { TabBar } from "@/components/app-shell/tab-bar";
 import { TabHeader } from "@/components/app-shell/tab-header";
 import { RestTimer } from "@/components/session/rest-timer";
+import type { SetType } from "@/components/session/set-type";
+import { SetTypePicker } from "@/components/session/set-type-picker";
 import { useRestTimer } from "@/components/session/use-rest-timer";
 import { Button } from "@/components/ui/button";
 import {
@@ -306,6 +308,11 @@ export default function DevUI() {
         <RestTimerDemo />
       </Section>
 
+      {/* ---- set-type picker — tap a badge to retag it, state kept here ---- */}
+      <Section title="Set-type picker">
+        <SetTypePickerDemo />
+      </Section>
+
       {/* ---- tab bar transition demo (local state, no real navigation —
            lets you exercise every jump, including last <-> first, without
            needing a signed-in session) ---- */}
@@ -313,6 +320,42 @@ export default function DevUI() {
         <TabBarDemo />
       </Section>
     </main>
+  );
+}
+
+function SetTypePickerDemo() {
+  const [types, setTypes] = useState<SetType[]>([
+    "normal",
+    "warmup",
+    "dropset",
+    "failure",
+  ]);
+
+  return (
+    <div className="flex flex-col items-start gap-3">
+      <div className="flex items-center gap-4">
+        {types.map((type, i) => (
+          <SetTypePicker
+            key={i}
+            setNumber={i + 1}
+            type={type}
+            onTypeChange={(next) =>
+              setTypes((prev) => prev.map((t, j) => (j === i ? next : t)))
+            }
+          />
+        ))}
+        <SetTypePicker
+          setNumber={5}
+          type="normal"
+          dimmed
+          onTypeChange={() => undefined}
+        />
+      </div>
+      <p className="text-micro text-muted-foreground/70 font-mono">
+        tap a badge to retag it — the 5th is a dimmed (completed, Normal)
+        reference
+      </p>
+    </div>
   );
 }
 
