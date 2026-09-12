@@ -17,6 +17,11 @@ import { NAV_ITEMS } from "@/components/app-shell/nav-items";
 import { NavShell } from "@/components/app-shell/nav-shell";
 import { TabBar } from "@/components/app-shell/tab-bar";
 import { TabHeader } from "@/components/app-shell/tab-header";
+import {
+  DraggableItem,
+  DragHandle,
+  ReorderList,
+} from "@/components/reorder/reorderable-list";
 import { RestTimer } from "@/components/session/rest-timer";
 import type { SetType } from "@/components/session/set-type";
 import { SetTypePicker } from "@/components/session/set-type-picker";
@@ -313,6 +318,13 @@ export default function DevUI() {
         <SetTypePickerDemo />
       </Section>
 
+      {/* ---- reorderable list — generic drag-to-reorder primitives, not
+           tied to any domain; Active Session's exercise cards are one
+           consumer, templates screens are an expected future one ---- */}
+      <Section title="Reorderable list">
+        <ReorderableListDemo />
+      </Section>
+
       {/* ---- tab bar transition demo (local state, no real navigation —
            lets you exercise every jump, including last <-> first, without
            needing a signed-in session) ---- */}
@@ -320,6 +332,35 @@ export default function DevUI() {
         <TabBarDemo />
       </Section>
     </main>
+  );
+}
+
+function ReorderableListDemo() {
+  const [items, setItems] = useState([
+    { id: "1", label: "Barbell Bench Press" },
+    { id: "2", label: "Incline DB Press" },
+    { id: "3", label: "Cable Fly" },
+  ]);
+
+  return (
+    <div className="flex flex-col gap-3">
+      <ReorderList values={items} onReorder={setItems}>
+        {items.map((item) => (
+          <DraggableItem
+            key={item.id}
+            value={item}
+            className="bg-card border-border flex items-center gap-2 rounded-xl border p-3"
+          >
+            <DragHandle aria-label={`Reorder ${item.label}`} />
+            <span className="text-body font-sans">{item.label}</span>
+          </DraggableItem>
+        ))}
+      </ReorderList>
+      <p className="text-micro text-muted-foreground/70 font-mono">
+        drag the grip handle to reorder — tapping elsewhere on a row never
+        starts a drag
+      </p>
+    </div>
   );
 }
 
