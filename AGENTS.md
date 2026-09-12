@@ -198,6 +198,14 @@ bug earlier in this project is exactly the mistake this split prevents).
   helper function in a separate module that the render call doesn't
   directly show `Date.now()` inside of (server) — see
   `app/app/workout/[id]/stub-session.ts`'s `getStubStartedAt()`.
+- **Screen headers are sticky.** `TabHeader` (`components/app-shell/tab-header.tsx`)
+  and `SessionHeader` (`app/app/workout/[id]/session-header.tsx`) both use
+  `sticky top-0 z-20 bg-background` so the header stays pinned while its
+  screen's content scrolls underneath. Apply the same treatment to any new
+  screen header going forward — `sticky top-0`, a solid `bg-background` (or
+  `bg-card`/whatever the header's actual surface is) so content doesn't show
+  through while scrolled, and `z-20` to stay above page content but below
+  `NavShell`'s `z-50` floating nav.
 
 ## Verification workflow
 
