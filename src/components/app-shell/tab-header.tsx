@@ -18,7 +18,7 @@ export function TabHeader({ name }: TabHeaderProps) {
   const streak = getStreak();
 
   return (
-    <header className="flex items-center justify-between px-5 pt-5">
+    <header className="bg-background sticky top-0 z-20 flex items-center justify-between px-5 pt-5">
       <Link href="/app/profile" className="flex items-center gap-2.5">
         <span className="bg-accent text-primary-hover font-display flex size-9 shrink-0 items-center justify-center rounded-full text-[14px] font-semibold">
           {initial}

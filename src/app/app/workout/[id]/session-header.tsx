@@ -60,7 +60,10 @@ export function SessionHeader({ controller }: SessionHeaderProps) {
   }
 
   return (
-    <header className="border-border flex items-center justify-between border-b px-4 pt-4.5 pb-3">
+    <header className="border-border bg-background sticky top-0 z-20 flex items-center justify-between border-b px-4 pt-4.5 pb-3">
+      {/* No max-w cap here — matches TabHeader (Home's header), which also
+          spreads its content to the true viewport edges on desktop rather
+          than capping to the body's centered column width. */}
       <div className="flex items-center gap-2">
         <Button
           variant="ghost"
