@@ -86,18 +86,23 @@ export function SetLogTable({
                   }
                   onClick={() => onToggleComplete(set.id)}
                   className={cn(
+                    // Same 27px box in both states — only the fill changes
+                    // (outline vs filled). Sizing the box itself off
+                    // `completed` made it the row's tallest element while
+                    // pending, then shrink on check, visibly squeezing the
+                    // row's padding.
                     // rounded-sm (8px in this project's scale) — rounded-lg
                     // is 12px here (see tokens.css --radius), which on a
                     // 27px box reads as a near-circle instead of the
                     // design's rounded-square check.
-                    "flex items-center justify-center rounded-sm",
+                    "flex size-[27px] items-center justify-center rounded-sm",
                     set.completed
-                      ? "text-primary size-5"
-                      : "border-border size-[27px] border-2",
+                      ? "bg-primary text-primary-foreground"
+                      : "border-border border-2",
                   )}
                 >
                   {set.completed && (
-                    <Check className="size-full" strokeWidth={3} />
+                    <Check className="size-4" strokeWidth={3} />
                   )}
                 </button>
               </TableCell>
