@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { ActiveSessionForm } from "./active-session-form";
-import { getStubStartedAt } from "./stub-session";
+import { getStubExercises, getStubStartedAt } from "./stub-session";
 
 export const metadata: Metadata = { title: "Active session" };
 
@@ -17,6 +17,7 @@ export default async function ActiveSessionPage({
       sessionId={id}
       initialName="Push Day"
       startedAt={getStubStartedAt()}
+      initialExercises={getStubExercises()}
     />
   );
 }

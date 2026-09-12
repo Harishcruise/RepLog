@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { toast } from "sonner";
 
+import type { SessionExercise } from "./exercise";
 import { useElapsedTimer } from "./use-elapsed-timer";
 
 export type ActiveSessionController = ReturnType<typeof useActiveSession>;
@@ -12,6 +13,7 @@ type UseActiveSessionInput = {
   sessionId: string;
   initialName: string;
   startedAt: Date;
+  initialExercises: SessionExercise[];
 };
 
 /**
@@ -24,10 +26,22 @@ export function useActiveSession({
   sessionId,
   initialName,
   startedAt,
+  initialExercises,
 }: UseActiveSessionInput) {
   const router = useRouter();
   const [name, setName] = useState(initialName);
+  const [exercises, setExercises] = useState(initialExercises);
   const elapsedSeconds = useElapsedTimer(startedAt);
+
+  /** Framer Motion's Reorder.Group hands back the full reordered array on
+   *  drop — just accept it as the new order. */
+  const reorderExercises = useCallback((next: SessionExercise[]) => {
+    setExercises(next);
+  }, []);
+
+  const removeExercise = useCallback((exerciseId: string) => {
+    setExercises((prev) => prev.filter((e) => e.id !== exerciseId));
+  }, []);
 
   const rename = useCallback((next: string) => {
     const trimmed = next.trim();
@@ -56,5 +70,8 @@ export function useActiveSession({
     leaveRunning,
     finish,
     discard,
+    exercises,
+    reorderExercises,
+    removeExercise,
   };
 }
