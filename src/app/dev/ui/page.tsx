@@ -17,10 +17,17 @@ import { NAV_ITEMS } from "@/components/app-shell/nav-items";
 import { NavShell } from "@/components/app-shell/nav-shell";
 import { TabBar } from "@/components/app-shell/tab-bar";
 import { TabHeader } from "@/components/app-shell/tab-header";
+import {
+  DraggableItem,
+  DragHandle,
+  ReorderList,
+} from "@/components/reorder/reorderable-list";
+import { NumberPad, type NumberPadStep } from "@/components/session/number-pad";
 import { RestTimer } from "@/components/session/rest-timer";
 import type { SetType } from "@/components/session/set-type";
 import { SetTypePicker } from "@/components/session/set-type-picker";
 import { useRestTimer } from "@/components/session/use-rest-timer";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Field,
@@ -164,9 +171,20 @@ export default function DevUI() {
           <Button disabled>
             <Loader2 className="animate-spin" /> Loading
           </Button>
-          <Button className="w-full" size="lg">
-            Full-width lg
-          </Button>
+        </div>
+        <Button className="w-full" size="lg">
+          Full-width lg
+        </Button>
+      </Section>
+
+      {/* ---- badge ---- */}
+      <Section title="Badge">
+        <div className="flex flex-wrap items-center gap-2">
+          <Badge>Default</Badge>
+          <Badge variant="secondary">Secondary</Badge>
+          <Badge variant="muted">Chest</Badge>
+          <Badge variant="destructive">Destructive</Badge>
+          <Badge variant="outline">Outline</Badge>
         </div>
       </Section>
 
@@ -308,9 +326,22 @@ export default function DevUI() {
         <RestTimerDemo />
       </Section>
 
+      {/* ---- number pad — docked keypad from ActiveSession.dc.html frames
+           2-3, kg/reps step chained here the same way the real screen will ---- */}
+      <Section title="Number pad">
+        <NumberPadDemo />
+      </Section>
+
       {/* ---- set-type picker — tap a badge to retag it, state kept here ---- */}
       <Section title="Set-type picker">
         <SetTypePickerDemo />
+      </Section>
+
+      {/* ---- reorderable list — generic drag-to-reorder primitives, not
+           tied to any domain; Active Session's exercise cards are one
+           consumer, templates screens are an expected future one ---- */}
+      <Section title="Reorderable list">
+        <ReorderableListDemo />
       </Section>
 
       {/* ---- tab bar transition demo (local state, no real navigation —
@@ -320,6 +351,35 @@ export default function DevUI() {
         <TabBarDemo />
       </Section>
     </main>
+  );
+}
+
+function ReorderableListDemo() {
+  const [items, setItems] = useState([
+    { id: "1", label: "Barbell Bench Press" },
+    { id: "2", label: "Incline DB Press" },
+    { id: "3", label: "Cable Fly" },
+  ]);
+
+  return (
+    <div className="flex flex-col gap-3">
+      <ReorderList values={items} onReorder={setItems}>
+        {items.map((item) => (
+          <DraggableItem
+            key={item.id}
+            value={item}
+            className="bg-card border-border flex items-center gap-2 rounded-xl border p-3"
+          >
+            <DragHandle aria-label={`Reorder ${item.label}`} />
+            <span className="text-body font-sans">{item.label}</span>
+          </DraggableItem>
+        ))}
+      </ReorderList>
+      <p className="text-micro text-muted-foreground/70 font-mono">
+        drag the grip handle to reorder — tapping elsewhere on a row never
+        starts a drag
+      </p>
+    </div>
   );
 }
 
@@ -344,16 +404,10 @@ function SetTypePickerDemo() {
             }
           />
         ))}
-        <SetTypePicker
-          setNumber={5}
-          type="normal"
-          dimmed
-          onTypeChange={() => undefined}
-        />
       </div>
       <p className="text-micro text-muted-foreground/70 font-mono">
-        tap a badge to retag it — the 5th is a dimmed (completed, Normal)
-        reference
+        tap a badge to retag it — every type keeps full color even once its set
+        is complete
       </p>
     </div>
   );
@@ -376,6 +430,38 @@ function RestTimerDemo() {
         <p className="text-micro text-muted-foreground/70 font-mono">
           {timer.isRunning ? "running" : "finished — skip or restart"}
         </p>
+      </div>
+    </div>
+  );
+}
+
+function NumberPadDemo() {
+  const [step, setStep] = useState<NumberPadStep>("kg");
+  const [value, setValue] = useState("100");
+
+  return (
+    <div className="flex flex-col items-start gap-3">
+      <p className="text-micro text-muted-foreground/70 font-mono">
+        tap Next/Back to switch steps — Save vs Log set are deliberately
+        different actions, both just toast here
+      </p>
+      <div className="w-full max-w-sm overflow-hidden rounded-2xl">
+        <NumberPad
+          step={step}
+          value={value}
+          onDigit={(digit) => setValue((prev) => prev + digit)}
+          onErase={() => setValue((prev) => prev.slice(0, -1))}
+          onSave={() => toast(`Saved ${step}: ${value}`)}
+          onNext={() => {
+            setStep("reps");
+            setValue("7");
+          }}
+          onBack={() => {
+            setStep("kg");
+            setValue("100");
+          }}
+          onLogSet={() => toast(`Set logged — ${value} reps`)}
+        />
       </div>
     </div>
   );
